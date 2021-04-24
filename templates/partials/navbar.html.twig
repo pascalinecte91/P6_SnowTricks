@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+  <div class="text-align-left">
+    <a class="navbar-brand js-scroll-trigger" href="#"><img src="{{ asset('image/logo.jpg')}}"  class="d-inline-block align-top" alt="">
+    SnowTricks</a>
+    </div>
+    <div class="text-align-left">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+     <i class="fa fa-bar"></i>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav">
+        
+          <a class="nav-link" href="{{ path('accueil')}}"><i class="fa fa-home" aria-hidden="true"></i>     Accueil -Tricks Liste  </a>
+        </li> 
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_login')}}"><i class="fa fa-sign-in" aria-hidden="true"></i>     Connexion</a>
+        </li>
+       <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i>     Inscription</a>
+        </li>
+        <div class="text-align-right">
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>

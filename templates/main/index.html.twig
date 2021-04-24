@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ma liste{% endblock %}
+
+{% block body %}
+{% for trick in tricks %}
+
+<div class="container-fluid">
+	<div class="row text-center">
+		<div class="col-md-4 col-lg-3 xl-4 pt-5">
+			<div class="card" style="width: 18rem;">
+				<h5 class="card-title">Regular</h5>
+				<img class="card-img-top" src="{{ asset('image/homepage4.jpg')}}" alt="Card image cap">
+					<div class="d-flex justify-content-between mx-5 my-2">
+					<a href="{{ path('trick_index')}}"><i class="fa fa-pencil mt-2"></i></a>
+					<a href="" class="btn btn-primary pl-10">Read more</a>
+					<a href=""><i class="fa fa-trash mt-2"></i></a>
+				</div>
+			</div>
+		</div>
+
+{% endfor %}
+
+{% endblock %}

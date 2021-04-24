@@ -1,0 +1,92 @@
+body {
+    background-color: rgb(175, 195, 216);
+    margin:0;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+p{
+    color: white ;
+}
+
+.navbar{
+    padding-right: 50px;
+    padding-left: 50px;
+    background-color: rgb(52, 52, 75);;  
+}
+
+.navbar-img{
+    width: 60px; 
+    height: 30px;
+}
+
+footer {
+    background-color: rgb(52, 52, 75);
+    font-size: white;
+    max-height: 40vh;
+  }
+
+.form-control::placeholder {
+    font-size: 0.95rem;
+    color: #1b17ec;
+    font-style: italic;
+  }
+
+.form-control.shadow-0:focus {
+     box-shadow: none;
+  }
+
+.form-check {
+    text-align: left;
+}
+
+#registration_form_email,
+#registration_form_plainPassword {
+    width: 500px;
+}
+.form_control {
+    display: inherit!important;
+}
+
+#login.container {
+    width: 500px;
+}
+#avatar {
+    border: 2mm ridge rgba(250, 22, 60, 0.6);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
+.rounded-circle {
+    height: 40px;
+    margin-right: 10px;
+}
+
+
+.fa-2x{
+    color: white;
+    margin-right: 15px;
+
+}
+
+.card {
+ background-color: white;
+}
+
+a.btn.btn {
+    color: white;
+    background-color:rgba(104, 88, 54, 0.6);
+    border: none;
+}
+#footer, u{
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+
+
+
