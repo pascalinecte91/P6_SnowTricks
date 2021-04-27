@@ -30,7 +30,9 @@ class Picture
     /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="pictures")
      */
-    private $tricks;
+    private $trick;
+
+ 
 
     public function getId(): ?int
     {
@@ -72,4 +74,21 @@ class Picture
 
         return $this;
     }
+    public function __toString()
+    {
+            return $this->getName();
+    }
+
+    public function getTrick(): ?Trick
+    {
+        return $this->trick;
+    }
+
+    public function setTrick(?Trick $trick): self
+    {
+        $this->trick = $trick;
+
+        return $this;
+    }
+
 }

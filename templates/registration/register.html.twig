@@ -1,22 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+	{% for flashError in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+	{% endfor %}
 
-    <h1>Register</h1>
+	<div class="container text-center">
+		<div class="text-center " style="padding-bottom:100px">
+			<h1>S'inscrire</h1>
+		</div>
+    <div class="tex-left" id="inscription">
+		{{ form_start(registrationForm) }}
+		<div class="input-field col text-center">
+			{{ form_row(registrationForm.username) }}
+<br>
+		</div>
+		<div class="input-field  ">
+			{{ form_row(registrationForm.email) }}
+            <br>
+			{{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
+		</div><br>
+		{{ form_row(registrationForm.agreeTerms) }}
+		{{ form_end(registrationForm) }} <br>
+    </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+		<div class="input-field">
+			<input type="submit" name="" class="btn btn-primary" value="M'enregistrer">
+		</div>
+	</div>
 {% endblock %}

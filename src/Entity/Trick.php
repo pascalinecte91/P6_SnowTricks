@@ -45,26 +45,41 @@ class Trick
      */
     private $category;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="tricks")
-     */
-    private $pictures;
+ 
 
-    /**
-     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="tricks")
-     */
-    private $videos;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick")
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $videos;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="trick",
+     * orphanRemoval=true, cascade={"persist"})
+     */
+    private $pictures;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="trick")
+     */
+    private $video;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
         $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->video = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,6 +98,11 @@ class Trick
 
         return $this;
     }
+
+    public function __toString()
+{
+        return $this->getName();
+}
 
     public function getDescription(): ?string
     {
@@ -220,5 +240,32 @@ class Trick
         }
 
         return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function setVideos(?string $videos): self
+    {
+        $this->videos = $videos;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideo(): Collection
+    {
+        return $this->video;
     }
 }

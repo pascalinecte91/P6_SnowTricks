@@ -40,7 +40,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $username;
 
@@ -48,6 +48,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="users")
      */
     private $comments;
+
+    /**
+     * @ORM\Column(type="datetimetz")
+     */
+    private $createdAt;
 
     public function __construct()
     {
@@ -71,6 +76,11 @@ class User implements UserInterface
         return $this;
     }
 
+    public function __toString()
+    {
+            return $this->getEmail();
+    }
+
     /**
      * A visual identifier that represents this user.
      *
@@ -78,7 +88,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string) $this->email;
     }
 
     /**
@@ -168,6 +178,18 @@ class User implements UserInterface
                 $comment->setUsers(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

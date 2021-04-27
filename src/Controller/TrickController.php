@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Trick;
 use App\Form\TrickType;
+use App\Entity\Picture;
 use App\Repository\TrickRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route("/trick")
@@ -35,6 +38,26 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // recuperation des images transmises
+            $pictures = $form->get('picture')->getData();
+
+            // faire une boucle pour plusieurs images
+            foreach ($pictures as $picture) {
+            //  generer un nouveau nom de fichier images
+                $fichier = md5(uniqid()) . '.' . $picture->guessExtension();
+            
+            // recopier le fichier dans le upload
+            $picture->move(
+                $this->getParameter('pictures_directory'),
+                $fichier
+            );
+        
+            // stocker l image dans la db avec son nom
+            $img = new Picture();
+            $img->setName($fichier);
+            $trick->addPicture($img);
+        }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($trick);
             $entityManager->flush();
@@ -46,7 +69,9 @@ class TrickController extends AbstractController
             'trick' => $trick,
             'form' => $form->createView(),
         ]);
-    }
+    
+        }
+    
 
     /**
      * @Route("/{id}", name="trick_show", methods={"GET"})
@@ -67,6 +92,25 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // recuperation des images transmises
+            $pictures = $form->get('picture')->getData();
+
+            // faire une boucle pour plusieurs images
+            foreach ($pictures as $picture) {
+            //  generer un nouveau nom de fichier images
+                $fichier = md5(uniqid()) . '.' . $picture->guessExtension();
+            
+            // recopier le fichier dans le upload
+            $picture->move(
+                $this->getParameter('pictures_directory'),
+                $fichier
+            );
+        
+            // stocker l image dans la db avec son nom
+            $img = new Picture();
+            $img->setName($fichier);
+            $trick->addPicture($img);
+        }   
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('trick_index');
@@ -90,5 +134,28 @@ class TrickController extends AbstractController
         }
 
         return $this->redirectToRoute('trick_index');
+    }
+/**
+ *  @Route("/delete/picture/{id}", name="trick_delete_picture", methods={"DELETE"})
+ */
+    public function deletePicture(Trick $picture,  Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        //verification du token  valid ou pas
+        if ($this->isCsrfTokenValid('delete' . $picture->getId(), $data['_token'])) {
+            $name = $picture->getName();
+            unlink($this->getParameter('pictures_directory') . '/' . $name);
+
+        // suppression de la db
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($picture);
+            $em->flush();
+
+            //reponse en json_decode
+            return new JsonResponse(['success'=> 1]);
+        }else{
+            return new JsonResponse(['error'=> 'Token Invalide'], 400);
+        }
     }
 }
