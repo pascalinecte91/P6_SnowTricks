@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\UsersAuthenticator;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +34,7 @@ class RegistrationController extends AbstractController
                   
                 )
             );
-     
+            $user->setCreatedAt(new DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
          

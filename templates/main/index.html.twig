@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ma liste{% endblock %}
+{% block title %}Toutes les figures - liste{% endblock %}
 
 {% block body %}
 <div class="container-fluid d-flex h-100 align-items-center">
-	<img class="card-img-top" src="{{ asset('uploads/pictures/homepage4.jpg')}}" alt="Card image cap">
+	<img class="card-img-top" src="{{ asset('uploads/pictures/homepagefin.jpg')}}" alt="Card image cap">
 </div>
 	<div id="button-down" style="text-align:right">
 		<a href="" class="js-scroll-trigger">
@@ -18,12 +18,13 @@
 <div class="container-fluid">
 	<div class="row text-center">
 		{% for trick in tricks %}
+		
 			<div class="col-md-4 col-lg-3 xl-4 pt-5">
 	
 				<div class="card" style="width: 18rem;">
-				<h1>{{ trick.name }}</h1>
-					<h5 class="card-title">Regular</h5>
-					<img class="card-img-top" src="{{ asset('uploads/pictures/ImgSnowtrick_6.jpg')}}" alt="Card image cap">
+				<h1></h1>
+					<h5> {{ trick.name }} </h5>
+					<img class="card-img-top" src="{{ asset('uploads/pictures/' ~ trick.picture)}}" alt="Card image cap">
 					<div class="d-flex justify-content-between mx-5 my-2"></div>
 					<a href="{{ path('trick_edit', {'id': trick.id}) }}">
 						<i class="fa fa-pencil mt-2"></i>

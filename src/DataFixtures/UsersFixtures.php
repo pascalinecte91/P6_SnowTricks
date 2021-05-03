@@ -21,7 +21,7 @@ class UsersFixtures extends Fixture
     {
     $faker = Faker\Factory::create('fr_FR');
 
-        for($nbUsers = 1; $nbUsers <20; $nbUsers++){
+        for($nbUsers = 1; $nbUsers <5; $nbUsers++){
             $user = new User();
             $user->setEmail($faker->email());
             $user->setCreatedAt($faker->dateTime());

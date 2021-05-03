@@ -6,6 +6,7 @@
     <h1>Create new Trick</h1>
 
     {{ include('trick/_form.html.twig') }}
-
-    <a href="{{ path('trick_index') }}">back to list</a>
+<div class="col-12 text-center my-5 py-3">
+    <a href="{{ path('trick_index') }}" class="btn btn-secondary">back to list</a>
+</div>
 {% endblock %}

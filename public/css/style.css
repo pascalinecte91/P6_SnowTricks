@@ -13,7 +13,8 @@ p{
 .navbar{
     padding-right: 50px;
     padding-left: 50px;
-    background-color: rgb(52, 52, 75);;  
+    background-color: rgb(52, 52, 75);; 
+  
 }
 
 .navbar-img{
@@ -23,7 +24,7 @@ p{
 
 footer {
     background-color: rgb(52, 52, 75);
-    font-size: white;
+    font-size: #1b17ec;
     max-height: 40vh;
   }
 
@@ -41,24 +42,26 @@ footer {
     text-align: left;
 }
 
-#registration_form_email,
-#registration_form_plainPassword {
+input {
+    width: 700px;
+    background-color: rgb(145, 177, 174);
+}
+#register input   {
     width: 500px;
+    margin-left: 10px;
+    background-color: rgb(145, 177, 174);
+}
+#register-buttom input {
+    width: 200px;
+   
+}
+
+label{
+    display:block;
+    float:left;
 }
 .form_control {
     display: inherit!important;
-}
-
-#login.container {
-    width: 500px;
-}
-#avatar {
-    border: 1mm ridge rgba(33, 172, 96, 0.6);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 500px;
 }
 
 .rounded-circle {
@@ -72,8 +75,7 @@ footer {
 
 a.btn.btn {
     color: white;
-    background-color:rgba(104, 88, 54, 0.6);
-    border: none;
+    background-color:rgba(104, 88, 54, 0.6)
 }
 #footer, u{
     text-decoration: none;
@@ -92,9 +94,32 @@ a.btn.btn {
         background-color: rgb(248, 236, 211);
 }
 
-#_form-edit {
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgb(227, 178, 247);
+#edit-trick label {
+    display: block;
+    width: 250px;
+    float: left;
+    margin-top: 10px;
+    font-size: 20px;
 }
-
+textarea {
+    width: 700px;
+    height: 250px;
+    background-color:  white;
+}
+#edit-trick input, select input #file {
+    background-color: white
+}  
+#edit-trick input {
+    padding-top: 10px;
+    margin-top: 10px;
+}
+#edit-trick {
+    background-color: rgb(165, 177, 197);
+    
+}
+table th  {
+    width: auto;
+}
+.btn-dark {
+    width:62px;
+}

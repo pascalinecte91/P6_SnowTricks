@@ -7,46 +7,59 @@
 <div class="container h-100">
 	<div class="row align-items-center h-100">
 		<div class="col-12">
-			<div class="card h-100 justify-content-center" id="trick-show">
-				<div>
-					<h1>Trick</h1>
 
-					<table class="table">
-						<tbody>
+			<div>
+				<h1>Trick</h1>
 
-						<!--	<tr>
-								<th>Id</th>
-								<td>{{ trick.id }}</td>
-							</tr> -->
-							<tr>
-								<th>Name</th>
-								<td>{{ trick.name }}</td>
-							</tr>
-							<tr>
-								<th>Description</th>
-								<td>{{ trick.description }}</td>
-							</tr>
-							<tr>
-								<th>CreatedAt</th>
-								<td>{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
-							</tr>
-							<tr>
-								<th>UpdateAt</th>
-								<td>{{ trick.updateAt ? trick.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<table class="table">
+					<tbody>
+
+						<tr>
+							<th>Id</th>
+							<td>{{ trick.id }}</td>
+						</tr> 
+						<tr>
+							<th>Nom</th>
+							<h5>
+								{{ trick.name }}
+							</h5>
+							<img class="card-img-top" src="{{ asset('uploads/pictures/' ~ trick.picture)}}" alt="Card imag ">
+							<td>{{ trick.name }}</td>
+						</tr>
+						<tr>
+							<th>Categorie</th>
+							<td>{{ trick.category }}</td>
+
+
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>{{ trick.description }}</td>
+						</tr>
+						<tr>
+							<th>Crée  le</th>
+							<td>{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Modifié le</th>
+							<td>{{ trick.updateAt ? trick.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
+						</tr>
+
+					</tbody>
+				</table>
 			</div>
+
+			
 		</div>
 	</div>
+
 </div>
 
+<div class="row justify-content-around">
+	<a href="{{ path('trick_index') }}"class="btn btn-secondary">back to list</a>
+	<!--<a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-secondary">edit</a>-->
 	
-<div class="d-flex justify-content-center">
-    <a href="{{ path('trick_index') }}">back to list</a>
-</div>
-	<a href="{{ path('trick_edit', {'id': trick.id}) }}">edit</a>
-
 	{{ include('trick/_delete_form.html.twig') }}
+</div>
+
 {% endblock %}

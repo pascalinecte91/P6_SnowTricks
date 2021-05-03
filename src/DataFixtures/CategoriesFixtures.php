@@ -14,7 +14,7 @@ class CategoriesFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
        
         $listCategory = [
-    1 => ['title' => 'grabs',  ],
+    1 => ['title' => 'grabs'],
     2 => ['title' => 'straight airs'],
     3 => ['title' => 'rotation'],
     4 => ['title' => 'spins'],
@@ -40,13 +40,4 @@ class CategoriesFixtures extends Fixture
 }
 
 
- 
 
-// $listCategory = [];
- /*for ($i=0; $i<7; $i++) {
-            $category = new Category(); 
-            $category->setDescription(($faker->paragraph(2)));
-            $category->setTitle($faker->sentence());
-            $listCategory[] = $category;
-            $manager->persist($category);
-        }*/

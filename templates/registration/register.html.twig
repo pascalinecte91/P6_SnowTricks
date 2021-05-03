@@ -7,28 +7,26 @@
 	{% for flashError in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 	{% endfor %}
-
-	<div class="container text-center">
-		<div class="text-center " style="padding-bottom:100px">
-			<h1>S'inscrire</h1>
-		</div>
-    <div class="tex-left" id="inscription">
-		{{ form_start(registrationForm) }}
-		<div class="input-field col text-center">
-			{{ form_row(registrationForm.username) }}
-<br>
-		</div>
-		<div class="input-field  ">
-			{{ form_row(registrationForm.email) }}
-            <br>
-			{{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
-		</div><br>
-		{{ form_row(registrationForm.agreeTerms) }}
-		{{ form_end(registrationForm) }} <br>
-    </div>
-
-		<div class="input-field">
-			<input type="submit" name="" class="btn btn-primary" value="M'enregistrer">
-		</div>
+<div class="container">
+	<div class="text-center " style="padding-bottom:100px">
+		<h1>S'inscrire</h1>
 	</div>
+	<div class="col-md-6 bg-light p-3 m-t-5">
+		<div class="input-field" id="register">
+		
+			{{ form_start(registrationForm) }}
+			{{ form_row(registrationForm.username, {label: 'Login'}) }}<br>
+			{{ form_row(registrationForm.email) }}<br>
+			{{ form_row(registrationForm.email_confirm, {label: 'Confirmation mot de passe'}) }}<br>
+			{{ form_row(registrationForm.plainPassword, {label: 'Mot de passe'}) }}<br>
+			{{ form_row(registrationForm.agreeTerms, {label: 'Valider infos'}) }}
+		</div>	
+		<div class="input-field" id="register-buttom">
+			<input type="submit" name="" class="btn btn-secondary" value="M'enregistrer">
+		</div>
+			{{ form_end(registrationForm) }}<br>
+		</div>
+	
+</div>
+
 {% endblock %}

@@ -45,8 +45,6 @@ class Trick
      */
     private $category;
 
- 
-
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick")
@@ -73,6 +71,12 @@ class Trick
      * @ORM\OneToMany(targetEntity=Video::class, mappedBy="trick")
      */
     private $video;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="user")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -115,6 +119,7 @@ class Trick
 
         return $this;
     }
+
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -267,5 +272,17 @@ class Trick
     public function getVideo(): Collection
     {
         return $this->video;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

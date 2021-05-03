@@ -3,9 +3,12 @@
 {% block title %}Trick index{% endblock %}
 
 {% block body %}
-    <h1>Index - Liste des Tricks pour modification</h1>
-<div="container-fluid">
-    <table class="table">
+
+<div="container-sm">
+    <div class="col-12 text-center my-5 py-3">
+        <h1>Liste des Tricks </h1>
+    </div>
+        <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -28,8 +31,8 @@
                 <td>{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
                 <td>{{ trick.updateAt ? trick.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
                 <td>
-                    <a href="{{ path('trick_show', {'id': trick.id}) }}">show</a>
-                    <a href="{{ path('trick_edit', {'id': trick.id}) }}">edit</a>
+                    <a href="{{ path('trick_show', {'id': trick.id}) }}"class="btn btn-dark mb-2">show</a>
+                    <a href="{{ path('trick_edit', {'id': trick.id}) }}"class="btn btn-dark">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -39,6 +42,9 @@
         {% endfor %}
         </tbody>
     </table>
+    
 </div>
-    <a href="{{ path('trick_new') }}">Create new</a>
+<div class="col-12 text-center my-5 py-3">
+    <a href="{{ path('trick_new') }}"class="btn btn-secondary">Create new</a>
+    </div>
 {% endblock %}

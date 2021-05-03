@@ -34,10 +34,12 @@ class TrickController extends AbstractController
     public function new(Request $request): Response
     {
         $trick = new Trick();
+        $trick->setUser($this->getUser());
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
+           
             // recuperation des images transmises
             $pictures = $form->get('picture')->getData();
 
@@ -143,9 +145,9 @@ class TrickController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         //verification du token  valid ou pas
-        if ($this->isCsrfTokenValid('delete' . $picture->getId(), $data['_token'])) {
+        if ($this->isCsrfTokenValid('delete'. $picture->getId(), $data['_token'])) {
             $name = $picture->getName();
-            unlink($this->getParameter('pictures_directory') . '/' . $name);
+            unlink($this->getParameter('pictures_directory') .'/' . $name);
 
         // suppression de la db
             $em = $this->getDoctrine()->getManager();
