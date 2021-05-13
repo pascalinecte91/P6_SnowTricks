@@ -29,8 +29,12 @@ class TrickType extends AbstractType
             
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('createdAt',)
-            ->add('updateAt',)
+            ->add('createdAt', DateType::class, [
+              "widget" => 'single_text'
+            ])
+            ->add('updateAt', DateType::class, [
+                "widget" => 'single_text'
+              ])
             ->add('category', EntityType::class,[
                 'class'=> Category::class,
                 'choice_label'=> 'title',

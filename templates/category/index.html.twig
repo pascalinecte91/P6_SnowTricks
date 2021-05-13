@@ -1,39 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Category index
+{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+<h1>Category index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Title</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.title }}</td>
-                <td>{{ category.description }}</td>
-                <td>{{ category.createdAt }}</td>
-                <td>{{ category.updatedAt }}</td>
-                <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('category_new') }}">Create new</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Description</th>
+			<th>Title</th>
+			<th>Crée le</th>
+			<th>Modifiée le</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+{% for category in categories %}
+	<tr>
+		<td>{{ category.id }}</td>
+		<td>{{ category.title }}</td>
+		<td>{{ category.description }}</td>
+		<td>{{ category.createdAt ? category.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
+		<td>{{ category.updateAt ? category.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
+		<td><a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-dark mb-2">show</a></td>
+		<td><a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-dark">edit</a></td>
+	</tr>
+    {% else %}
+	    <td colspan="4">no records found</td>
+	</tbody>
+{% endfor %}
+    </tbody>
+</table>
+    <a href="{{ path('category_new') }}" class="btn btn-dark">Create new</a>
 {% endblock %}

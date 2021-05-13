@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Form\TrickType;
 use App\Entity\Picture;
+use App\Form\CommentType;
 use App\Repository\TrickRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,17 +51,18 @@ class TrickController extends AbstractController
             //  generer un nouveau nom de fichier images
                 $fichier = md5(uniqid()) . '.' . $picture->guessExtension();
             
-            // recopier le fichier dans le upload
-            $picture->move(
-                $this->getParameter('pictures_directory'),
-                $fichier
-            );
-        
-            // stocker l image dans la db avec son nom
-            $img = new Picture();
-            $img->setName($fichier);
-            $trick->addPicture($img);
-        }
+                // recopier le fichier dans le upload
+                $picture->move(
+                    $this->getParameter('pictures_directory'),
+                    $fichier
+                );
+            
+                
+                $img = new Picture();
+                $img->setTrick($trick);
+                $img->setName($fichier);
+                $trick->addPicture($img);
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($trick);
@@ -78,13 +82,35 @@ class TrickController extends AbstractController
     /**
      * @Route("/{id}", name="trick_show", methods={"GET"})
      */
-    public function show(Trick $trick): Response
+    public function show(Request $request, Trick $trick): Response
     {
-        return $this->render('trick/show.html.twig', [
-            'trick' => $trick,
+        
+            //  creation du commentaire vide
+        $comment = new Comment();
+        // generer le formulaire
+        $commentForm = $this->createForm(CommentType::class, $comment);
+        $commentForm->handleRequest($request);
+
+        // envoi traitement formulaire : 
+        if($commentForm->isSubmitted() && $commentForm->isValid()){
+           $comment->setCreatedAt(new DateTime());
+           $comment->setTrick($trick);
+
+           $em = $this->getDoctrine()->getManager();
+           $em->persist($comment);
+        //  je fais mon flush  pour inscrire dans ma db
+        $em->flush();
+
+        $this->addFlash('message', ' Votre message est en attente de verification du moderateur');
+        return $this->redirectToRoute('trick_index', ['id'=> $trick->getId()]);
+        }
+    
+    return $this->render('trick/show.html.twig', [
+        'trick' => $trick,
+        'form' => $commentForm->createView(),
+        'commentForm'=> $commentForm->createView()
         ]);
     }
-
     /**
      * @Route("/{id}/edit", name="trick_edit", methods={"GET","POST"})
      */
@@ -94,7 +120,6 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // recuperation des images transmises
             $pictures = $form->get('picture')->getData();
 
             // faire une boucle pour plusieurs images
@@ -102,16 +127,19 @@ class TrickController extends AbstractController
             //  generer un nouveau nom de fichier images
                 $fichier = md5(uniqid()) . '.' . $picture->guessExtension();
             
-            // recopier le fichier dans le upload
-            $picture->move(
-                $this->getParameter('pictures_directory'),
-                $fichier
-            );
-        
-            // stocker l image dans la db avec son nom
-            $img = new Picture();
-            $img->setName($fichier);
-            $trick->addPicture($img);
+                // recopier le fichier dans le upload
+                $picture->move(
+                    $this->getParameter('pictures_directory'),
+                    $fichier
+                );
+            
+                // stocker l image dans la db avec son nom
+               $img = new Picture();
+               $img->setTrick($trick);
+                $img->setName($fichier);
+                $trick->addPicture($img);
+            
+       
         }   
             $this->getDoctrine()->getManager()->flush();
 
@@ -137,20 +165,25 @@ class TrickController extends AbstractController
 
         return $this->redirectToRoute('trick_index');
     }
-/**
- *  @Route("/delete/picture/{id}", name="trick_delete_picture", methods={"DELETE"})
- */
-    public function deletePicture(Trick $picture,  Request $request)
-    {
+    /**
+     * @Route("/delete/picture/{id}", name="trick_delete_picture", methods={"DELETE"})
+     */
+    public function deletePicture(Picture $picture, Request $request){
         $data = json_decode($request->getContent(), true);
 
         //verification du token  valid ou pas
-        if ($this->isCsrfTokenValid('delete'. $picture->getId(), $data['_token'])) {
-            $name = $picture->getName();
-            unlink($this->getParameter('pictures_directory') .'/' . $name);
+        if ($this->isCsrfTokenValid('delete'. $picture->getId(), $data['_token'])){
+            //je recupere le nom de l image
+            $nom = $picture->getName();
+            // puis on supprme l image avec le nom
+            if(file_exists($this->getParameter('pictures_directory') .'/'.$nom)){
+           unlink($this->getParameter('pictures_directory') .'/'.$nom);
+            }
+            
 
         // suppression de la db
             $em = $this->getDoctrine()->getManager();
+
             $em->remove($picture);
             $em->flush();
 

@@ -16,8 +16,8 @@ class TricksFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-       $img =$faker->image('public/uploads/picture');
-       $pictureTrick = str_replace('public/uploads/picture\\', '', $img); 
+        $img =$faker->image('public/uploads/pictures');
+        $pictureTrick = str_replace('public/uploads/pictures\\', '', $img); 
 
 
        $listPictures = [
@@ -56,7 +56,7 @@ class TricksFixtures extends Fixture implements DependentFixtureInterface
             13 => ['name' => '900'],
             14 => ['name' => 'Backside air'],
             15 => ['name' => 'Old school'],
-            16 => ['name' => 'Switch 270']
+            16 => ['name' => 'Switch 270'],
         ];
          
 
@@ -76,7 +76,7 @@ class TricksFixtures extends Fixture implements DependentFixtureInterface
 
           
 
-       /*for ($picture = 1; $picture <=2; $picture++){   
+       /*for ($picture = 1; $pictures <=3; $pictures++){   
          $pictureTrick = new Picture(); 
          $pictureTrick->setName($pictureTrick);
            $trick->addPicture($pictureTrick);*/

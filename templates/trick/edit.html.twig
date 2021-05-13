@@ -2,21 +2,23 @@
 
 {% block title %}Edit Trick
 {% endblock %}
-
+ 
 {% block body %}
-	<div class="container ">
-		<div class="text-center " style="padding-bottom:10px">
+	<div class="text-center " style="padding-bottom:10px">
 			<h1>Modifier un trick</h1>
-		</div>
-	</div>
-
-
-	{{ include('trick/_form.html.twig', {'button_label': 'Modifier'}) }}
-	<div class="row justify-content-around">
-	{{ include('trick/_delete_form.html.twig') }}
-
-
+			{{ include('trick/_form.html.twig', {'button_label': 'Save'}) }}
 	
-		<a href="{{ path('trick_index') }}" class="btn btn-secondary">back to list</a>
-	</div>
+	
+		<div class="row justify-content-around">
+
+			{{ include('trick/_delete_form.html.twig')  }}
+			<a href="{{ path('trick_index') }}" class="btn btn-secondary mt-3">back to list</a>
+		</div>
+<script src="{{ asset('js/images.js') }}"></script>
 {% endblock %}
+
+
+
+
+
+

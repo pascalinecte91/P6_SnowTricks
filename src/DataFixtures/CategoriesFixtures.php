@@ -28,6 +28,8 @@ class CategoriesFixtures extends Fixture
         foreach($listCategory as $key => $value){
             $listCategory = new Category();
             $listCategory->setTitle($value['title']);
+            $listCategory->setCreatedAt($faker->dateTimeBetween('- 1 years'));
+            $listCategory->setUpdateAt($faker->dateTimeInInterval('+5 days'));
             $listCategory->setDescription(($faker->paragraph(2)));
             $manager->persist($listCategory);
 

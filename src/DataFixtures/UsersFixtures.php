@@ -27,6 +27,7 @@ class UsersFixtures extends Fixture
             $user->setCreatedAt($faker->dateTime());
             $user->setPassword($this->encoder->encodePassword($user,'toto'));
             $user->setUsername($faker->lastName());
+            $user->setEmailConfirm($faker->email());
             $manager->persist($user);
             // enregistre l user dans une addReference
             $this->addReference('user_' . $nbUsers, $user);

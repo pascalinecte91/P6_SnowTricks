@@ -29,10 +29,10 @@ class Picture
 
     /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="pictures")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
 
- 
 
     public function getId(): ?int
     {
@@ -63,17 +63,7 @@ class Picture
         return $this;
     }
 
-    public function getTricks(): ?Trick
-    {
-        return $this->tricks;
-    }
 
-    public function setTricks(?Trick $tricks): self
-    {
-        $this->tricks = $tricks;
-
-        return $this;
-    }
     public function __toString()
     {
             return $this->getName();

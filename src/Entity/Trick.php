@@ -78,12 +78,18 @@ class Trick
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="tricks", orphanRemoval=true)
+     */
+    private $comment;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
         $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->video = new ArrayCollection();
+        $this->comment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,7 +175,7 @@ class Trick
     {
         if (!$this->pictures->contains($picture)) {
             $this->pictures[] = $picture;
-            $picture->setTricks($this);
+            $picture->setTrick($this);
         }
 
         return $this;
@@ -179,8 +185,8 @@ class Trick
     {
         if ($this->pictures->removeElement($picture)) {
             // set the owning side to null (unless already changed)
-            if ($picture->getTricks() === $this) {
-                $picture->setTricks(null);
+            if ($picture->getTrick() === $this) {
+                $picture->setTrick(null);
             }
         }
 
@@ -284,5 +290,13 @@ class Trick
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComment(): Collection
+    {
+        return $this->comment;
     }
 }
