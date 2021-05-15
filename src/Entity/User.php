@@ -45,7 +45,7 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="users")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
      */
     private $comments;
 
@@ -59,11 +59,15 @@ class User implements UserInterface
      */
     private $email_confirm;
 
+     /**
+     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user")
+     */
+    private $tricks;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->user = new ArrayCollection();
+        $this->tricks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -171,7 +175,7 @@ class User implements UserInterface
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
-            $comment->setUsers($this);
+            $comment->setUser($this);
         }
 
         return $this;
@@ -181,8 +185,8 @@ class User implements UserInterface
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
-            if ($comment->getUsers() === $this) {
-                $comment->setUsers(null);
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
             }
         }
 
@@ -201,35 +205,7 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Trick[]
-     */
-    public function getUser(): Collection
-    {
-        return $this->user;
-    }
-
-    public function addUser(Trick $user): self
-    {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(Trick $user): self
-    {
-        if ($this->user->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getUser() === $this) {
-                $user->setUser(null);
-            }
-        }
-
-        return $this;
-    }
+  
 
     public function getEmailConfirm(): ?string
     {
@@ -239,6 +215,36 @@ class User implements UserInterface
     public function setEmailConfirm(string $email_confirm): self
     {
         $this->email_confirm = $email_confirm;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trick[]
+     */
+    public function getTricks(): Collection
+    {
+        return $this->tricks;
+    }
+
+    public function addTrick(Trick $trick): self
+    {
+        if (!$this->tricks->contains($trick)) {
+            $this->tricks[] = $trick;
+            $trick->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrick(Trick $trick): self
+    {
+        if ($this->tricks->removeElement($trick)) {
+            // set the owning side to null (unless already changed)
+            if ($trick->getUser() === $this) {
+                $trick->setUser(null);
+            }
+        }
 
         return $this;
     }

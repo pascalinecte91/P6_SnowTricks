@@ -73,15 +73,10 @@ class Trick
     private $video;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="user")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tricks")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="tricks", orphanRemoval=true)
-     */
-    private $comment;
 
     public function __construct()
     {
@@ -89,7 +84,6 @@ class Trick
         $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->video = new ArrayCollection();
-        $this->comment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -292,11 +286,5 @@ class Trick
         return $this;
     }
 
-    /**
-     * @return Collection|Comment[]
-     */
-    public function getComment(): Collection
-    {
-        return $this->comment;
-    }
+
 }

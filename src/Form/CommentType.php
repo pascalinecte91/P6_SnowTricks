@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Comment;
 use App\Entity\Category;
+use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -21,7 +22,7 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'votre email',
+                'label' => 'votre e-mail',
                 'attr' => [
                     'class' => 'email'
                 ]
@@ -30,21 +31,15 @@ class CommentType extends AbstractType
                 'label' => 'Votre commentaire',
                 'attr' => []
             ])
-
             ->add('createdAt', DateType::class, [
                 "widget" => 'choice'
+            
             ])
-
-            ->add('category', EntityType::class,[
-                'class'=> Category::class,
-                'choice_label'=> 'title',
-                'required'=> false, 
-            ])
-            ->add('rgpd', CheckboxType::class)
-            ->add('parentid', HiddenType::class, [
+            ->add("rgpd", CheckboxType::class)
+            /*->add('parentid', HiddenType::class, [
                 'mapped' => false
-            ])
-            ->add('envoyer', SubmitType::class);
+            ])*/
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

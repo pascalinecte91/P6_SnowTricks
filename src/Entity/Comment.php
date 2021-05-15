@@ -33,7 +33,7 @@ class Comment
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $users;
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="comments")
@@ -45,12 +45,7 @@ class Comment
      */
     private $rgpd;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="comment")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $tricks;
-
+   
     /**
      * @ORM\ManyToOne(targetEntity=Comment::class, inversedBy="replies")
      */
@@ -66,21 +61,19 @@ class Comment
      */
     private $email;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $category;
 
     public function __construct()
     {
         $this->replies = new ArrayCollection();
+        $this->createdAt= new \DateTime();
     }
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
+   
 
     public function getContent(): ?string
     {
@@ -106,14 +99,14 @@ class Comment
         return $this;
     }
 
-    public function getUsers(): ?User
+    public function getUser(): ?User
     {
-        return $this->users;
+        return $this->user;
     }
 
-    public function setUsers(?User $users): self
+    public function setUser(?User $user): self
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
@@ -142,17 +135,7 @@ class Comment
         return $this;
     }
 
-    public function getTricks(): ?Trick
-    {
-        return $this->tricks;
-    }
-
-    public function setTricks(?Trick $tricks): self
-    {
-        $this->tricks = $tricks;
-
-        return $this;
-    }
+ 
 
     public function getParent(): ?self
     {
@@ -208,15 +191,5 @@ class Comment
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
+   
 }

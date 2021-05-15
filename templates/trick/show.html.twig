@@ -7,63 +7,88 @@
 	<div class="container h-100">
 		<div class="row align-items-center h-100">
 			<div class="col-12">
-				<div>
-					<h1>Trick</h1>
-					<table class="table">
-						<tbody>
-							<tr>
-								<th>Nom</th>
-								<h5>
-									{{ trick.name }}
-								</h5>
-								<img class="card-img-top" src="{{ asset('uploads/pictures/' ~ trick.picture)}}" alt="Card imag ">
-								<td>{{ trick.name }}</td>
-							</tr>
-							<tr>
-								<th>Categorie</th>
-								<td>{{ trick.category }}</td>
-							</tr>
-							<tr>
-								<th>Description</th>
-								<td>{{ trick.description }}</td>
-							</tr>
-							<tr>
-								<th>Crée  le</th>
-								<td>{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
-							</tr>
-							<tr>
-								<th>Modifié le</th>
-								<td>{{ trick.updateAt ? trick.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
-							</tr>
-						</tbody>
-					</table>
-					
-					<div class="row justify-content-around">
-					<div class="col-6">
-					{{ form_row(form.createdAt, {label: 'Crée le:'}) }}<br></div>
-					<div class="col-6">
-					{{ form_row(form.category, {label: 'Catégories:'}) }}<br>
+				<h1>Trick</h1>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Nom</th>
+							<h5>
+								{{ trick.name }}
+							</h5>
+							<img class="card-img-top" src="{{ asset('uploads/pictures/' ~ trick.picture)}}" alt="Card imag ">
+							<td>{{ trick.name }}</td>
+						</tr>
+						<tr>
+							<th>Categorie</th>
+							<td>{{ trick.category }}</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>{{ trick.description }}</td>
+						</tr>
+						<tr>
+							<th>Crée  le</th>
+							<td>{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Modifié le</th>
+							<td>{{ trick.updateAt ? trick.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			{% for picture in trick.pictures %}
+				<div class="d-flex border">
+					<div class="row">
+						<div class="col-4">
+							<img class="align-self-between mr-5" src="{{ asset('/uploads/'~ picture.name )}}" alt="Picture" width="300" height="200">
+						</div>
 					</div>
 				</div>
-				</div>
+			{% endfor %}
 
-				<!--COMMENTAIRES-->
+		</div>
+
+	</div>
+	<!--COMMENTAIRES-->
+
+	<div class="container">
+		<div class="col">
+			<h4>liste des commentaire</h4>
+			<div class="card">
+				<div class="card-body">
+					{% for comment in  trick.comments %}
+						{{ comment.content}}
+						{{ comment.createdAt|date('d/m/Y')}}
+					</div>
+				{% endfor %}
+
+			</div>
+			<div class="col">
+				<h4>Ajouter un commentaire</h4>
 				<div class="card">
 					<div class="card-body">
-						{{ form(commentForm) }}
-					
+
+						{{ form_start(commentForm) }}
+						{{ form_widget(commentForm)}}
+						<div class="row">
+							<button type="submit" class="btn btn-primary">Envoyer</button>
+						</div>
+						{{ form_end(commentForm) }}
+
 					</div>
 				</div>
+			</div>
 
-				
+</div>
+			
+		<div class="row justify-content-around">
+		<a href="{{ path('trick_index') }}" class="btn btn-secondary">back to list</a>
+			</div>
 
-				<div class="row justify-content-around">
-					<a href="{{ path('trick_index') }}" class="btn btn-secondary">back to list</a>
-					<!--<a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-secondary">edit</a>-->
-				</div>
-				{{ include('trick/_delete_form.html.twig') }}
+		{{ include('trick/_delete_form.html.twig') }}
 
-            </div>
-		</div>
-	</div>
-			{% endblock %}
+
+		<script src="{{ asset('js/images.js') }}"></script>
+	{% endblock %}

@@ -22,7 +22,7 @@ class TrickRepository extends ServiceEntityRepository
     // /**
     //  * @return Trick[] Returns an array of Trick objects
     //  */
-    /*
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('t')
@@ -34,7 +34,7 @@ class TrickRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Trick
