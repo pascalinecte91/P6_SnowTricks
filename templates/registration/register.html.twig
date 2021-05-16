@@ -15,16 +15,16 @@
 		<div class="input-field" id="register">
 		
 			{{ form_start(registrationForm) }}
-			{{ form_row(registrationForm.username, {label: 'Login'}) }}<br>
-			{{ form_row(registrationForm.email) }}<br>
-			{{ form_row(registrationForm.email_confirm, {label: 'Confirmation mot de passe'}) }}<br>
-			{{ form_row(registrationForm.plainPassword, {label: 'Mot de passe'}) }}<br>
+			{{ form_row(registrationForm.username, {label: 'Login'}) }}
+			{{ form_row(registrationForm.email) }}
+			{{ form_row(registrationForm.email_confirm, {label: 'Confirmation mot de passe'}) }}
+			{{ form_row(registrationForm.plainPassword, {label: 'Mot de passe'}) }}
 			{{ form_row(registrationForm.agreeTerms, {label: 'Valider infos'}) }}
 		</div>	
 		<div class="input-field" id="register-buttom">
-			<input type="submit" name="" class="btn btn-secondary" value="M'enregistrer">
+			<button type="submit" class="btn btn-secondary">M'enregistrer</button>
 		</div>
-			{{ form_end(registrationForm) }}<br>
+			{{ form_end(registrationForm) }}
 		</div>
 	
 </div>

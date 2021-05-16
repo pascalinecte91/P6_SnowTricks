@@ -58,11 +58,6 @@ input {
     background-color: rgb(145, 177, 174);
 }
 
-#register input   {
-    width: 500px;
-    margin-left: 10px;
-    background-color: rgb(145, 177, 174);
-}
 
 #register-buttom input {
     width: 200px;  
@@ -95,12 +90,7 @@ a.btn.btn {
     font-size: 1.2rem;
 }
 
-#registration_form_username,
-#registration_form_email,
-#registration_form_plainPassword,
-#registration_form_agreeTerms {
-    margin-left: 10px;
-}
+
 
 #trick-show {
     background-color: rgb(248, 236, 211);
