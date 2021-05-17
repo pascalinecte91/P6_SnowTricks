@@ -8,7 +8,10 @@ use App\Form\TrickType;
 use App\Entity\Picture;
 use App\Form\CommentType;
 use App\Repository\TrickRepository;
+use App\Service\UploaderFileServiceInterface;
 use DateTime;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +24,14 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TrickController extends AbstractController
 {
+    private UploaderFileServiceInterface $uploaderFileService;
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(UploaderFileServiceInterface $uploaderFileService, EntityManagerInterface $entityManager)
+    {
+        $this->uploaderFileService = $uploaderFileService;
+        $this->entityManager = $entityManager;
+    }
     /**
      * @Route("/", name="trick_index", methods={"GET"})
      */
@@ -44,29 +55,20 @@ class TrickController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // recuperation des images transmises
-            $pictures = $form->get('picture')->getData();
+            $pictures = $trick->getPictures();
 
             // faire une boucle pour plusieurs images
             foreach ($pictures as $picture) {
-                //  generer un nouveau nom de fichier images
-                $fichier = md5(uniqid()) . '.' . $picture->guessExtension();
+                $filename = $this->uploaderFileService->upload($picture->getFile());
+                $subtitle = $picture->getSubtitle();
+                $picture->setName($filename);
+                $picture->setSubtitle($subtitle);
 
-                // recopier le fichier dans le upload
-                $picture->move(
-                    $this->getParameter('pictures_directory'),
-                    $fichier
-                );
-
-
-                $img = new Picture();
-                $img->setTrick($trick);
-                $img->setName($fichier);
-                $trick->addPicture($img);
+                $this->entityManager->persist($picture);
+                $trick->addPicture($picture);
             }
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($trick);
-            $entityManager->flush();
+            $this->entityManager->persist($trick);
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('trick_index');
         }
@@ -83,31 +85,31 @@ class TrickController extends AbstractController
      */
     public function show(Request $request, Trick $trick): Response
     {
-    
-        $user= $this->getUser();
+
+        $user = $this->getUser();
 
         //  creation du commentaire vide
         $comment = new Comment();
-     
+
         // generer le formulaire
         $commentForm = $this->createForm(CommentType::class, $comment);
-      
+
         // handleRequest pour recuperer de la variable  les differents champs
         $commentForm->handleRequest($request);
-       
+
         // envoi traitement formulaire : 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
-         
+
             $comment->setTrick($trick);
             $comment->setUser($user);
-           
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             //  je fais mon flush  pour inscrire dans ma db
             $em->flush();
 
             $this->addFlash('message', ' Votre message est en attente de verification du moderateur');
-           return $this->redirectToRoute('trick_index', ['id' => $trick->getId()]);
+            return $this->redirectToRoute('trick_index', ['id' => $trick->getId()]);
         }
 
         return $this->render('trick/show.html.twig', [
@@ -124,26 +126,20 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $pictures = $form->get('picture')->getData();
+            $trick->setUpdateAt(new \DateTime());
 
+            $pictures = $trick->getPictures();
             // faire une boucle pour plusieurs images
             foreach ($pictures as $picture) {
-                //  generer un nouveau nom de fichier images
-                $fichier = md5(uniqid()) . '.' . $picture->guessExtension();
+                $filename = $this->uploaderFileService->upload($picture->getFile());
+                $subtitle = $picture->getSubtitle();
+                $picture->setName($filename);
+                $picture->setSubtitle($subtitle);
 
-                // recopier le fichier dans le upload
-                $picture->move(
-                    $this->getParameter('pictures_directory'),
-                    $fichier
-                );
-
-                // stocker l image dans la db avec son nom
-                $img = new Picture();
-                $img->setTrick($trick);
-                $img->setName($fichier);
-                $trick->addPicture($img);
+                $this->entityManager->persist($picture);
+                $trick->addPicture($picture);
             }
-            $this->getDoctrine()->getManager()->flush();
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('trick_index');
         }

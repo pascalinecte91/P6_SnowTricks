@@ -45,17 +45,6 @@ class Comment
      */
     private $rgpd;
 
-   
-    /**
-     * @ORM\ManyToOne(targetEntity=Comment::class, inversedBy="replies")
-     */
-    private $parent;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="parent")
-     */
-    private $replies;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -64,7 +53,6 @@ class Comment
 
     public function __construct()
     {
-        $this->replies = new ArrayCollection();
         $this->createdAt= new \DateTime();
     }
 
@@ -135,50 +123,6 @@ class Comment
         return $this;
     }
 
- 
-
-    public function getParent(): ?self
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?self $parent): self
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|self[]
-     */
-    public function getReplies(): Collection
-    {
-        return $this->replies;
-    }
-
-    public function addReply(self $reply): self
-    {
-        if (!$this->replies->contains($reply)) {
-            $this->replies[] = $reply;
-            $reply->setParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReply(self $reply): self
-    {
-        if ($this->replies->removeElement($reply)) {
-            // set the owning side to null (unless already changed)
-            if ($reply->getParent() === $this) {
-                $reply->setParent(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getEmail(): ?string
     {
         return $this->email;
@@ -190,6 +134,5 @@ class Comment
 
         return $this;
     }
-
    
 }

@@ -1,36 +1,17 @@
+{% form_theme form.pictures with [
+    'form/collection.html.twig',
+    'trick/_collection_picture.html.twig'
+] %}
+
 {{ form_start(form) }}
 
 <div class="container h-100">
 	<div class="row align-items-center">
 		<div class="col-12" id="edit-trick">
 			{{ form_start(form) }}
-			{{ form_row(form.name, {label: 'Nom du Trick'}) }}<br>
-			{{ form_row(form.description) }}<br>
-			{{ form_row(form.createdAt, {label: 'Crée le:'}) }}<br>
-			{{ form_row(form.updateAt, {label: 'Dernière modification le:'}) }}<br>
-			{{ form_row(form.category, {label: 'Catégories:'}) }}<br>
-			{{ form_row(form.picture, {label: 'Images'}) }}<br>
+			{{ form_widget(form) }} 
+			<button class="btn btn-dark">{{ button_label|default('Save') }}</button>
 			{{ form_end(form) }}
-
-			{% if app.request.attributes.get('_route') == 'trick_edit' %}
-				<h2>images</h2>
-				<div
-					class="row">
-					{#debut row #}
-					{% for picture in trick.pictures %}
-						<div
-							class="col-3">{#debut col #}
-							<img src="{{ asset('/uploads/'~ picture.name )}}" alt="Picture" width="150">
-							<a href=" {{ path('trick_delete_picture', {id: picture.id}) }}" data-delete data-token="{{ csrf_token('delete'~ picture.id) }}">delete image</a>
-						</div>
-						{#fin row #}
-					{% endfor %}
-				</div>
-				{#fin row #}
-			{% endif %}
-			<div class="d-flex justify-content-center mb-3">
-    <button class="btn btn-dark">{{ button_label|default('Save') }}</button>
-    </div>
 		</div>
 	</div>
 </div>

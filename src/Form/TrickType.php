@@ -11,6 +11,7 @@ use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\Types\Mixed_;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -29,23 +30,24 @@ class TrickType extends AbstractType
             
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('createdAt', DateType::class, [
-              "widget" => 'single_text'
-            ])
-            ->add('updateAt', DateType::class, [
-                "widget" => 'single_text'
-              ])
             ->add('category', EntityType::class,[
                 'class'=> Category::class,
                 'choice_label'=> 'title',
                 'required'=> false, 
             ])
-// ajoute  mon image qui ne sera pas liee avec ma  db 
-            ->add('picture', FileType::class,[
-                'label'=> false,
-                'multiple'=> true,
-                'mapped'=> false,
-                'required'=> false, 
+
+            ->add('pictures', CollectionType::class,[
+                'entry_type'=> PictureType::class,
+                'entry_options' => ['label' => false],
+                'label' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'attr' => [
+                    'data-entry-add-class' => 'btn btn-more',
+                    'data-entry-remove-class' => 'btn btn-danger',
+                ],     
             ]);
     }
 

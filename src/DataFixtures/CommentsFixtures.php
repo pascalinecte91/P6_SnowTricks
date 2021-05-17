@@ -16,7 +16,7 @@ class CommentsFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        for ($i = 1; $i <= 30; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             $comment = new Comment();
             $comment->setContent($faker->realText(250));
             $comment->setCreatedAt($faker->dateTime());

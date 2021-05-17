@@ -23,17 +23,10 @@ class CommentType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'votre e-mail',
-                'attr' => [
-                    'class' => 'email'
-                ]
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Votre commentaire',
                 'attr' => []
-            ])
-            ->add('createdAt', DateType::class, [
-                "widget" => 'choice'
-            
             ])
             ->add("rgpd", CheckboxType::class)
             /*->add('parentid', HiddenType::class, [

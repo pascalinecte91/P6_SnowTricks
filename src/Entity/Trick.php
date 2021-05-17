@@ -51,10 +51,6 @@ class Trick
      */
     private $comments;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $picture;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
@@ -62,8 +58,11 @@ class Trick
     private $videos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="trick",
-     * orphanRemoval=true, cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Picture::class, cascade={"persist"})
+     * @ORM\JoinTable(name="trick_picture",
+     *      joinColumns={@ORM\JoinColumn(name="trick_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id", referencedColumnName="id", unique=true)}
+     * )
      */
     private $pictures;
 
@@ -80,6 +79,8 @@ class Trick
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
+        $this->updateAt = new \DateTime();
         $this->pictures = new ArrayCollection();
         $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
@@ -169,7 +170,7 @@ class Trick
     {
         if (!$this->pictures->contains($picture)) {
             $this->pictures[] = $picture;
-            $picture->setTrick($this);
+        
         }
 
         return $this;
@@ -177,11 +178,8 @@ class Trick
 
     public function removePicture(Picture $picture): self
     {
-        if ($this->pictures->removeElement($picture)) {
-            // set the owning side to null (unless already changed)
-            if ($picture->getTrick() === $this) {
-                $picture->setTrick(null);
-            }
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
         }
 
         return $this;
@@ -243,18 +241,6 @@ class Trick
                 $comment->setTrick(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?string $picture): self
-    {
-        $this->picture = $picture;
 
         return $this;
     }

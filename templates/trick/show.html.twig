@@ -7,91 +7,64 @@
 	<div class="container h-100">
 		<div class="row align-items-center h-100">
 			<div class="col-12">
-				<h1>Trick</h1>
-				<table class="table">
-					<tbody>
-						<tr>
-							<th>Nom</th>
-							<h5>
-								{{ trick.name }}
-							</h5>
-							<img class="card-img-top" src="{{ asset('uploads/pictures/' ~ trick.picture)}}" alt="Card imag ">
-							<td>{{ trick.name }}</td>
-						</tr>
-						<tr>
-							<th>Categorie</th>
-							<td>{{ trick.category }}</td>
-						</tr>
-						<tr>
-							<th>Description</th>
-							<td>{{ trick.description }}</td>
-						</tr>
-						<tr>
-							<th>Crée  le</th>
-							<td>{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
-						</tr>
-						<tr>
-							<th>Modifié le</th>
-							<td>{{ trick.updateAt ? trick.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
-						</tr>
-
-					</tbody>
-				</table>
-			</div>
-			{% for picture in trick.pictures %}
-				<div class="d-flex justify-content-start">
-					<div class="row">
-						<div class="col-4">
-							<img src="{{ asset('/build/images'~ picture.name )}}" alt="Picture" width="300" height="200">
-						</div>
-					</div>
+				<h1 class="text-center my-3">Trick :
+					{{ trick.name }}</h1>
+		<div class="d-flex justify-content-center">
+	
+				<figure class="figure">
+					<img class="figure-img img-fluid rounded w-100" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="{{trick.name}}">
+					<figcaption class="figure-caption">
+						Par :
+						{{ trick.user }}
+						| Ajouté le :
+						{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}
+						| Catégorie :
+						{{ trick.category }}
+						| Commentaires :
+						{{ trick.comments|length }}
+						
+					</figure>
 				</div>
-			{% endfor %}
+				<p>{{ trick.description|raw }}</p>
+	
 
+			</div>
 		</div>
 
 	</div>
 	<!--COMMENTAIRES-->
 
 	<div class="container">
-		<div class="col">
-			<h4>liste des commentaire</h4>
-			<div class="card">
-				<div class="card-body">
-				<div class="row">
-					{% for comment in  trick.comments %}
-						{{ comment.content}}
-				</div>
-						{{ comment.createdAt ? comment.createdAt|date('d/m/Y à h\\hi') : '' }}
+		<div class="row">
+			<div class="col">
+				<h4>liste des commentaire</h4>
+				{% for comment in  trick.comments %}
+					<div class="card mb-4">
+						<div class="card-body">
+							<p>{{ comment.content|raw }}</p>
+							<p>{{ comment.createdAt ? comment.createdAt|date('d/m/Y à h\\hi') : '' }}</p>
+						</div>
 					</div>
 				{% endfor %}
-
 			</div>
+		</div>
+		<div class="row">
 			<div class="col">
 				<h4>Ajouter un commentaire</h4>
 				<div class="card">
 					<div class="card-body">
-
 						{{ form_start(commentForm) }}
 						{{ form_widget(commentForm)}}
-						<div class="row">
-							<button type="submit" class="btn btn-primary" style="width:150px">Envoyer</button>
-						</div>
+						<button type="submit" class="btn btn-primary" style="width:150px">Envoyer</button>
 						{{ form_end(commentForm) }}
-
 					</div>
 				</div>
 			</div>
-
 		</div>
 
-		<div class="row justify-content-around">
-			<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px">back to list</a>
-		</div>
+	</div>
 
-		{{ include('trick/_delete_form.html.twig') }}
-
-
-		<script src="{{ asset('js/images.js') }}"></script>
-	{% endblock %}
-
+	<div class="row justify-content-around">
+		<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px">back to list</a>
+	</div>
+{% endblock %}

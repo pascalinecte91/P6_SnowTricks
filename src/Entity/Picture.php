@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\PictureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PictureRepository;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=PictureRepository::class)
@@ -27,11 +28,10 @@ class Picture
      */
     private $subtitle;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="pictures")
-     * @ORM\JoinColumn(nullable=false)
+     /**
+     * @var UploadedFile
      */
-    private $trick;
+    private UploadedFile $file;
 
 
     public function getId(): ?int
@@ -69,16 +69,22 @@ class Picture
             return $this->getName();
     }
 
-    public function getTrick(): ?Trick
+      /**
+     * @return UploadedFile
+     */
+    public function getFile():UploadedFile
     {
-        return $this->trick;
+        return $this->file;
     }
 
-    public function setTrick(?Trick $trick): self
+    /**
+     * @param UploadedFile $file
+     * @return $this
+     */
+    public function setFile(UploadedFile $file): self
     {
-        $this->trick = $trick;
+        $this->file = $file;
 
         return $this;
     }
-
 }

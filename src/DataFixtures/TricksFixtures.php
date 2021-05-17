@@ -16,8 +16,9 @@ class TricksFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        $img =$faker->image('public/uploads/pictures');
-        $pictureTrick = str_replace('public/uploads/pictures\\', '', $img); 
+        $img =$faker->image('build/images');
+        //$pictureTrick = str_replace('build/images\\', '', $img)
+        
 
 
        $listPictures = [
@@ -72,7 +73,8 @@ class TricksFixtures extends Fixture implements DependentFixtureInterface
                   ->setDescription($faker->realText(300))
                   ->setCreatedAt($faker->dateTimeBetween('- 1 years'))
                   ->setUpdateAt($faker->dateTimeInInterval('+5 days')) 
-                  ->setPicture($faker->randomElement($listPictures));
+                  //->setPicture($faker->randomElement($listPictures))
+                  ;
 
           
 

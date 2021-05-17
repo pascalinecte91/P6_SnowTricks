@@ -1,5 +1,6 @@
 {
     "devDependencies": {
+        "@a2lix/symfony-collection": "^0.4.0",
         "@fortawesome/fontawesome-free": "^5.15.3",
         "@popperjs/core": "^2.9.2",
         "@symfony/stimulus-bridge": "^2.0.0",
