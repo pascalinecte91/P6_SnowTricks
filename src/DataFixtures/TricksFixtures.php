@@ -16,7 +16,7 @@ class TricksFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        $img =$faker->image('build/images');
+       // $img =$faker->image('build/images');
         //$pictureTrick = str_replace('build/images\\', '', $img)
         
 

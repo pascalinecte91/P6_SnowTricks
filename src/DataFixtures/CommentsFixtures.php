@@ -9,6 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
+
 class CommentsFixtures extends Fixture
 {
 
@@ -19,9 +20,11 @@ class CommentsFixtures extends Fixture
         for ($i = 1; $i <= 5; $i++) {
             $comment = new Comment();
             $comment->setContent($faker->realText(250));
+            $comment->setPseudo($faker->name());
             $comment->setCreatedAt($faker->dateTime());
             $manager->persist($comment);
         }
         $manager->flush();
     }
 }
+

@@ -166,6 +166,7 @@ class Trick
         return $this->pictures;
     }
 
+  
     public function addPicture(Picture $picture): self
     {
         if (!$this->pictures->contains($picture)) {

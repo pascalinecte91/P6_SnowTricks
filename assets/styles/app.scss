@@ -10,7 +10,7 @@
 
 
 body {
-    background-color: rgb(223, 231, 255);
+    background-color: rgb(240, 242, 248);
     margin:0;
     height: 100vh;
     display: grid;
@@ -59,7 +59,21 @@ input {
 #register-buttom input {
     width: 200px;  
 }
+#register {
+    background-color: rgb(228, 235, 241);
+}
 
+#connect{
+    background-color: rgb(126, 144, 160); ;
+    margin-top: 35px;
+}
+
+.logout {
+    margin:auto;
+    padding-left: 10px;
+   
+  
+}
 label{
     display:block;
     float:left;
@@ -72,6 +86,14 @@ label{
 .rounded-circle {
     height: 40px;
     margin-right: 10px;
+}
+#img-show {
+    width: 900px;
+    height: 500px;
+}
+
+#list_comment {
+    background-color: aliceblue;
 }
 
 .card {
@@ -135,5 +157,7 @@ table th  {
 .btn-dark {
     width:auto;
 }
+
+
 
 
