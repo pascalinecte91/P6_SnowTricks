@@ -10,7 +10,7 @@
 
 
 body {
-    background-color: rgb(223, 231, 255);
+    background-color: rgb(240, 242, 248);
     margin:0;
     height: 100vh;
     display: grid;
@@ -59,7 +59,21 @@ input {
 #register-buttom input {
     width: 200px;  
 }
+#register {
+    background-color: rgb(228, 235, 241);
+}
 
+#connect{
+    background-color: rgb(126, 144, 160); ;
+    margin-top: 35px;
+}
+
+.logout {
+    margin:auto;
+    padding-left: 10px;
+   
+  
+}
 label{
     display:block;
     float:left;
@@ -72,6 +86,17 @@ label{
 .rounded-circle {
     height: 40px;
     margin-right: 10px;
+}
+#img-show {
+    width: 900px;
+    height: 500px;
+}
+
+#photo_comment {
+    background-color: rgb(146, 151, 151);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card {
@@ -95,7 +120,6 @@ a.btn.btn {
 
 
 #edit-trick textarea {
-    width: 700px;
     height: 200px;
     background-color:  white;
 }
@@ -121,6 +145,7 @@ a.btn.btn {
 
 #edit-trick {
     background-color: rgb(165, 177, 197);
+    padding-bottom: 20px;
 } 
 
 #edit-category {
@@ -135,5 +160,7 @@ table th  {
 .btn-dark {
     width:auto;
 }
+
+
 
 

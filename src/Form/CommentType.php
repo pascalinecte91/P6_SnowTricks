@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,6 +24,9 @@ class CommentType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'votre e-mail',
+            ])
+            ->add('pseudo', TextType::class, [
+                'label' => 'votre pseudo',
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Votre commentaire',

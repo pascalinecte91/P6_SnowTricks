@@ -28,7 +28,7 @@ class Picture
      */
     private $subtitle;
 
-     /**
+    /**
      * @var UploadedFile
      */
     private UploadedFile $file;
@@ -66,13 +66,13 @@ class Picture
 
     public function __toString()
     {
-            return $this->getName();
+        return $this->getName();
     }
 
-      /**
+    /**
      * @return UploadedFile
      */
-    public function getFile():UploadedFile
+    public function getFile(): UploadedFile
     {
         return $this->file;
     }
@@ -81,7 +81,7 @@ class Picture
      * @param UploadedFile $file
      * @return $this
      */
-    public function setFile(UploadedFile $file): self
+    public function setFile($file): self
     {
         $this->file = $file;
 

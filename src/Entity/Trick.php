@@ -61,7 +61,7 @@ class Trick
      * @ORM\ManyToMany(targetEntity=Picture::class, cascade={"persist"})
      * @ORM\JoinTable(name="trick_picture",
      *      joinColumns={@ORM\JoinColumn(name="trick_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id", referencedColumnName="id", unique=true)}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id", referencedColumnName="id")}
      * )
      */
     private $pictures;
@@ -166,6 +166,7 @@ class Trick
         return $this->pictures;
     }
 
+  
     public function addPicture(Picture $picture): self
     {
         if (!$this->pictures->contains($picture)) {

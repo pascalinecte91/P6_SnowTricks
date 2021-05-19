@@ -2,12 +2,13 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use Faker;
+use App\Entity\Category;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class CategoriesFixtures extends Fixture
+class CategoriesFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -38,6 +39,10 @@ class CategoriesFixtures extends Fixture
         }
             
             $manager->flush();
+    }
+    public function getOrder()
+    {
+        return 2;
     }
 }
 
