@@ -3,12 +3,13 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
-class UsersFixtures extends Fixture
+class UsersFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $encoder;
 
@@ -19,20 +20,26 @@ class UsersFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-    $faker = Faker\Factory::create('fr_FR');
+        $faker = Faker\Factory::create('fr_FR');
 
-        for($nbUsers = 1; $nbUsers <5; $nbUsers++){
+        for($i = 0; $i <= 5; $i++){
             $user = new User();
+
             $user->setEmail($faker->email());
-            $user->setCreatedAt($faker->dateTime());
             $user->setPassword($this->encoder->encodePassword($user,'toto'));
             $user->setUsername($faker->lastName());
             $user->setEmailConfirm($faker->email());
             $manager->persist($user);
+
             // enregistre l user dans une addReference
-            $this->addReference('user_' . $nbUsers, $user);
-}
+            $this->addReference('user_' . $i, $user);
+        }
+
         $manager->flush();
     }
 
+    public function getOrder()
+    {
+        return 1;
+    }
 }

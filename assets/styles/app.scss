@@ -92,8 +92,11 @@ label{
     height: 500px;
 }
 
-#list_comment {
-    background-color: aliceblue;
+#photo_comment {
+    background-color: rgb(146, 151, 151);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card {
@@ -117,7 +120,6 @@ a.btn.btn {
 
 
 #edit-trick textarea {
-    width: 700px;
     height: 200px;
     background-color:  white;
 }
@@ -143,6 +145,7 @@ a.btn.btn {
 
 #edit-trick {
     background-color: rgb(165, 177, 197);
+    padding-bottom: 20px;
 } 
 
 #edit-category {

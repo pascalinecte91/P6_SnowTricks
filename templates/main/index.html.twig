@@ -25,7 +25,7 @@
 						<h5>
 							{{ trick.name }}
 						</h5>
-						<img class="card-img-top" src="{{ asset('uploads/' ~ trick.pictures)}}" alt="Card image cap">
+						<img class="card-img-top" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
 						<div class="d-flex justify-content-between mx-5 my-2"></div>
 						<a href="{{ path('trick_edit', {'id': trick.id}) }}">
 							<i class="fa fa-pencil mt-2"></i>

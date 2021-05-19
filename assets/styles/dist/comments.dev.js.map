@@ -1,0 +1,1 @@
+{"version":3,"sources":["comments.js"],"names":["$","hide","click","toggle"],"mappings":";;AAAAA,CAAC,CAAC,OAAD,CAAD,CAAWC,IAAX;AACAD,CAAC,CAAC,QAAD,CAAD,CAAYE,KAAZ,CAAkB,YAAU;AAC1BF,EAAAA,CAAC,CAAC,OAAD,CAAD,CAAWG,MAAX;AACD,CAFD","sourcesContent":["$(\".test\").hide();\r\n$('button').click(function(){\r\n  $('.test').toggle();\r\n});"],"file":"comments.dev.js"}

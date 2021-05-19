@@ -68,6 +68,7 @@ class User implements UserInterface
     {
         $this->comments = new ArrayCollection();
         $this->tricks = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
