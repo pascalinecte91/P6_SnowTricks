@@ -29,9 +29,9 @@ class Picture
     private $subtitle;
 
     /**
-     * @var UploadedFile
+     * @var UploadedFile|null
      */
-    private UploadedFile $file;
+    private ?UploadedFile $file;
 
 
     public function getId(): ?int
@@ -70,18 +70,18 @@ class Picture
     }
 
     /**
-     * @return UploadedFile
+     * @return UploadedFile|null
      */
-    public function getFile(): UploadedFile
+    public function getFile(): ?UploadedFile
     {
         return $this->file;
     }
 
     /**
-     * @param UploadedFile $file
+     * @param UploadedFile|null $file
      * @return $this
      */
-    public function setFile($file): self
+    public function setFile(?UploadedFile $file): self
     {
         $this->file = $file;
 

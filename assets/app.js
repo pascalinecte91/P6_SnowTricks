@@ -13,7 +13,7 @@ require('bootstrap');
 import a2lix_lib from '@a2lix/symfony-collection/src/a2lix_sf_collection';
 
 a2lix_lib.sfCollection.init({
-    collectionsSelector: 'form div[data-prototype]',
+    collectionsSelector: 'form div#trick_pictures[data-prototype]',
     manageRemoveEntry: true,
     lang: {
         add: 'Ajouter une image',
@@ -21,6 +21,16 @@ a2lix_lib.sfCollection.init({
     }
 });
 
+a2lix_lib.sfCollection.init({
+    collectionsSelector: 'form div#trick_videos[data-prototype]',
+    manageRemoveEntry: true,
+    lang: {
+        add: 'Ajouter une video',
+        remove: 'Effacer'
+    }
+});
 // start the Stimulus application
 import './bootstrap';
+
+
 

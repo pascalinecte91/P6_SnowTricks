@@ -9,7 +9,7 @@
 			<div class="col-md-10 col-md-offset-1 mb-4">
 				<h1 class="text-center my-3">Trick :
 					{{ trick.name }}</h1>
-				<div class="card mt-5">
+				<div class="card mt-5 mb-5">
 					<img class="display-top img-fluid" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="{{trick.name}}">
 					<div class="card-body">
 						Par :
@@ -31,68 +31,77 @@
 						{% endfor %}
 					</div>
 
+					<div>
+						{% for video in trick.videos %}
+						<iframe width="560" height="315" src= "{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						 allowfullscreen></iframe>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-					<!--COMMENTAIRES-->
+	<!--COMMENTAIRES-->
 
 
-					<div class="container">
+	<div class="container">
+		<div class="accordion" id="button_deroulant">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="deroulant_comment">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						Commentaire(s)
+					</button>
+				</h2>
+				<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="deroulant_comment" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
 						<div class="row">
+							<div class="col-10">
+								{% for comment in  trick.comments %}
+									<div class="card mb-2">
+										<div class="row">
+											<div class="col-md-2" id="photo_comment">
+												<img src="{{ asset('build/images/avatarmin.jpg')}}" text-center>
+											</div>
 
-							<div class="col">
-
-								<button onclick="test" class="btn btn-dark-left-align">Commentaires</button>
-								<div id="test" class="deroul">
-									{% for comment in  trick.comments %}
-										<div class="card mb-2">
-											<div class="row">
-												<div class="col-md-2" id="photo_comment">
-													<img src="{{ asset('build/images/avatarmin.jpg')}}" text-center>
-												</div>
-
-												<div class="col-md-9">
-													<div class="card-body" id="list_comment">
-														<p>{{ comment.content|raw }}</p>
-														<p>écrit le :
-															{{ comment.createdAt ? comment.createdAt|date('d/m/Y') : '' }}
-															par :
-															{{ comment.pseudo|raw }}</p>
-													</div>
+											<div class="col-md-9">
+												<div class="card-body" id="list_comment">
+													<p>{{ comment.content|raw }}</p>
+													<p>écrit le :
+														{{ comment.createdAt ? comment.createdAt|date('d/m/Y') : '' }}
+														par :
+														{{ comment.pseudo|raw }}</p>
 												</div>
 											</div>
 										</div>
-										</div> {% endfor %}
 									</div>
-
-									<div class="row">
-										<h4>Ajouter un commentaire</h4>
-										<div class="card-body">
-											{{ form_start(commentForm) }}
-											{{ form_widget(commentForm)}}
-											<button type="submit" class="btn btn-primary" style="width:150px">Envoyer</button>
-											{{ form_end(commentForm) }}
-										</div>
-
-									</div>
-								</div>
-
-								<div class="row justify-content-around">
-									<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px">back to list</a>
-								</div>
+								{% endfor %}
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		{% endblock %}
-		{% block javascript %}
-			<script>
-				function myFunction(id) {
-var x = document.getElementById(id);
-if (x.className.indexOf("test") == -1) {
-x.className += " test ";
-} else {
-x.className = x.className.replace("test", "");
-}
-}
-			</script>
-		{% endblock %}
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="card-body mt-5">
+		<div class="row text-center mt-5">
+			<div class="col mb-4">
+				<h5 class="border border-dark py-2" id="add_comment">Ajouter un commentaire</h5>
+			{% if is_granted('ROLE_USER') %}
+
+				{{ form_start(commentForm) }}
+				{{ form_widget(commentForm)}}
+				<button type="submit" class="btn btn-primary" style="width:150px">Envoyer</button>
+				{{ form_end(commentForm) }}
+				{% endif %}
+			</div>
+		</div>
+		
+
+		<div class="row justify-content-around">
+			<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px">back to list</a>
+		</div>
+	</div>
+</div>{% endblock %}

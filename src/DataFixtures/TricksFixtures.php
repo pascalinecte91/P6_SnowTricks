@@ -2,17 +2,17 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
-use App\Entity\Picture;
-use App\Entity\Trick;
-use App\Service\UploaderFileServiceInterface;
-use DateTimeInterface;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Persistence\ObjectManager;
 use Faker;
+use App\Entity\Trick;
+
+use App\Entity\Video;
+use App\Entity\Picture;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Service\UploaderFileServiceInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 class TricksFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -20,14 +20,24 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
      * @var UploaderFileServiceInterface
      */
     private $uploaderFileService;
+    private $containerBagInterface;
 
-    public function __construct(UploaderFileServiceInterface $uploaderFileService)
+    public function __construct(UploaderFileServiceInterface $uploaderFileService, ContainerBagInterface $containerBagInterface)
     {
         $this->uploaderFileService = $uploaderFileService;
+        $this->containerBagInterface = $containerBagInterface;
     }
 
     public function load(ObjectManager $manager)
     {
+        $path = $this->containerBagInterface->get('directory_upload');
+        $files = glob($path .'/*');
+        foreach ($files as $file) {
+            if (is_file($file)){
+                unlink($file);
+            }
+        }
+        
         $faker = Faker\Factory::create('fr_FR');
 
         $tricks = [
@@ -57,7 +67,7 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
             $trickObject->setName($trick['name']);
             $trickObject->setCategory($category);
             $trickObject->setUser($user);
-            $trickObject->setDescription($faker->realText(300));
+            $trickObject->setDescription($faker->realText(400));
             $trickObject->setCreatedAt($faker->dateTimeBetween('- 1 years'));
             $trickObject->setUpdateAt($faker->dateTimeInInterval('+5 days'));
 
@@ -68,21 +78,28 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
 
                 $uploadedFile = new UploadedFile(__DIR__.'/images/'.$asset, $asset, null, null, true);
                 $filename = $this->uploaderFileService->upload($uploadedFile);
-
                 $picture = new Picture();
                 $picture->setName($filename);
-                $picture->setSubtitle('description de la figure');
-
+                $picture->setSubtitle($faker->sentence(6));
                 $manager->persist($picture);
-
                 $trickObject->addPicture($picture);
             }
 
+            for ($i = 1; $i <=2; $i++){
+                $video  = $this->getRandomVideos($faker);
+                $videoObject = new Video();
+                $videoObject->setUrl($video);
+                $manager->persist($videoObject);
+                $trickObject->addvideo($videoObject);
+            }
+            
             $manager->persist($trickObject);
         }
 
         $manager->flush();
     }
+
+
 
     public function getOrder()
     {
@@ -114,5 +131,18 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
         copy(__DIR__.'/images/'.$asset, __DIR__.'/images/copy-'.$asset);
 
         return 'copy-'.$asset;
+    }
+
+    private function getRandomVideos(Faker\Generator $faker): string
+    {
+        $videos = [
+            'ieEF5QpInD4',
+            '5zH-YEvyztA',
+            '0uGETVnkujA',
+            'V9xuy-rVj9w',
+        ];
+
+        return 'https://www.youtube.com/embed/' . $faker->randomElement($videos); 
+
     }
 }

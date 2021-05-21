@@ -24,7 +24,6 @@ body {
     background-color: rgb(52, 52, 75);; 
   
 }
-
 .navbar-img{
     width: 60px; 
     height: 30px;
@@ -121,13 +120,19 @@ a.btn.btn {
 
 #edit-trick textarea {
     height: 200px;
-    background-color:  white;
+    
 }
 
-#edit-category textarea {
+#edit-category{
+    width: 700px;
+    background-color: #d4c2d4;
+  
+}
+#edit-category textarea input {
     width: 300px;
     height: 100px;
-    background-color:  white;
+    padding-top: 10px;
+    margin-top: 10px;
 }
 
 #edit-trick input, select input #file {
@@ -138,20 +143,10 @@ a.btn.btn {
     margin-top: 10px;
 }
 
-#edit-category input {
-    padding-top: 10px;
-    margin-top: 10px;
-}
-
 #edit-trick {
     background-color: rgb(165, 177, 197);
     padding-bottom: 20px;
 } 
-
-#edit-category {
-    background-color: rgb(250, 252, 255);
-    
-}
 
 table th  {
     width: auto;
@@ -159,6 +154,17 @@ table th  {
 
 .btn-dark {
     width:auto;
+}
+
+#button_deroulant {
+    padding-top: 10px;
+}
+#add_comment{
+    background-color: rgb(232, 234, 243);
+    width:400px;
+   
+    
+    
 }
 
 

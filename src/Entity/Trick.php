@@ -51,12 +51,6 @@ class Trick
      */
     private $comments;
 
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    private $videos;
-
     /**
      * @ORM\ManyToMany(targetEntity=Picture::class, cascade={"persist"})
      * @ORM\JoinTable(name="trick_picture",
@@ -67,9 +61,13 @@ class Trick
     private $pictures;
 
     /**
-     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="trick")
+     * @ORM\ManyToMany(targetEntity=Video::class, cascade={"persist"})
+     * @ORM\JoinTable(name="trick_video",
+     *      joinColumns={@ORM\JoinColumn(name="trick_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="video_id", referencedColumnName="id")}
+     * )
      */
-    private $video;
+    private $videos;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tricks")
@@ -82,9 +80,8 @@ class Trick
         $this->createdAt = new \DateTime();
         $this->updateAt = new \DateTime();
         $this->pictures = new ArrayCollection();
-        $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->video = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -198,7 +195,6 @@ class Trick
     {
         if (!$this->videos->contains($video)) {
             $this->videos[] = $video;
-            $video->setTricks($this);
         }
 
         return $this;
@@ -206,11 +202,8 @@ class Trick
 
     public function removeVideo(Video $video): self
     {
-        if ($this->videos->removeElement($video)) {
-            // set the owning side to null (unless already changed)
-            if ($video->getTricks() === $this) {
-                $video->setTricks(null);
-            }
+        if ($this->videos->contains($video)) {
+            $this->videos->removeElement($video);
         }
 
         return $this;
@@ -244,21 +237,6 @@ class Trick
         }
 
         return $this;
-    }
-
-    public function setVideos(?string $videos): self
-    {
-        $this->videos = $videos;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Video[]
-     */
-    public function getVideo(): Collection
-    {
-        return $this->video;
     }
 
     public function getUser(): ?User

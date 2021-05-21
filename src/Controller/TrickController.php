@@ -128,9 +128,12 @@ class TrickController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $trick->setUpdateAt(new \DateTime());
 
-            $pictures = $trick->getPictures();
+            $pictures = $trick->getPictures() ;
             // faire une boucle pour plusieurs images
             foreach ($pictures as $picture) {
+                if ($picture->getId()!=null){
+                    continue;
+                }
                 $filename = $this->uploaderFileService->upload($picture->getFile());
                 $subtitle = $picture->getSubtitle();
                 $picture->setName($filename);

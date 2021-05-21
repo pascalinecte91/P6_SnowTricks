@@ -2,8 +2,10 @@
     'form/collection.html.twig',
     'trick/_collection_picture.html.twig'
 ] %}
-
-{{ form_start(form) }}
+{% form_theme form.videos with [
+    'form/collection.html.twig',
+    'trick/_collection_video.html.twig'
+] %}
 
 <div class="container h-100">
 	<div class="row align-items-center">

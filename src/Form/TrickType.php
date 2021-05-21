@@ -45,7 +45,21 @@ class TrickType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
                 'attr' => [
-                    'data-entry-add-class' => 'btn btn-more',
+                    'data-entry-add-class' => 'btn btn-primary',
+                    'data-entry-remove-class' => 'btn btn-danger',
+                ],     
+            ])
+
+            ->add('videos', CollectionType::class,[
+                'entry_type'=> VideoType::class,
+                'entry_options' => ['label' => false],
+                'label' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'attr' => [
+                    'data-entry-add-class' => 'btn btn-primary',
                     'data-entry-remove-class' => 'btn btn-danger',
                 ],     
             ]);
