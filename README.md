@@ -25,13 +25,13 @@
   git clone https://github.com/pascalinecte91/P6_SnowTricks.git
   
  2. Téléchargez et installez les dépendances back-end du projet avec Yarn :
-    Yarn install
+    - Yarn install
     
  3. Téléchargez et installez les dépendances front-end du projet avec Npm :
-    npm install
+    - npm install
     
  4. Créer un build d'assets (avec Webpack Encore) avec Npm :
-    npm run build
+    - npm run build
     
  #### Connexion au site ####
  - ONGLET  Connexion
