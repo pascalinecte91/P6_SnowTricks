@@ -32,6 +32,11 @@
     
  4. Créer un build d'assets (avec Webpack Encore) avec Npm :
     npm run build
+    
+ #### Connexion au site ####
+ - ONGLET  Connexion
+  - Email : toto@gmail.com
+  - Mot de passe : 111111
  
  ### Commandes Symfony pour installations diverses ###
  
