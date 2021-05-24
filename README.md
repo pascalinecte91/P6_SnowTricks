@@ -16,8 +16,10 @@
 <li> PHP 7.4.9</li>
 </ul>
 
- require php =7.2.5"
+ require php >= 7.2.5"
  fzaninotto/faker 1.9
+ 
+ Name "data base": <strong>projet6</strong>
  
  ### Installation du projet: ###
  
