@@ -22,7 +22,7 @@
  ### Installation du projet: ###
  
  1. Clonez ou téléchargez le repository GitHub dans le dossier :
-  git clone https://github.com/Pascalinecte91/P6-SnowTricks.git
+  git clone https://github.com/pascalinecte91/P6_SnowTricks.git
   
  2. Téléchargez et installez les dépendances back-end du projet avec Yarn :
     Yarn install
