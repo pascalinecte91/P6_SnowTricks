@@ -67,7 +67,7 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
             $trickObject->setName($trick['name']);
             $trickObject->setCategory($category);
             $trickObject->setUser($user);
-            $trickObject->setDescription($faker->realText(400));
+            $trickObject->setDescription($faker->realText());
             $trickObject->setCreatedAt($faker->dateTimeBetween('- 1 years'));
             $trickObject->setUpdateAt($faker->dateTimeInInterval('+5 days'));
 
@@ -140,6 +140,7 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
             '5zH-YEvyztA',
             '0uGETVnkujA',
             'V9xuy-rVj9w',
+            'SDdfIqJLrq4',
         ];
 
         return 'https://www.youtube.com/embed/' . $faker->randomElement($videos); 

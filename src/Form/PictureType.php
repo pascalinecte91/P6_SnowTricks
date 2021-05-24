@@ -16,8 +16,12 @@ class PictureType extends AbstractType
         $builder
             ->add('file', FileType::class, [
                 'required'=> false,
+                'label'=> 'Fichier',
             ])
-            ->add('subtitle', TextType::class)
+            ->add('subtitle', TextType::class, [
+                'label'=> 'Sous-titre',
+            ]
+            )
         ;
     }
 

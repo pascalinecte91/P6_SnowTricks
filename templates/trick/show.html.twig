@@ -12,29 +12,30 @@
 				<div class="card mt-5 mb-5">
 					<img class="display-top img-fluid" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="{{trick.name}}">
 					<div class="card-body">
-						Par :
+						<i class=" fa fa-user-edit"></i>
 						{{ trick.user }}
-						| Ajouté le :
-						{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}
+						| Ajouté le : <i class=" far fa-calendar-alt"></i>
+						{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }} <i class=" far fa-clock "></i>
 						| Catégorie :
 						{{ trick.category }}
-						| Commentaires :
+						| <i class=" fa fa-comments"></i>
 						{{ trick.comments|length }}
 					</div>
-					<p>{{ trick.description|raw }}</p>
+					<div class="description" d-block="text-align-center">
 
-					<div>
+						<p>{{ trick.description|raw }}</p>
+					</div>
+					<div id="pictures_details">
 						{% for picture in trick.pictures %}
 							<a href="{{ asset('uploads/' ~ picture)}}" target="_blank">
-								<img class="display-top img-fluid" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}">
+								<img class="display-top img-fluid style=" width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}">
 							</a>
 						{% endfor %}
 					</div>
 
-					<div>
+					<div id="videos">
 						{% for video in trick.videos %}
-						<iframe width="560" height="315" src= "{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						 allowfullscreen></iframe>
+							<iframe width="300" height="250" src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						{% endfor %}
 					</div>
 				</div>
@@ -49,14 +50,14 @@
 		<div class="accordion" id="button_deroulant">
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="deroulant_comment">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class=" far fa-comment-dots "></i>
 						Commentaire(s)
 					</button>
 				</h2>
 				<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="deroulant_comment" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
 						<div class="row">
-							<div class="col-10">
+							<div class="col-12">
 								{% for comment in  trick.comments %}
 									<div class="card mb-2">
 										<div class="row">
@@ -64,7 +65,7 @@
 												<img src="{{ asset('build/images/avatarmin.jpg')}}" text-center>
 											</div>
 
-											<div class="col-md-9">
+											<div class="col-md-10" id="comment">
 												<div class="card-body" id="list_comment">
 													<p>{{ comment.content|raw }}</p>
 													<p>écrit le :
@@ -87,21 +88,19 @@
 <div class="container">
 	<div class="card-body mt-5">
 		<div class="row text-center mt-5">
-			<div class="col mb-4">
-				<h5 class="border border-dark py-2" id="add_comment">Ajouter un commentaire</h5>
-			{% if is_granted('ROLE_USER') %}
-
-				{{ form_start(commentForm) }}
-				{{ form_widget(commentForm)}}
-				<button type="submit" class="btn btn-primary" style="width:150px">Envoyer</button>
-				{{ form_end(commentForm) }}
+			<div class="col-12">
+				<p class="blocktext" id="add_comment">Ajouter un commentaire</p>
+				{% if is_granted('ROLE_USER') %}
+					{{ form_start (commentForm) }}
+					{{ form_widget(commentForm)}}
+					<div class="row justify-content-around">
+						<button type="submit" class="btn btn-dark" style="width:150px"><i class=" fa fa-share-square"></i> Envoyer</button>
+						<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px"><i class=" fa fa-list "></i> back to list</a>
+					</div>
+					{{ form_end(commentForm) }}
 				{% endif %}
 			</div>
 		</div>
-		
-
-		<div class="row justify-content-around">
-			<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px">back to list</a>
-		</div>
 	</div>
-</div>{% endblock %}
+</div>
+{% endblock %}

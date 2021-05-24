@@ -72,8 +72,10 @@ class Picture
     /**
      * @return UploadedFile|null
      */
+    
     public function getFile(): ?UploadedFile
     {
+ 
         return $this->file;
     }
 

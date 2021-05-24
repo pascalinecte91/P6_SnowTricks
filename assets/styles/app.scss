@@ -29,11 +29,6 @@ body {
     height: 30px;
 }
 
-footer {
-    background-color: rgb(52, 52, 75);
-    font-size: #1b17ec;
-    max-height: 40vh;
-  }
 
 .form-control::placeholder {
     font-size: 0.95rem;
@@ -49,15 +44,17 @@ footer {
     text-align: left;
 }
 
+
+// FORMULAIRES
 input {
     width: 700px;
     background-color: rgb(145, 177, 174);
 }
 
-
 #register-buttom input {
     width: 200px;  
 }
+
 #register {
     background-color: rgb(228, 235, 241);
 }
@@ -70,9 +67,8 @@ input {
 .logout {
     margin:auto;
     padding-left: 10px;
-   
-  
 }
+
 label{
     display:block;
     float:left;
@@ -86,9 +82,22 @@ label{
     height: 40px;
     margin-right: 10px;
 }
+
 #img-show {
     width: 900px;
     height: 500px;
+}
+
+.comment_email {
+    margin-left: 10px;
+}
+
+#add_comment {
+    background-color: rgb(154, 154, 173);
+    margin-bottom: 30px;
+    height: 30px;
+    font-size: 20px;
+    text-transform: uppercase;
 }
 
 #photo_comment {
@@ -106,28 +115,55 @@ a.btn.btn {
     color: white;
     background-color:rgba(104, 88, 54, 0.6)
 }
-#footer, u{
-    text-decoration: none;
-    font-size: 1.2rem;
-}
 
-
-
+// SHOW  DETAILS TRICK
 #trick-show {
     background-color: rgb(248, 236, 211);
 }
-
-
-#edit-trick textarea {
-    height: 200px;
-    
+#pictures_details  {
+    display:block;
+    text-align: center;   
 }
 
+#videos {
+    display:block;
+    text-align: center;
+    padding-top: 10px;
+}
+
+// MODIF TRICK PICTURES ET VIDEOS
+#trick_pictures {
+    background-color: rgb(197, 187, 191);
+    padding-left: 10px;
+    font-style: italic;
+    color: firebrick;
+  
+}
+
+#trick_videos {
+    background-color: rgb(197, 187, 191);
+}
+
+#edit-trick textarea {
+    height: 200px;  
+}
+
+#edit-trick input {
+    margin-top: 10px;
+}
+
+#edit-trick {
+    background-color: rgb(165, 177, 197);
+    padding-bottom: 20px;
+}
+
+
+// MODIF CATEGORIES
 #edit-category{
     width: 700px;
     background-color: #d4c2d4;
-  
 }
+
 #edit-category textarea input {
     width: 300px;
     height: 100px;
@@ -138,15 +174,8 @@ a.btn.btn {
 #edit-trick input, select input #file {
     background-color: white
 }  
-#edit-trick input {
-    padding-top: 10px;
-    margin-top: 10px;
-}
 
-#edit-trick {
-    background-color: rgb(165, 177, 197);
-    padding-bottom: 20px;
-} 
+
 
 table th  {
     width: auto;
@@ -159,13 +188,33 @@ table th  {
 #button_deroulant {
     padding-top: 10px;
 }
-#add_comment{
-    background-color: rgb(232, 234, 243);
-    width:400px;
-   
-    
-    
+
+.accordion-button {
+    background-color: rgb(154, 154, 173);
+    color:white;
 }
+// details tricks
+.description {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    text-align: justify;
+}
+
+// FOOTER
+footer {
+    background-color: rgb(52, 52, 75);
+    font-size: #1b17ec;
+    max-height: 40vh;
+  }
+  #footer, u{
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+
+
+
 
 
 

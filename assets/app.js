@@ -10,6 +10,9 @@ import './styles/app.scss';
 import '@popperjs/core';
 require('bootstrap');
 
+
+
+
 import a2lix_lib from '@a2lix/symfony-collection/src/a2lix_sf_collection';
 
 a2lix_lib.sfCollection.init({
@@ -31,6 +34,4 @@ a2lix_lib.sfCollection.init({
 });
 // start the Stimulus application
 import './bootstrap';
-
-
 

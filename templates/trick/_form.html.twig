@@ -11,8 +11,38 @@
 	<div class="row align-items-center">
 		<div class="col-12" id="edit-trick">
 			{{ form_start(form) }}
-			{{ form_widget(form) }} 
-			<button class="btn btn-dark">{{ button_label|default('Save') }}</button>
+			{{ form_row(form.name)}}
+			{{ form_row(form.description)}}
+			{{ form_row(form.category)}}
+
+				<div class="accordion" id="accordion-picture">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="heading-picture">
+						<button class= "accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapse-picture" aria-expanded="true" aria-controls="collapseOne"> <i class=" fa fa-images "> </i> Images </button>
+					</h2>
+					<div id="collapse-picture" class="accordion-collapse collapse" aria-labelledby="heading-picture" data-bs-parent="#accordion-picture">
+						<div class="accordion-body">
+							{{ form_row(form.pictures)}}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="accordion" id="accordion-video">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="heading-video">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-video" aria-expanded="true" aria-controls="collapseOne"> <i class=" fa fa-video "> </i>
+							Videos 
+						</button>
+					</h2>
+					<div id="collapse-video" class="accordion-collapse collapse" aria-labelledby="heading-video" data-bs-parent="#accordion-video">
+						<div class="accordion-body">
+							{{ form_row(form.videos)}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<button class="btn btn-dark mt-3">{{ button_label|default('Save') }}</button>
 			{{ form_end(form) }}
 		</div>
 	</div>
