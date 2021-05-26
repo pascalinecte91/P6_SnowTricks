@@ -140,7 +140,7 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
             '5zH-YEvyztA',
             '0uGETVnkujA',
             'V9xuy-rVj9w',
-            'SDdfIqJLrq4',
+            
         ];
 
         return 'https://www.youtube.com/embed/' . $faker->randomElement($videos); 

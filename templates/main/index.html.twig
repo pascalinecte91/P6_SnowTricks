@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Toutes les figures - liste
+{% block title %}Toutes les figures 
 {% endblock %}
 
 {% block body %}
 	<div class="container-fluid d-flex h-100 align-items-center">
 		<img class="card-img-top" src="{{ asset('build/images/homepagefin.jpg')}}" alt="Card image cap">
 	</div>
-	<div id="button-down" style="text-align:right">
+	<div id="button-down">
 		<a href="" class="js-scroll-trigger">
-			<i class="fa fa-arrow-down fa-2x"></i>
+			<i class="fa fa-arrow-down"></i>
 		</a>
 	</div>
 	<!--end header page-->
@@ -26,11 +26,10 @@
 							{{ trick.name }}
 						</h5>
 						<img class="card-img-top" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
-						<div class="d-flex justify-content-between mx-5 my-2"></div>
-						<a href="{{ path('trick_edit', {'id': trick.id}) }}">
-							<i class="fa fa-pencil mt-2"></i>
-						</a>
-						<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary pl-10">Read more</a>
+							<div class="d-flex justify-content-between mx-5 my-2">
+								<a href="{{ path('trick_edit', {'id': trick.id}) }}"></a>
+							</div>
+								<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary"><i class="fa fa-pencil"></i>Read more</a>
 					</div>
 				</div>
 
@@ -38,7 +37,7 @@
 
 		</div>
 	</div>
-</div>
+
 
 <div class="text-center"><br>
 	<button onclick="myFunction()" class="btn btn-success" style="bg-color:green; width:200px">En découvrir plus</button>
@@ -50,17 +49,5 @@
 	</div>
 
 
-	{% block javascript %}
-		<script>
-			function myFunction() {
-var x = document.getElementById("mytrick");
-if (x.style.display === "none") {
-x.style.display = "block";
-} else {
-x.style.display = "none";
-}
-}
-		</script>
-	{% endblock %}
 
 {% endblock %}

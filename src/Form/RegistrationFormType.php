@@ -19,7 +19,11 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('username')
             ->add('email')
-            ->add('email_confirm')
+            ->add('passwordConfirm', PasswordType::class, [
+                'label'=> 'confirmez', 
+                
+                    ])   
+        
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

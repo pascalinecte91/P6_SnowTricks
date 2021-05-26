@@ -8,11 +8,14 @@
         "bootstrap": "5.0.1",
         "core-js": "^3.0.0",
         "file-loader": "6.0.0",
+        "fslightbox": "^3.2.3",
         "jquery": "^3.6.0",
+        "popover": "^2.4.1",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.32.13",
         "sass-loader": "11.0.0",
         "stimulus": "^2.0.0",
+        "tooltip": "^1.6.1",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -23,5 +26,7 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
-    "dependencies": {}
+    "dependencies": {
+        "lightbox2": "^2.11.3"
+    }
 }

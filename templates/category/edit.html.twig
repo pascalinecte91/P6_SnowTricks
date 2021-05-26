@@ -4,12 +4,15 @@
 {% endblock %}
 
 {% block body %}
-<div class="text-center mt-10px">
-    <h1>Edit Category</h1>
-</div
-    {{ include('category/_form.html.twig', {'button_label': 'Save'}) }}
-
-    <a href="{{ path('category_index') }}">back to list</a>
-
-    {{ include('category/_delete_form.html.twig') }}
+	<div class="text-center pt-10px">
+		<h1>Modifier - Catégories</h1>
+	</div>
+	{{include('category/_form.html.twig')}}
+		<div class="d-flex justify-content-center">
+		{{ include('category/_delete_form.html.twig') }}
+	
+			<a href="{{ path('category_index') }}" class="btn btn-secondary mx-5 my-2"><i class="fas fa-list"></i> back to list
+			</a>
+		</div>
+	
 {% endblock %}

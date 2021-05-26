@@ -33,9 +33,6 @@ class CommentType extends AbstractType
                 'attr' => []
             ])
             ->add("rgpd", CheckboxType::class)
-            /*->add('parentid', HiddenType::class, [
-                'mapped' => false
-            ])*/
             ;
     }
 

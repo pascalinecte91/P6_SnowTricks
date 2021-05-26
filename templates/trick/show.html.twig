@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Trick
+{% block title %}Détail d'un Trick
 {% endblock %}
 
 {% block body %}
@@ -20,6 +20,8 @@
 						{{ trick.category }}
 						| <i class=" fa fa-comments"></i>
 						{{ trick.comments|length }}
+						| Modifiée le: : <i class=" far fa-calendar-alt"></i>
+						{{ trick.updateAt ? trick.updateAt|date('d/m/Y') : '' }} <i class=" far fa-clock "></i>
 					</div>
 					<div class="description" d-block="text-align-center">
 
@@ -27,7 +29,7 @@
 					</div>
 					<div id="pictures_details">
 						{% for picture in trick.pictures %}
-							<a href="{{ asset('uploads/' ~ picture)}}" target="_blank">
+							<a href="{{ asset('uploads/' ~ picture)}}" data-fslightbox="snow">
 								<img class="display-top img-fluid style=" width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}">
 							</a>
 						{% endfor %}
@@ -45,16 +47,16 @@
 
 	<!--COMMENTAIRES-->
 
-
 	<div class="container">
 		<div class="accordion" id="button_deroulant">
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="deroulant_comment">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class=" far fa-comment-dots "></i>
-						Commentaire(s)
+				
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment"> <i class=" far fa-comment-dots "></i>
+						 Commentaire(s)
 					</button>
 				</h2>
-				<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="deroulant_comment" data-bs-parent="#accordionExample">
+				<div id="collapseComment" class="accordion-collapse collapse" aria-labelledby="deroulant_comment" data-bs-parent="#accordionComment">
 					<div class="accordion-body">
 						<div class="row">
 							<div class="col-12">
@@ -90,17 +92,21 @@
 		<div class="row text-center mt-5">
 			<div class="col-12">
 				<p class="blocktext" id="add_comment">Ajouter un commentaire</p>
-				{% if is_granted('ROLE_USER') %}
-					{{ form_start (commentForm) }}
-					{{ form_widget(commentForm)}}
-					<div class="row justify-content-around">
-						<button type="submit" class="btn btn-dark" style="width:150px"><i class=" fa fa-share-square"></i> Envoyer</button>
-						<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px"><i class=" fa fa-list "></i> back to list</a>
+
+				{% if is_granted ('ROLE_USER') %}
+				{{ form_start (commentForm) }}
+				{{ form_widget (commentForm)}}
+				<div class="row justify-content-around">
+					<button type="submit" class="btn btn-dark" style="width:150px"><i class=" fa fa-share-square"></i> Envoyer</button>
+					<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px"><i class=" fa fa-list "></i> back to list</a>
 					</div>
-					{{ form_end(commentForm) }}
-				{% endif %}
+				{{ form_end (commentForm) }}
+				{% else %}
+				<small><i class="fa fa-wifi "></i> Connectez-vous pour écrire un commentaire !<a href="{{ path('app_login')}}">Cliquez ICI</small></a>
+				{% endif %}												
 			</div>
 		</div>
 	</div>
 </div>
 {% endblock %}
+

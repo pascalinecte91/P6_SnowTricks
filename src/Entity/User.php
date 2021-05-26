@@ -54,15 +54,16 @@ class User implements UserInterface
      */
     private $createdAt;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email_confirm;
-
      /**
      * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user")
      */
     private $tricks;
+
+  /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password_confirm;
 
     public function __construct()
     {
@@ -206,20 +207,6 @@ class User implements UserInterface
         return $this;
     }
 
-  
-
-    public function getEmailConfirm(): ?string
-    {
-        return $this->email_confirm;
-    }
-
-    public function setEmailConfirm(string $email_confirm): self
-    {
-        $this->email_confirm = $email_confirm;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Trick[]
      */
@@ -246,6 +233,18 @@ class User implements UserInterface
                 $trick->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPasswordConfirm(): ?string
+    {
+        return $this->password_confirm;
+    }
+
+    public function setPasswordConfirm(string $password_confirm): self
+    {
+        $this->password_confirm = $password_confirm;
 
         return $this;
     }

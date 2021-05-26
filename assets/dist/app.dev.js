@@ -28,3 +28,17 @@ _a2lix_sf_collection["default"].sfCollection.init({
   }
 }); // start the Stimulus application
 //# sourceMappingURL=app.dev.js.map
+
+  $(function () {
+    $('a').tooltip()
+  })
+
+function myFunction() {var x = document.getElementById("mytrick");
+if (x.style.display === "none") {
+x.style.display = "block";
+} else {
+x.style.display = "none";
+}
+}
+
+

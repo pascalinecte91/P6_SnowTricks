@@ -2,12 +2,13 @@
 
 namespace App\DataFixtures;
 
+use Faker;
+use Faker\Factory;
 use App\Entity\User;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
-use Faker;
 
 class UsersFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -27,8 +28,9 @@ class UsersFixtures extends Fixture implements OrderedFixtureInterface
 
             $user->setEmail($faker->email());
             $user->setPassword($this->encoder->encodePassword($user,'toto'));
+            $user->setPasswordConfirm($this->encoder->encodePassword($user,'toto'));
             $user->setUsername($faker->lastName());
-            $user->setEmailConfirm($faker->email());
+           // $user->setRoles(['ROLE_USER']);
             $manager->persist($user);
 
             // enregistre l user dans une addReference

@@ -1,15 +1,17 @@
-{{ form_start(form) }}
+{{ form_start (form) }}
 <div class="container h-100 d-flex justify-content-center">
 	<div class="row">
-		<div class="col-8" id="edit-category">
-			{{ form_start(form) }}
-			{{ form_row(form.title, {label: 'Titre de la catégorie'}) }}<br>
-			{{ form_row(form.description, {label: 'Description'}) }}<br>
-			{{ form_row(form.createdAt, {disabled:'disabled'}, {label: 'Crée le:'}) }}
-			{{ form_row(form.updateAt, {disabled:'disabled'}, {label: 'Modifiée le:'}) }}
-			{{ form_end(form) }}
+		<div class="col-8" id="form-category">
+			{{ form_start (form) }}
+			{{ form_row (form.title, {label: 'Titre de la catégorie'}) }}<br>
+			{{ form_row (form.description, {label: 'Description'}) }}<br>
+			{{ form_row (form.createdAt, {label:'Crée le:'}) }}
+			{{ form_row (form.updateAt, {label: 'Modifiée le:'}) }}
+			
 			<div class="d-flex justify-content-center">
-				<button class="btn btn-dark">{{ button_label|default('Save') }}</button>
+				<button class="btn btn-dark mb-3">{{ button_label|default('Save ') }}<i class="far fa-save"></i>
+				</button>
+			{{ form_end (form) }}
 			</div>
 		</div>
 	</div>
