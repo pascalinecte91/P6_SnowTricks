@@ -31,32 +31,32 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $path = $this->containerBagInterface->get('directory_upload');
-        $files = glob($path .'/*');
+        $files = glob($path . '/*');
         foreach ($files as $file) {
-            if (is_file($file)){
+            if (is_file($file)) {
                 unlink($file);
             }
         }
-        
+
         $faker = Faker\Factory::create('fr_FR');
 
         $tricks = [
-            ['name' => 'Indy'],
-            ['name' => 'Seat belt'],
-            ['name' => 'Mute'],
-            ['name' => 'Japan'],
-            ['name' => 'Truck driver'],
-            ['name' => 'Style week'],
-            ['name' => '180'],
-            ['name' => '360'],
-            ['name' => 'Stalefish'],
-            ['name' => 'Nose grab'],
-            ['name' => 'Tail grab'],
-            ['name' => 'Big foot'],
-            ['name' => '900'],
-            ['name' => 'Backside air'],
-            ['name' => 'Old school'],
-            ['name' => 'Switch 270'],
+            ['name' => 'Indy', 'visibility' => 'show'],
+            ['name' => 'Seat belt', 'visibility' => 'show'],
+            ['name' => 'Mute', 'visibility' => 'show'],
+            ['name' => 'Japan', 'visibility' => 'show'],
+            ['name' => 'Truck driver', 'visibility' => 'show'],
+            ['name' => 'Style week', 'visibility' => 'show'],
+            ['name' => '180', 'visibility' => 'show'],
+            ['name' => '360', 'visibility' => 'show'],
+            ['name' => 'Stalefish', 'visibility' => 'hidden'],
+            ['name' => 'Nose grab', 'visibility' => 'hidden'],
+            ['name' => 'Tail grab', 'visibility' => 'hidden'],
+            ['name' => 'Big foot', 'visibility' => 'hidden'],
+            ['name' => '900', 'visibility' => 'hidden'],
+            ['name' => 'Backside air', 'visibility' => 'hidden'],
+            ['name' => 'Old school', 'visibility' => 'hidden'],
+            ['name' => 'Switch 270', 'visibility' => 'hidden'],
         ];
 
         foreach ($tricks as $key => $trick) {
@@ -71,12 +71,12 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
             $trickObject->setCreatedAt($faker->dateTimeBetween('- 1 years'));
             $trickObject->setUpdateAt($faker->dateTimeInInterval('+5 days'));
 
-            $this->setReference('trick_' . $key, $trickObject);  
+            $this->setReference('trick_' . $key, $trickObject);
 
-            for ($i = 1; $i <=3; $i++) {
+            for ($i = 1; $i <= 3; $i++) {
                 $asset = $this->getRandomFile($faker);
 
-                $uploadedFile = new UploadedFile(__DIR__.'/images/'.$asset, $asset, null, null, true);
+                $uploadedFile = new UploadedFile(__DIR__ . '/images/' . $asset, $asset, null, null, true);
                 $filename = $this->uploaderFileService->upload($uploadedFile);
                 $picture = new Picture();
                 $picture->setName($filename);
@@ -85,14 +85,14 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
                 $trickObject->addPicture($picture);
             }
 
-            for ($i = 1; $i <=2; $i++){
+            for ($i = 1; $i <= 2; $i++) {
                 $video  = $this->getRandomVideos($faker);
                 $videoObject = new Video();
                 $videoObject->setUrl($video);
                 $manager->persist($videoObject);
                 $trickObject->addvideo($videoObject);
             }
-            
+
             $manager->persist($trickObject);
         }
 
@@ -128,9 +128,9 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
         ];
 
         $asset = $faker->randomElement($listPictures);
-        copy(__DIR__.'/images/'.$asset, __DIR__.'/images/copy-'.$asset);
+        copy(__DIR__ . '/images/' . $asset, __DIR__ . '/images/copy-' . $asset);
 
-        return 'copy-'.$asset;
+        return 'copy-' . $asset;
     }
 
     private function getRandomVideos(Faker\Generator $faker): string
@@ -140,10 +140,9 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
             '5zH-YEvyztA',
             '0uGETVnkujA',
             'V9xuy-rVj9w',
-            
+
         ];
 
-        return 'https://www.youtube.com/embed/' . $faker->randomElement($videos); 
-
+        return 'https://www.youtube.com/embed/' . $faker->randomElement($videos);
     }
 }

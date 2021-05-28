@@ -49,6 +49,8 @@ class Category
     public function __construct()
     {
         $this->tricks = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+        $this->updateAt = new \DateTime();
        
     }
 

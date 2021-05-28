@@ -32,7 +32,7 @@
  3. Téléchargez et installez les dépendances front-end du projet avec Npm :
     - npm install
     
- 4. Créer un build d'assets (avec Webpack Encore) avec Npm :
+ 4. Créer un build d'assets (avec Webpack Encore) avec npm :
     - npm run build
     
  #### Connexion au site ####
@@ -55,6 +55,9 @@
     
  - Voir toutes les routes du projet
     - php bin/console debug:router
+
+###Lancer yarn watch  pour tout lancer sinon lyarn --dev
+- Lancer symfony serve
     
  ### Fin de l'installation ###
     

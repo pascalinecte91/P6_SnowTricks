@@ -1,12 +1,11 @@
 {{ form_start (form) }}
-<div class="container h-100 d-flex justify-content-center">
+<div class="container d-flex justify-content-center">
 	<div class="row">
 		<div class="col-8" id="form-category">
 			{{ form_start (form) }}
-			{{ form_row (form.title, {label: 'Titre de la catégorie'}) }}<br>
+			{{ form_row (form.title, {label: 'Nom catégorie'}) }}<br>
 			{{ form_row (form.description, {label: 'Description'}) }}<br>
-			{{ form_row (form.createdAt, {label:'Crée le:'}) }}
-			{{ form_row (form.updateAt, {label: 'Modifiée le:'}) }}
+	
 			
 			<div class="d-flex justify-content-center">
 				<button class="btn btn-dark mb-3">{{ button_label|default('Save ') }}<i class="far fa-save"></i>

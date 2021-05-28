@@ -21,8 +21,17 @@ body {
 .navbar{
     padding-right: 50px;
     padding-left: 50px;
-    background-color: rgb(52, 52, 75);; 
-  
+    background-color: rgb(52, 52, 75);    
+}
+
+.navbar-light 
+.navbar-nav
+.nav-link {
+    color: white;
+}
+
+button .navbar-toggler {
+    color:white;
 }
 .navbar-img{
     width: 60px; 
@@ -34,12 +43,12 @@ body {
     display: flex;
     justify-content: flex-end;
     padding-right: 35px;
-    font-size: 40px;
+    
 }
 
 .form-control::placeholder {
     font-size: 0.95rem;
-    color: #1b17ec;
+    color: #ec17be;
     font-style: italic;
   }
 
@@ -64,11 +73,17 @@ input {
 
 #register {
     background-color: rgb(228, 235, 241);
+    margin-top: 25px;
+    padding-left: 10px;
+    
 }
+
+
 
 #connect{
     background-color: rgb(126, 144, 160); ;
     margin-top: 35px;
+    margin-bottom:50px ;
 }
 
 .logout {

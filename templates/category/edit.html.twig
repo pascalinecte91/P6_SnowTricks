@@ -4,11 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	<div class="text-center pt-10px">
+	<div class="text-center">
 		<h1>Modifier - Catégories</h1>
 	</div>
 	{{include('category/_form.html.twig')}}
-		<div class="d-flex justify-content-center">
+		<div class="d-flex justify-content-center mt-5">
 		{{ include('category/_delete_form.html.twig') }}
 	
 			<a href="{{ path('category_index') }}" class="btn btn-secondary mx-5 my-2"><i class="fas fa-list"></i> back to list

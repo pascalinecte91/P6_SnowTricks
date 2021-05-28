@@ -8,23 +8,23 @@
 		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 	{% endfor %}
 <div class="container">
-	<div class="text-center " style="padding-bottom:100px">
+	<div class="text-center">
 		<h1>S'inscrire  <i class=" fa fa-user-plus"></i></h1>
 	</div>
-	<div class="col-md-6 bg-light p-3 m-t-5">
-		<div class="input-field" id="register">
+	<div class="col-md-6 bg-light">
+		<div class="input-field pl-5" id="register">
 		
-			{{ form_start(registrationForm) }}
-			{{ form_row(registrationForm.username, {label: 'Login'}) }}
-			{{ form_row(registrationForm.plainPassword, {label: 'Mot de passe'}) }}
-			{{ form_row(registrationForm.passwordConfirm, {label: 'Mot de passe à confirmer'}) }}
-			{{ form_row(registrationForm.email, {label: 'Email'}) }}
-			{{ form_row(registrationForm.agreeTerms, {label: 'Valider infos'}) }}
+			{{ form_start (registrationForm) }}
+			{{ form_row (registrationForm.username, {label: 'Login'}) }}
+			{{ form_row (registrationForm.plainPassword, {label: 'Mot de passe'}) }}
+			{{ form_row (registrationForm.passwordConfirm, {label: 'Mot de passe à confirmer'}) }}
+			{{ form_row (registrationForm.email, {label: 'Email'}) }}
+			{{ form_row (registrationForm.agreeTerms, {label: 'Valider infos'}) }}
 		</div>	
 		<div class="input-field" id="register-buttom">
 			<button type="submit" class="btn btn-secondary">M'enregistrer</button>
 		</div>
-			{{ form_end(registrationForm) }}
+			{{ form_end (registrationForm) }}
 		</div>
 	
 </div>

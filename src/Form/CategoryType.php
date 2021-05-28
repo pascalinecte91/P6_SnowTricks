@@ -17,12 +17,7 @@ class CategoryType extends AbstractType
         $builder
             ->add('description', TextareaType::class)
             ->add('title', TextType::class)
-            ->add('createdAt', DateType::class, [
-                "widget" => 'single_text'
-              ])
-              ->add('updateAt', DateType::class, [
-                "widget" => 'single_text'
-              ])
+           
         ;
     }
 

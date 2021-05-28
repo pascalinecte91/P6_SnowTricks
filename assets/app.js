@@ -34,9 +34,15 @@ a2lix_lib.sfCollection.init({
         remove: 'Effacer'
     }
 });
+
+
 // start the Stimulus application
 import './bootstrap';
 
-
+let element = document.getElementById('test');
+let [btn] = document.getElementsByTagName('button');
+btn.addEventListener('click', ()=>{
+	element.scrollIntoView({behavior: "smooth"});
+})
 
 

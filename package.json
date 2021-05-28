@@ -9,7 +9,6 @@
         "core-js": "^3.0.0",
         "file-loader": "6.0.0",
         "fslightbox": "^3.2.3",
-        "jquery": "^3.6.0",
         "popover": "^2.4.1",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.32.13",
@@ -25,8 +24,5 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
-    },
-    "dependencies": {
-        "lightbox2": "^2.11.3"
     }
 }

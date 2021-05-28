@@ -29,8 +29,8 @@
 					</div>
 					<div id="pictures_details">
 						{% for picture in trick.pictures %}
-							<a href="{{ asset('uploads/' ~ picture)}}" data-fslightbox="snow">
-								<img class="display-top img-fluid style=" width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}">
+							 <a data-fslightbox="gallery" href="{{ asset('uploads/' ~ picture)}}">
+								<img class="display-top img-fluid" width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}">
 							</a>
 						{% endfor %}
 					</div>
