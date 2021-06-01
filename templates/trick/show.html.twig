@@ -2,7 +2,6 @@
 
 {% block title %}Détail d'un Trick
 {% endblock %}
-
 {% block body %}
 	<div class="container">
 		<div class="row justify-content-center">
@@ -14,26 +13,37 @@
 					<div class="card-body">
 						<i class=" fa fa-user-edit"></i>
 						{{ trick.user }}
-						| Ajouté le : <i class=" far fa-calendar-alt"></i>
-						{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }} <i class=" far fa-clock "></i>
+						| Ajouté le :
+						<i class=" far fa-calendar-alt"></i>
+						{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}
+						<i class=" far fa-clock "></i>
 						| Catégorie :
 						{{ trick.category }}
-						| <i class=" fa fa-comments"></i>
+						|
+						<i class=" fa fa-comments"></i>
 						{{ trick.comments|length }}
-						| Modifiée le: : <i class=" far fa-calendar-alt"></i>
-						{{ trick.updateAt ? trick.updateAt|date('d/m/Y') : '' }} <i class=" far fa-clock "></i>
+						| Modifiée le: :
+						<i class=" far fa-calendar-alt"></i>
+						{{ trick.updateAt ? trick.updateAt|date('d/m/Y') : '' }}
+						<i class=" far fa-clock "></i>
 					</div>
 					<div class="description" d-block="text-align-center">
 
 						<p>{{ trick.description|raw }}</p>
 					</div>
+
+		
+
+
 					<div id="pictures_details">
 						{% for picture in trick.pictures %}
-							 <a data-fslightbox="gallery" href="{{ asset('uploads/' ~ picture)}}">
-								<img class="display-top img-fluid" width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}">
+							<a data-fslightbox="gallery" href="{{ asset('uploads/' ~ picture)}}">
+								<img class="display-top img-fluid"  width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}" class="fill">
 							</a>
 						{% endfor %}
 					</div>
+
+				
 
 					<div id="videos">
 						{% for video in trick.videos %}
@@ -51,9 +61,9 @@
 		<div class="accordion" id="button_deroulant">
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="deroulant_comment">
-				
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment"> <i class=" far fa-comment-dots "></i>
-						 Commentaire(s)
+
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
+						  <i class=" far fa-comment-dots"> Commentaire(s)</i>
 					</button>
 				</h2>
 				<div id="collapseComment" class="accordion-collapse collapse" aria-labelledby="deroulant_comment" data-bs-parent="#accordionComment">
@@ -87,26 +97,31 @@
 		</div>
 	</div>
 </div>
-<div class="container">
+<div class="container-fluid">
 	<div class="card-body mt-5">
 		<div class="row text-center mt-5">
 			<div class="col-12">
 				<p class="blocktext" id="add_comment">Ajouter un commentaire</p>
 
 				{% if is_granted ('ROLE_USER') %}
-				{{ form_start (commentForm) }}
-				{{ form_widget (commentForm)}}
-				<div class="row justify-content-around">
-					<button type="submit" class="btn btn-dark" style="width:150px"><i class=" fa fa-share-square"></i> Envoyer</button>
-					<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px"><i class=" fa fa-list "></i> back to list</a>
+					{{ form_start (commentForm) }}
+					{{ form_widget (commentForm)}}
+					<div class="row justify-content-around">
+						<button type="submit" class="btn btn-dark" style="width:150px">
+							<i class=" fa fa-share-square"></i>
+							Envoyer</button>
+						<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px">
+							<i class=" fa fa-list "></i>
+							back to list</a>
 					</div>
-				{{ form_end (commentForm) }}
+					{{ form_end (commentForm) }}
 				{% else %}
-				<small><i class="fa fa-wifi "></i> Connectez-vous pour écrire un commentaire !<a href="{{ path('app_login')}}">Cliquez ICI</small></a>
-				{% endif %}												
+					<small>
+						<i class="fa fa-wifi "></i>
+						Connectez-vous pour écrire un commentaire !<a href="{{ path('app_login')}}"> Cliquez ICI</small>
+					</a>
+				{% endif %}
 			</div>
 		</div>
 	</div>
-</div>
-{% endblock %}
-
+</div>{% endblock %}

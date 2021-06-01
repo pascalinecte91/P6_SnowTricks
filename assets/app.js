@@ -41,8 +41,8 @@ import './bootstrap';
 
 let element = document.getElementById('test');
 let [btn] = document.getElementsByTagName('button');
-btn.addEventListener('click', ()=>{
-	element.scrollIntoView({behavior: "smooth"});
+btn.addEventListener('click', () => {
+    element.scrollIntoView({ behavior: "smooth" });
 })
 
 

@@ -41,22 +41,25 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
         $faker = Faker\Factory::create('fr_FR');
 
         $tricks = [
-            ['name' => 'Indy', 'visibility' => 'show'],
-            ['name' => 'Seat belt', 'visibility' => 'show'],
-            ['name' => 'Mute', 'visibility' => 'show'],
-            ['name' => 'Japan', 'visibility' => 'show'],
-            ['name' => 'Truck driver', 'visibility' => 'show'],
-            ['name' => 'Style week', 'visibility' => 'show'],
-            ['name' => '180', 'visibility' => 'show'],
-            ['name' => '360', 'visibility' => 'show'],
-            ['name' => 'Stalefish', 'visibility' => 'hidden'],
-            ['name' => 'Nose grab', 'visibility' => 'hidden'],
-            ['name' => 'Tail grab', 'visibility' => 'hidden'],
-            ['name' => 'Big foot', 'visibility' => 'hidden'],
-            ['name' => '900', 'visibility' => 'hidden'],
-            ['name' => 'Backside air', 'visibility' => 'hidden'],
-            ['name' => 'Old school', 'visibility' => 'hidden'],
-            ['name' => 'Switch 270', 'visibility' => 'hidden'],
+            ['name' => 'Indy'],
+            ['name' => 'Seat belt'],
+            ['name' => 'Mute'],
+            ['name' => 'Japan'],
+            ['name' => 'Truck driver'],
+            ['name' => 'Style week', ],
+            ['name' => '180'],
+            ['name' => '360' ],
+            ['name' => 'Stalefish'],
+            ['name' => 'Nose grab'],
+            ['name' => 'Tail grab'],
+            ['name' => 'Big foot'],
+            ['name' => '900'],
+            ['name' => 'Backside air'],
+            ['name' => 'Old school'],
+            ['name' => 'Switch 270'],
+            ['name' => '540'],
+            ['name' => '720 Frontcab'],
+        
         ];
 
         foreach ($tricks as $key => $trick) {

@@ -25,9 +25,9 @@ class UploaderFileService implements UploaderFileServiceInterface
      */
     public function __construct(string $targetDirectory, SluggerInterface $slugger, LoggerInterface $logger)
     {
-        $this->targetDirectory = $targetDirectory;
+                              $this->targetDirectory = $targetDirectory;
         $this->slugger = $slugger;
-        $this->logger = $logger;
+                             $this->logger = $logger;
     }
 
     /**

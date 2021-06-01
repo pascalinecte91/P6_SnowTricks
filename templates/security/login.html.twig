@@ -6,46 +6,44 @@
 {% block body %}
 	<form method="post">
 		{% if error %}
-			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}
+			</div>
 		{% endif %}
 
-
-		<div class="container">
+		<div class="container my-lg-5"  id="connect">
 			<div class="row justify-content-center">
-				<div class="col-lg-6" id="connect">
-					<h1 class="text-center my-3">Connexion</h1>
-					<div class="col-lg-12 text-center">
-						<img src="{{ asset('build/images/avatarmin.jpg')}}"></div>
-					<div class="mb-3">
-						<label for="inputEmail" class="form-label">Email</label>
-						<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-					</div>
-					<div class="mb-3">
-						<label for="inputPassword" class="form-label">Password</label>
-						<input type="password" name="password" id="inputPassword" class="form-control" required>
-						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-					</div>
-					<div class="mb-3 form-check">
-						<input type="checkbox" class="form-check-input" name="_remember_me" id="remember_me">
-						<label for="remember_me" class="form-check-label">
-							Se souvenir de moi</label>
-					</div>
-					<div class="form-group" id="auth">
-						<button class="btn btn-lg btn-secondary mb-5" type="submit">S'authentifier</button>
-
-						{% if app.user %}
-							<div class="logout d-flex justify-content-around pr-3">
-								<small>Connecté avec (email) :
-									{{ app.user.username }}
-								</small>
-								<a href="{{ path('app_logout') }}" class="btn btn-secondary mb-3"><i class="fa fa-power-off"></i><small> Déconnexion</small></button>
-							</a>
-							
+				<h1 class="text-center my-3">Connexion</h1>
+						
+						<div class="col-lg-8 text-center mt-lg-4" >
+							<img src="{{ asset('build/images/avatarmin.jpg')}}">
 						</div>
-
-					{% endif %}
-				</form>
+						<div class="col-8">
+							<label for="inputEmail" class="form-label">Email</label>
+							<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+						</div>
+						<div class="col-8 py-3">
+							<label for="inputPassword" class="form-label">Password</label>
+							<input type="password" name="password" id="inputPassword" class="form-control" required>
+							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+						</div>
+						<div class="col-8 py-2">
+							<label for="remember_me" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="_remember_me" id="remember_me">
+								Se souvenir de moi</label>
+						</div>
+						<div class="col-8 form-group py-md-3" id="auth">
+							<button class="btn btn-lg btn-secondary mb-5" type="submit">S'authentifier</button>
+						</div>
+							{% if app.user %}
+								<div class="logout d-flex justify-content-around pr-3"><small>Connecté avec (email) :{{ app.user.username }}</small>
+									<a href="{{ path('app_logout') }}" class="btn btn-secondary mb-3"><i class="fa fa-power-off"></i><small> Déconnexion</small></a>
+								</div>
+							{% endif %}
+					</div>	
 			</div>
 		</div>
-	</div>
-</div>{% endblock %}
+	</form>
+{% endblock %}
+
+
+
