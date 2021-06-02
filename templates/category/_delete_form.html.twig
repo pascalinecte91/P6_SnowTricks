@@ -1,8 +1,9 @@
-<form method="post" action="{{ path('category_delete', {'id': category.id}) }}" onsubmit="return confirm('Etes-vous sure de vouloir supprimer cette catégorie?');">
+<form method="post" action="{{ path('category_delete', {'id': category.id}) }}" onsubmit="return confirm('Etes-vous sure de vouloir supprimer cette catégorie ?');">
 	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
 	<div class="d-flex justify-content-center mt-2" id="delete-category">
 		<button class="btn btn-secondary">
-			<i class="far fa-trash-alt"></i> Delete
-        </button>
+			<i class="far fa-trash-alt"></i>
+			Supprimer
+		</button>
 	</div>
 </form>

@@ -97,7 +97,7 @@
 		</div>
 	</div>
 </div>
-<div class="container-fluid">
+<div class="container">
 	<div class="card-body mt-5">
 		<div class="row text-center mt-5">
 			<div class="col-12">
@@ -112,7 +112,8 @@
 							Envoyer</button>
 						<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px">
 							<i class=" fa fa-list "></i>
-							back to list</a>
+							Liste Tricks <br> <i class="fas fa-pencil-alt"></i> Modifier </a>
+							 <a href="{{ path('accueil') }}" class="btn btn-dark"style="width:150px"><i class="fa fa-reply"></i> Accueil</a>
 					</div>
 					{{ form_end (commentForm) }}
 				{% else %}

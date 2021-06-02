@@ -11,7 +11,7 @@ import '@popperjs/core';
 
 require('bootstrap');
 require('fslightbox')
-
+require('jquery');
 
 
 import a2lix_lib from '@a2lix/symfony-collection/src/a2lix_sf_collection';
@@ -44,5 +44,7 @@ let [btn] = document.getElementsByTagName('button');
 btn.addEventListener('click', () => {
     element.scrollIntoView({ behavior: "smooth" });
 })
+
+import $ from "jquery";
 
 

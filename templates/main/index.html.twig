@@ -20,33 +20,49 @@
 
 
 		<div class="row m-3 mt-4 text-center">
+			{%  set nbreTrickAffiches = 0 %}
 			{% for trick in tricks %}
-				<div class="col-sm-6 col-md-4 lg-3 col-xl-2 pt-5">
-					<div class="card">
-						<h1></h1>
-						<h5>{{ trick.name }}
-						</h5>
-						<img class="card-img-top" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
-						<div class="d-flex justify-content-between mx-5 my-2">
-							<a href="{{ path('trick_edit', {'id': trick.id}) }}"></a>
-						</div>
-						<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary"></i>Read more</a>
+				{% set nbreTrickAffiches = nbreTrickAffiches +1 %}
+				{% if nbreTrickAffiches <= 6 %}
+					<div class="col-sm-6 col-md-4 lg-3 col-xl-2 pt-5">
+					{% else %}
+						<div class="col-sm-6 col-md-4 lg-3 col-xl-2 pt-5 hidden">
+						{% endif %}
+						<div class="card">
+							<h1></h1>
+							<h5>{{ trick.name }}
+							</h5>
+							<img class="card-img-top" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
+							<div class="d-flex justify-content-between mx-5 my-2">
+								<a href="{{ path('trick_edit', {'id': trick.id}) }}"></a>
+							</div>
+							<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary">Read more  <i class="fas fa-pencil-alt"></i>  <i class="far fa-trash-alt"></i></a>
+					</div>
+				</div>
+			{% endfor %}
+
+	<div class="row"><br>
+				<div class="box">
+					<button class="btn btn-success my-3" id="voirPlus">Voir plus</button>
+				</div>
+
+			</div>
+
+			<div class="row justify-content-end">
+				<div class="col" id="button-up">
+					<a href="#tricks" alt="fleche">
+						<i class="fa fa-arrow-up fa-2x" style="color: #000080"></i>
+					</div>
 				</div>
 			</div>
-		{% endfor %}
+			<script>
+				let boutonVoirPlus = document.getElementById('voirPlus')
+boutonVoirPlus.addEventListener('click', () => {
+let listElementHidden = document.getElementsByClassName('hidden')
+for (let i = 0; (i <= 6) && (i < listElementHidden.length); i++) {
+listElementHidden[i].classList.remove('hidden')
+}
+})
+			</script>
 
-
-		<div class="row"><br>
-			<div class="col">
-				<button class="btn btn-success mb-3" href="#" id="loadMore">Voir plus</button>
-			</div>
-		</div>
-		<div class="row justify-content-end">
-			<div class="col" id="button-up">
-				<a href="#tricks" alt="fleche">
-					<i class="fa fa-arrow-up fa-2x" style="color: #000080"></i>
-				</div>
-			</div>
-		</div>
-
-	{% endblock %}
+{% endblock %}

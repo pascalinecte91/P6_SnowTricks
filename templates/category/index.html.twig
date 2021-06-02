@@ -28,10 +28,10 @@
 						<td>{{ category.title }}</td>
 						<td>{{ category.description }}</td>
 						<td>{{ category.createdAt ? category.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
-						<td>{{ category.updateAt ? category.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
+						<td>{{ category.updateAt ? category.updateAt|date('d/m/Y') : '' }}</td>
 						<td>
 						
-							<a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-dark"><i class=" fa fa-edit"></i>edit</a>
+							<a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-dark"><i class=" fa fa-edit"></i>Modifier</a>
 							
 						</td>
 					</tr>
@@ -43,8 +43,11 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
+
 	<div class="col-12 text-center my-5 py-3">
-		<a href="{{ path('category_new') }}"class="btn btn-secondary"> Create new</a>
-		</div>
+		<a href="{{ path('category_new') }}"class="btn btn-secondary"> Créer Catégorie</a>
+		<a href="{{ path('accueil') }}" class="btn btn-secondary mx-5 my-2">
+					<i class="fa fa-reply"></i></i> Accueil</a>
+	</div>
+</div>
 {% endblock %}
