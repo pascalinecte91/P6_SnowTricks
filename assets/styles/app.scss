@@ -34,15 +34,10 @@ body {
   height: 30px;
 }
 
-#button-down {
-  display: flex;
-  justify-content: flex-end;
+.up{
+  padding-right: 70px;
+  color: #aca6ac;
 }
-#button-up {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .form-control::placeholder {
   font-size: 0.95rem;
   color: #ec17be;
@@ -132,6 +127,10 @@ label {
 a.btn.btn {
   color: white;
   background-color: rgba(104, 88, 54, 0.6);
+}
+
+.disabled {
+  display: none;
 }
 
 // SHOW  DETAILS TRICK
@@ -246,6 +245,19 @@ footer a {
   display: none;
 }
 
+
+.ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.fontawesome {
+  color:rgb(111, 112, 20);
+  font-size: 0.7em;
+  border:none;
+}
+
 //RESPONSIVE  MEDIA QUERY
 
 @media screen and (max-width: 992px) {
@@ -255,14 +267,20 @@ footer a {
   }
 
 }
+
 @media screen and (max-width: 768px) {
 #register-buttom {
   padding-bottom: 5px;
   width: auto;
   }
 
-  .pictures_details  {
-    padding-bottom: 3px;;
+  .array-trick{
+    overflow-y:hidden;
+  }
+
+  #pictures_details img {
+    margin-bottom: 10px;
+    
   }
 
   .array-trick {
@@ -270,25 +288,14 @@ footer a {
     padding-right: 10px;
   }
 
- .table thead {
-   display: none;
- }
-
- .table tr {
-   display: block;
-   margin-bottom: 20px;
- }
-
- .table td {
-   display: block;
-   text-align: left;
- }
-
   #edit-trick {
     padding-left: 5px;
     padding-right: 15px;
   } 
 
+  #photo_comment {
+    display:none;
+  }
 }
 
 @media screen and (max-width: 578px) {
@@ -297,14 +304,19 @@ footer a {
     margin-left: 10px;
     margin-right: 10px;   
   }
-  
-}
-
-@media screen and (max-width: 426px) {
-  footer img, p {
-    display: none;   
+  .hide-xs-sm {
+    display: none;
   }
 
+  .formation {
+    display: none;
+  }
+
+  .wikipedia {
+    display: none;
+  }
+}
+@media screen and (max-width: 426px) {
 
   footer a {
     justify-content: space-around;    
@@ -313,6 +325,7 @@ footer a {
   footer i.fa {
     display: none;
   }
+ 
 }
  
 

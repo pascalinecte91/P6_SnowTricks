@@ -54,12 +54,12 @@ class User implements UserInterface
      */
     private $createdAt;
 
-     /**
+    /**
      * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user")
      */
     private $tricks;
 
-  /**
+    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
@@ -91,7 +91,7 @@ class User implements UserInterface
 
     public function __toString()
     {
-            return $this->getEmail();
+        return $this->getEmail();
     }
 
     /**

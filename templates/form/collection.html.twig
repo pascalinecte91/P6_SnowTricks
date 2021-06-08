@@ -1,9 +1,8 @@
 {%- block collection_widget -%}
-    {% if prototype is defined %}
-        {%- set attr = attr|merge({
+{% if prototype is defined %}
+	{%- set attr = attr|merge({
             'data-prototype': form_row(prototype),
             'class': attr.class|default('')
         }) %}
-    {% endif %}
-    {{ block('form_widget') }}
-{%- endblock collection_widget -%}
+{% endif %}
+{{ block('form_widget') }}{%- endblock collection_widget -%}

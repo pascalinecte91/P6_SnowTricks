@@ -9,15 +9,13 @@ use App\Entity\Picture;
 use App\Form\CommentType;
 use App\Repository\TrickRepository;
 use App\Service\UploaderFileServiceInterface;
-use DateTime;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/trick")
@@ -69,6 +67,11 @@ class TrickController extends AbstractController
             }
             $this->entityManager->persist($trick);
             $this->entityManager->flush();
+             
+            $this->addFlash(
+                'success',
+                 'Le nouveau trick <strong>' . $trick->getName()  . '</strong> a été crée .'
+            );
 
             return $this->redirectToRoute('trick_index');
         }
@@ -83,10 +86,17 @@ class TrickController extends AbstractController
     /**
      * @Route("/{id}", name="trick_show", methods={"GET", "POST"})
      */
-    public function show(Request $request, Trick $trick): Response
+    public function show(Request $request, Trick $trick, PaginatorInterface $paginator): Response
     {
-
-        $user = $this->getUser();
+        
+       
+            $comments = $paginator->paginate(  // je pagine : si pas de page 1  et oui si page + 1 jusqu' 7
+                $trick->getComments(),
+                $request->query->getInt('page', 1),  //  pour la page 1 si ya page d'autres pages
+                10
+            );
+    
+            $user = $this->getUser();
 
         //  creation du commentaire vide
         $comment = new Comment();
@@ -99,7 +109,6 @@ class TrickController extends AbstractController
 
         // envoi traitement formulaire : 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
-
             $comment->setTrick($trick);
             $comment->setUser($user);
 
@@ -115,6 +124,7 @@ class TrickController extends AbstractController
         return $this->render('trick/show.html.twig', [
             'trick' => $trick,
             'commentForm' => $commentForm->createView(),
+            'comments' => $comments,
         ]);
     }
     /**
@@ -127,6 +137,7 @@ class TrickController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $trick->setUpdateAt(new \DateTime());
+            
 
             $pictures = $trick->getPictures() ;
             // faire une boucle pour plusieurs images
@@ -143,8 +154,14 @@ class TrickController extends AbstractController
                 $trick->addPicture($picture);
             }
             $this->entityManager->flush();
-
+           
+            $this->addFlash(
+                'success',
+                 'Le trick <strong>' . $trick->getName()  . '</strong> a bien eté modifié avec succès.'
+            );
+            
             return $this->redirectToRoute('trick_index');
+            
         }
 
         return $this->render('trick/edit.html.twig', [

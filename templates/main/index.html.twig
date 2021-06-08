@@ -7,62 +7,56 @@
 	<div class="container-fluid">
 		<header class="masthead">
 			<div class="row">
-				<img class="card-img-top" src="{{ asset('build/images/homepage4.jpg')}}" alt="Card image cap">
-				<div class="col" id="button-down">
-					<p style="margin-top: -80px; height: 60px; font-size: 2em; margin-right:50px;" class="mr-3 text-right">
-						<a href="#tricks">
-							<i class="fas fa-arrow-down" style="color: #000080"></i>
-						</a>
-					</p>
-				</div>
+				<img class="card-img-top" src="{{ asset('build/images/homepage4.jpg')}}" alt="Card image cap">	
+				<a id="haut"></a>
+				<p class="text-end my-4" >
+				<a href="#bas"><i class="fa fa-angle-down fa-2x up"></i></a>
+				</p>
 			</div>
+				
 		</header>
-
-
-		<div class="row m-3 mt-4 text-center">
-			{%  set nbreTrickAffiches = 0 %}
-			{% for trick in tricks %}
-				{% set nbreTrickAffiches = nbreTrickAffiches +1 %}
-				{% if nbreTrickAffiches <= 6 %}
-					<div class="col-sm-6 col-md-4 lg-3 col-xl-2 pt-5">
-					{% else %}
-						<div class="col-sm-6 col-md-4 lg-3 col-xl-2 pt-5 hidden">
-						{% endif %}
-						<div class="card">
-							<h1></h1>
-							<h5>{{ trick.name }}
-							</h5>
-							<img class="card-img-top" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
-							<div class="d-flex justify-content-between mx-5 my-2">
-								<a href="{{ path('trick_edit', {'id': trick.id}) }}"></a>
+				
+		<section>
+			<div class="row m-3 mt-4 text-center">
+				{%  set nbreTrickAffiches = 0 %}
+				{% for trick in tricks %}
+					{% set nbreTrickAffiches = nbreTrickAffiches +1 %}
+					{% if nbreTrickAffiches <= 6 %}
+						<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 d-block pt-5">
+							{% else %}
+							<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2  pt-5 hidden">
+								{% endif %}
+								<div class="card">
+									<h5>{{ trick.name }}{{ include('trick/_delete_form.html.twig') }}</h5>
+									<a href="{{ path('trick_edit', {'id': trick.id}) }}"><i class="fas fa-pencil-alt"></i> </a>
+									<img class="card-img-top" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
+										<div class="d-flex justify-content-center mx-5 my-2">
+										<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary">Détail </a>
+										</div>
+								</div>
 							</div>
-							<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary">Read more  <i class="fas fa-pencil-alt"></i>  <i class="far fa-trash-alt"></i></a>
-					</div>
-				</div>
-			{% endfor %}
-
-	<div class="row"><br>
-				<div class="box">
-					<button class="btn btn-success my-3" id="voirPlus">Voir plus</button>
-				</div>
-
+				{% endfor %}
 			</div>
+		</section>
+		
+				<p class="text-end my-4">
+					<a href="#haut"><i class="fa fa-angle-up fa-2x up"></i></a>
+					<a id="bas"></a></p>
+						<div class="box text-center">
+						<button class="btn btn-success my-3" id="voirPlus">Voir plus</button>
+						</div>
+		
+				
 
-			<div class="row justify-content-end">
-				<div class="col" id="button-up">
-					<a href="#tricks" alt="fleche">
-						<i class="fa fa-arrow-up fa-2x" style="color: #000080"></i>
-					</div>
-				</div>
-			</div>
-			<script>
-				let boutonVoirPlus = document.getElementById('voirPlus')
-boutonVoirPlus.addEventListener('click', () => {
-let listElementHidden = document.getElementsByClassName('hidden')
-for (let i = 0; (i <= 6) && (i < listElementHidden.length); i++) {
-listElementHidden[i].classList.remove('hidden')
-}
-})
+		
+	<script>
+	let boutonVoirPlus = document.getElementById('voirPlus')
+	boutonVoirPlus.addEventListener('click', () => {
+	let listElementHidden = document.getElementsByClassName('hidden')
+	for (let i = 0; (i <= 6) && (i < listElementHidden.length); i++) {
+	listElementHidden[i].classList.remove('hidden')
+	}
+	})
 			</script>
 
 {% endblock %}

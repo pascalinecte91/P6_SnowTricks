@@ -10,40 +10,41 @@
 			</div>
 		{% endif %}
 
-		<div class="container my-5"  id="connect">
+		<div class="container my-5" id="connect">
 			<div class="row justify-content-center">
 				<h1 class="text-center my-3">Connexion</h1>
-						
-						<div class="col-lg-8 text-center mt-4" >
-							<img src="{{ asset('build/images/avatarmin.jpg')}}">
-						</div>
-						<div class="col-8">
-							<label for="inputEmail" class="form-label">Email</label>
-							<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-						</div>
-						<div class="col-8 py-3">
-							<label for="inputPassword" class="form-label">Password</label>
-							<input type="password" name="password" id="inputPassword" class="form-control" required>
-							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-						</div>
-						<div class="col-8 py-2">
-							<label for="remember_me" class="form-check-label">
-							<input type="checkbox" class="form-check-input" name="_remember_me" id="remember_me">
-								Se souvenir de moi</label>
-						</div>
-						<div class="col-8 form-group py-md-3" id="auth">
-							<button class="btn btn-lg btn-secondary mb-5" type="submit">S'authentifier</button>
-						</div>
-							{% if app.user %}
-								<div class="logout d-flex justify-content-around pr-3"><small>Connecté avec (email) :{{ app.user.username }}</small>
-									<a href="{{ path('app_logout') }}" class="btn btn-secondary mb-3"><i class="fa fa-power-off"></i><small> Déconnexion</small></a>
-								</div>
-							{% endif %}
-					</div>	
+
+				<div class="col-lg-8 text-center mt-4">
+					<img src="{{ asset('build/images/avatarmin.jpg')}}">
+				</div>
+				<div class="col-8">
+					<label for="inputEmail" class="form-label">Email</label>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+				</div>
+				<div class="col-8 py-3">
+					<label for="inputPassword" class="form-label">Password</label>
+					<input type="password" name="password" id="inputPassword" class="form-control" required>
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				</div>
+				<div class="col-8 py-2">
+					<label for="remember_me" class="form-check-label">
+						<input type="checkbox" class="form-check-input" name="_remember_me" id="remember_me">
+						Se souvenir de moi</label>
+				</div>
+				<div class="col-8 form-group py-md-3" id="auth">
+					<button class="btn btn-lg btn-secondary mb-5" type="submit">S'authentifier</button>
+				</div>
+				{% if app.user %}
+					<div class="logout d-flex justify-content-around pr-3">
+						<small>Connecté avec (email) :{{ app.user.username }}</small>
+						<a href="{{ path('app_logout') }}" class="btn btn-secondary mb-3">
+							<i class="fa fa-power-off"></i>
+							<small>
+								Déconnexion</small>
+						</a>
+					</div>
+				{% endif %}
 			</div>
 		</div>
-	</form>
-{% endblock %}
-
-
-
+	</div>
+</form>{% endblock %}

@@ -25,9 +25,9 @@ class UploaderFileService implements UploaderFileServiceInterface
      */
     public function __construct(string $targetDirectory, SluggerInterface $slugger, LoggerInterface $logger)
     {
-                              $this->targetDirectory = $targetDirectory;
+        $this->targetDirectory = $targetDirectory;
         $this->slugger = $slugger;
-                             $this->logger = $logger;
+        $this->logger = $logger;
     }
 
     /**
@@ -40,7 +40,7 @@ class UploaderFileService implements UploaderFileServiceInterface
         try {
             $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $safeFilename = $this->slugger->slug($originalFilename);
-            $filename = $safeFilename.'-'.uniqid('', true).'.'.$file->guessExtension();
+            $filename = $safeFilename . '-' . uniqid('', true) . '.' . $file->guessExtension();
 
             $file->move($this->getTargetDirectory(), $filename);
         } catch (FileException $exception) {

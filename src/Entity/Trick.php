@@ -50,6 +50,7 @@ class Trick
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick")
+     * @ORM\OrderBy({"createdAt" = "ASC"})
      */
     private $comments;
 
@@ -104,9 +105,9 @@ class Trick
     }
 
     public function __toString()
-{
+    {
         return $this->getName();
-}
+    }
 
     public function getDescription(): ?string
     {
@@ -165,12 +166,11 @@ class Trick
         return $this->pictures;
     }
 
-  
+
     public function addPicture(Picture $picture): self
     {
         if (!$this->pictures->contains($picture)) {
             $this->pictures[] = $picture;
-        
         }
 
         return $this;
@@ -252,6 +252,4 @@ class Trick
 
         return $this;
     }
-
-
 }

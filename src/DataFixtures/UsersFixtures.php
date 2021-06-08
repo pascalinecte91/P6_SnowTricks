@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use Faker;
-use Faker\Factory;
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -23,14 +22,23 @@ class UsersFixtures extends Fixture implements OrderedFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        for($i = 0; $i <= 5; $i++){
-            $user = new User();
+        $user = new User(); //creation de mon user role ADMIN
 
+        $user->setEmail($faker->email());
+        $user->setPassword($this->encoder->encodePassword($user, 'bravo'));
+        $user->setPasswordConfirm($this->encoder->encodePassword($user, 'bravo'));
+        $user->setUsername($faker->lastName());
+        $user->setRoles(['ROLE_ADMINISTRATOR']);
+        $manager->persist($user);
+
+        for ($i = 0; $i <= 5; $i++) {
+            $user = new User();
+            
             $user->setEmail($faker->email());
-            $user->setPassword($this->encoder->encodePassword($user,'toto'));
-            $user->setPasswordConfirm($this->encoder->encodePassword($user,'toto'));
+            $user->setPassword($this->encoder->encodePassword($user, 'toto'));
+            $user->setPasswordConfirm($this->encoder->encodePassword($user, 'toto'));
             $user->setUsername($faker->lastName());
-           // $user->setRoles(['ROLE_USER']);
+            $user->setRoles(['ROLE_USER']);
             $manager->persist($user);
 
             // enregistre l user dans une addReference

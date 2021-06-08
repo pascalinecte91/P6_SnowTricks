@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Trick{% endblock %}
+{% block title %}New Trick
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Trick</h1>
-
-    {{ include('trick/_form.html.twig') }}
-<div class="col-12 text-center my-5 py-3">
-    <a href="{{ path('accueil') }}" class="btn btn-secondary"style="width:150px"> Accueil</a>
-</div>
+	<h1>Create new Trick</h1>
+		{% if is_granted('ROLE_USER') %}
+	{{ include('trick/_form.html.twig') }}
+		{% endif %}
+	<div class="col-12 text-center my-5 py-3">
+		<a href="{{ path('accueil') }}" class="btn btn-secondary" style="width:150px">
+			Accueil</a>
+	</div>
 {% endblock %}

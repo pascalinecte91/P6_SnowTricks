@@ -18,8 +18,26 @@
 		{% endblock %}
 	</head>
 	<body>
+	
 		{% include("partials/navbar.html.twig") %}
-		{% block body %}{% endblock %}
+	 <div class="container py-3 mt-4">
+            {% for label, messages in app.flashes %}
+                <div class="container">
+                    <div class="alert alert-{{ label }} mb-0">
+                        {% for message in messages %}
+                            <p>{{ message | raw }}</p>
+                        {% endfor %}
+                   </div>
+			    </div>
+	
+            {% endfor %}
+</div>
+		{% block body %}
+		
+		{% endblock %}
+
+
+			  
 		{% include("partials/footer.html.twig") %}
 	</body>
 

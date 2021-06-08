@@ -36,8 +36,14 @@
     - npm run build
     
  #### Connexion au site ####
- - ONGLET  Connexion
+- ONGLET  Connexion  Administrator : 
+  - LOGIN : TOTO
   - Email : toto@gmail.com
+  - Mot de passe : 111111
+ 
+- ONGLET  Connexion  User : 
+  - LOGIN : bravo
+  - Email : bravo@gmail.com
   - Mot de passe : 111111
  
  ### Commandes Symfony pour installations diverses ###
@@ -56,7 +62,7 @@
  - Voir toutes les routes du projet
     - php bin/console debug:router
 
-###Lancer yarn watch  pour tout lancer sinon lyarn --dev
+###Lancer yarn watch  pour tout lancer sinon yarn --dev
 - Lancer symfony serve
     
  ### Fin de l'installation ###

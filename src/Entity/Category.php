@@ -44,14 +44,13 @@ class Category
      */
     private $updateAt;
 
-   
+
 
     public function __construct()
     {
         $this->tricks = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updateAt = new \DateTime();
-       
     }
 
     public function getId(): ?int
@@ -84,9 +83,9 @@ class Category
     }
     public function __toString()
     {
-            return $this->getTitle();
+        return $this->getTitle();
     }
-    
+
 
     /**
      * @return Collection|Trick[]
@@ -141,6 +140,4 @@ class Category
 
         return $this;
     }
-
-
 }

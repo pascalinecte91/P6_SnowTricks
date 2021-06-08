@@ -5,56 +5,57 @@
 
 {% block body %}
 
-	<div="container-fluid">
+	<div="container">
 		<div class="col-12 text-center my-5 py-3">
 			<h1>Liste des Tricks
 			</h1>
 		</div>
 		<div class="array-trick">
-			<table class="table table-striped table-hover table-secondary">
-				<thead>
-					<tr class="table-active">
-						<th class="text-center">Id</th>
-						<th class="text-center">Nom</th>
-						<th class="text-center">Description</th>
-						<th class="text-center">Categorie</th>
-						<th class="text-center">Crée le</th>
-						<th class="text-center">Modifié le</th>
-						<th class="text-center">Actions</th>
+			<div class="table-responsive-lg m-lg-4">
+				<table class="table table-hover table-secondary">
+					<thead>
+						<tr class="table-active">
+							<th class="text-center">Id</th>
+							<th class="text-center">Nom</th>
+							<th class="text-center">Description</th>
+							<th class="text-center">Categorie</th>
+							<th class="text-center">Crée le</th>
+							<th class="text-center hide-xs-sm">Modifié le</th>
+							<th class="text-center">Actions</th>
 
-					</tr>
-				</thead>
+						</tr>
+					</thead>
 					<tbody>
-					{% for trick in tricks %}
-					<tr>
-						<td>{{ trick.id }}</td>
-						<td>{{ trick.name }}</td>
-						<td style="width:800px;">{{ trick.description }}</td>
-						<td>{{ trick.category }}</td>
-						<td>{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
-						<td>{{ trick.updateAt ? trick.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
-						<td>
-							<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-dark">
-								<i class=" fa fa-eye"></i>
-								Voir</a>
-							<a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-dark">
-								<i class=" fa fa-edit"></i>Modifier</a>
-						</td>
-					</tr>
-					{% else %}
-					<tr>
-						<td colspan="6">no records found</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+						{% for trick in tricks %}
+							<tr>
+								<td>{{ trick.id }}</td>
+								<td>{{ trick.name }}</td>
+								<td>{{ trick.description|striptags|slice(0, 50) ~ " ..." }}</td>
+								<td>{{ trick.category }}</td>
+								<td class="text-center">{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
+								<td class="text-center hide-xs-sm">{{ trick.updateAt ? trick.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
+								<td>
+									<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-dark ml-5 mb-1">
+										<i class=" fa fa-eye"></i>
+										Voir</a>
+									<a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-dark">
+										<i class=" fa fa-edit"></i>Modifier</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="6">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
 
-				<div class="col-12 text-center my-5 py-3">
-					<a href="{{ path('trick_new') }}" class="btn btn-secondary">
-						<i class=" fa fa-plus"></i>
-						Créer un Trick</a>
-				</div>
-
+		<div class="col-12 text-center my-5 py-3">
+			<a href="{{ path('trick_new') }}" class="btn btn-secondary">
+				<i class=" fa fa-plus"></i>
+				Créer un Trick</a>
+		</div>
 	</div>
 {% endblock %}

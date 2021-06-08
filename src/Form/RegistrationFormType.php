@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -20,10 +22,9 @@ class RegistrationFormType extends AbstractType
             ->add('username')
             ->add('email')
             ->add('passwordConfirm', PasswordType::class, [
-                'label'=> 'confirmez', 
-                
-                    ])   
-        
+                'label' => 'confirmez',
+            ])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -32,7 +33,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            
+
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -46,10 +47,18 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Votre mot de passe doit contenir minimum 6 caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
-                    ]),
+                    ])
+            
                 ],
             ])
-        ;
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Utilisateur' => 'ROLE_USER',
+                    'Administrateur' => 'ROLE_ADMIN'
+                ],
+            ])
+            ->add('valider', SubmitType::class)
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

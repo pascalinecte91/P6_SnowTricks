@@ -46,9 +46,9 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
             ['name' => 'Mute'],
             ['name' => 'Japan'],
             ['name' => 'Truck driver'],
-            ['name' => 'Style week', ],
+            ['name' => 'Style week',],
             ['name' => '180'],
-            ['name' => '360' ],
+            ['name' => '360'],
             ['name' => 'Stalefish'],
             ['name' => 'Nose grab'],
             ['name' => 'Tail grab'],
@@ -59,7 +59,7 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
             ['name' => 'Switch 270'],
             ['name' => '540'],
             ['name' => '720 Frontcab'],
-        
+
         ];
 
         foreach ($tricks as $key => $trick) {
@@ -101,8 +101,6 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
 
         $manager->flush();
     }
-
-
 
     public function getOrder()
     {

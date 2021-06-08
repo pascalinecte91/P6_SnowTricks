@@ -24,7 +24,7 @@ class CategoryController extends AbstractController
             'categories' => $categoryRepository->findAll(),
         ]);
     }
-
+    
     /**
      * @Route("/new", name="category_new", methods={"GET","POST"})
      */
@@ -38,6 +38,11 @@ class CategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($category);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                 'Nouvelle catégorie <strong>' . $category->getTitle()  . '</strong> crée  Bravo !'
+            );
 
             return $this->redirectToRoute('category_index');
         }
@@ -69,6 +74,11 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'success',
+                 'La catégorie <strong>' . $category->getTitle()  . '</strong> a été modifiée !'
+            );
+
             return $this->redirectToRoute('category_index');
         }
 
@@ -83,7 +93,7 @@ class CategoryController extends AbstractController
      */
     public function delete(Request $request, Category $category): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($category);
             $entityManager->flush();

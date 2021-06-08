@@ -58,7 +58,7 @@ class Comment
 
     public function __construct()
     {
-        $this->createdAt= new \DateTime();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -66,7 +66,7 @@ class Comment
         return $this->id;
     }
 
-   
+
 
     public function getContent(): ?string
     {
@@ -151,5 +151,4 @@ class Comment
 
         return $this;
     }
-   
 }
