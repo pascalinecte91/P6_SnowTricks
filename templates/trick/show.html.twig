@@ -70,7 +70,7 @@
 					<div class="accordion-body">
 						<div class="row">
 							<div class="col-12">
-								{% for comment in  trick.comments %}
+								{% for comment in  comments %}
 									<div class="card mb-2">
 										<div class="row">
 											<div class="col-md-2" id="photo_comment">
@@ -89,6 +89,7 @@
 										</div>
 									</div>
 								{% endfor %}
+								{{ knp_pagination_render(comments)}}
 							</div>
 						</div>
 					</div>
@@ -113,7 +114,7 @@
 						<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px">
 							<i class=" fa fa-list "></i>
 							Liste Tricks <br> <i class="fas fa-pencil-alt"></i> Modifier </a>
-							 <a href="{{ path('accueil') }}" class="btn btn-dark"style="width:150px"><i class="fa fa-reply"></i> Accueil</a>
+							 <a href="{{ path('accueil') }}" class="btn btn-dark"><i class="fa fa-reply"></i>  Accueil</a>
 					</div>
 					{{ form_end (commentForm) }}
 				{% else %}

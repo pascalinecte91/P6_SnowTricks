@@ -37,14 +37,14 @@
     
  #### Connexion au site ####
 - ONGLET  Connexion  Administrator : 
-  - LOGIN : TOTO
-  - Email : toto@gmail.com
+  - LOGIN : pascaline
+  - Email : pascaline@gmail.com
   - Mot de passe : 111111
  
 - ONGLET  Connexion  User : 
   - LOGIN : bravo
   - Email : bravo@gmail.com
-  - Mot de passe : 111111
+  - Mot de passe : 123456
  
  ### Commandes Symfony pour installations diverses ###
  

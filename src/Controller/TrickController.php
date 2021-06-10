@@ -90,12 +90,12 @@ class TrickController extends AbstractController
     {
         
        
-            $comments = $paginator->paginate(  // je pagine : si pas de page 1  et oui si page + 1 jusqu' 7
-                $trick->getComments(),
+            $comments = $paginator->paginate(  // je pagine : si pas de page 1  et oui si page + 1 jusqu' 4
+                $trick->getComments(),   
                 $request->query->getInt('page', 1),  //  pour la page 1 si ya page d'autres pages
-                10
+                5
             );
-    
+      
             $user = $this->getUser();
 
         //  creation du commentaire vide
@@ -117,7 +117,7 @@ class TrickController extends AbstractController
             //  je fais mon flush  pour inscrire dans ma db
             $em->flush();
 
-            $this->addFlash('message', ' Votre message est en attente de verification du moderateur');
+            $this->addFlash('message', ' Votre message est publié');
             return $this->redirectToRoute('trick_index', ['id' => $trick->getId()]);
         }
 
@@ -138,13 +138,14 @@ class TrickController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $trick->setUpdateAt(new \DateTime());
             
-
+ 
             $pictures = $trick->getPictures() ;
             // faire une boucle pour plusieurs images
             foreach ($pictures as $picture) {
                 if ($picture->getId()!=null){
                     continue;
                 }
+              
                 $filename = $this->uploaderFileService->upload($picture->getFile());
                 $subtitle = $picture->getSubtitle();
                 $picture->setName($filename);

@@ -31,7 +31,7 @@ class Picture
     /**
      * @var UploadedFile|null
      */
-    private ?UploadedFile $file;
+    private ?UploadedFile $file = null;
 
 
     public function getId(): ?int
@@ -69,6 +69,20 @@ class Picture
         return $this->getName();
     }
 
+    
+
+    /**
+     * @param UploadedFile|null $file
+     * @return $this
+     */
+    
+    public function setFile(?UploadedFile $file): self
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
     /**
      * @return UploadedFile|null
      */
@@ -77,16 +91,5 @@ class Picture
     {
 
         return $this->file;
-    }
-
-    /**
-     * @param UploadedFile|null $file
-     * @return $this
-     */
-    public function setFile(?UploadedFile $file): self
-    {
-        $this->file = $file;
-
-        return $this;
     }
 }

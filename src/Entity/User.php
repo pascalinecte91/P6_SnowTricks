@@ -59,11 +59,6 @@ class User implements UserInterface
      */
     private $tricks;
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $password_confirm;
 
     public function __construct()
     {
@@ -237,15 +232,4 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPasswordConfirm(): ?string
-    {
-        return $this->password_confirm;
-    }
-
-    public function setPasswordConfirm(string $password_confirm): self
-    {
-        $this->password_confirm = $password_confirm;
-
-        return $this;
-    }
 }

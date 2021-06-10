@@ -35,7 +35,7 @@
 								<td class="text-center">{{ trick.createdAt ? trick.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
 								<td class="text-center hide-xs-sm">{{ trick.updateAt ? trick.updateAt|date('d/m/Y à h\\hi') : '' }}</td>
 								<td>
-									<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-dark ml-5 mb-1">
+									<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-dark ml-5 mb-1 list_tr">
 										<i class=" fa fa-eye"></i>
 										Voir</a>
 									<a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-dark">

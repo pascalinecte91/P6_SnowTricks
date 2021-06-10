@@ -26,7 +26,6 @@ class UsersFixtures extends Fixture implements OrderedFixtureInterface
 
         $user->setEmail($faker->email());
         $user->setPassword($this->encoder->encodePassword($user, 'bravo'));
-        $user->setPasswordConfirm($this->encoder->encodePassword($user, 'bravo'));
         $user->setUsername($faker->lastName());
         $user->setRoles(['ROLE_ADMINISTRATOR']);
         $manager->persist($user);
@@ -36,7 +35,6 @@ class UsersFixtures extends Fixture implements OrderedFixtureInterface
             
             $user->setEmail($faker->email());
             $user->setPassword($this->encoder->encodePassword($user, 'toto'));
-            $user->setPasswordConfirm($this->encoder->encodePassword($user, 'toto'));
             $user->setUsername($faker->lastName());
             $user->setRoles(['ROLE_USER']);
             $manager->persist($user);

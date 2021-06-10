@@ -34,16 +34,7 @@
 				<div class="col-8 form-group py-md-3" id="auth">
 					<button class="btn btn-lg btn-secondary mb-5" type="submit">S'authentifier</button>
 				</div>
-				{% if app.user %}
-					<div class="logout d-flex justify-content-around pr-3">
-						<small>Connecté avec (email) :{{ app.user.username }}</small>
-						<a href="{{ path('app_logout') }}" class="btn btn-secondary mb-3">
-							<i class="fa fa-power-off"></i>
-							<small>
-								Déconnexion</small>
-						</a>
-					</div>
-				{% endif %}
+				<a href="{{ path('app_forgot_password_request') }}">   Mot de passe oublié  </a>
 			</div>
 		</div>
 	</div>
