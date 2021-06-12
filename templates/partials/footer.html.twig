@@ -1,36 +1,48 @@
 <footer>
 	<div class="container-fluid">
-		<div class="row justify-content-around">
-			<div class="col-3">
-				<a href="{{ path('accueil')}}">Accueil
-					<i class="fa fa-home "></i>
-				</a><br></div>
-			<div class="col-3 text-center formation">
-				<p>Formation développeur Application PHP Symfony</p><br></div>
-			<div class="col-3 text-end">
-				<a href="{{ path('app_register')}}">
-					<i class="fa fa-user-plus"></i>
-					Inscription</a>
+		<div class="row text-center">
+			<div class="col-4">
+			<a href="{{ path('accueil')}}">
+			<i class="fa fa-home "></i>
+			<span class="cacher">Accueil</span>	
+			</a><br>
 			</div>
-		</div>
-		<div class="row justify-content-around">
-			<div class="col-3">
-				<a href="{{ path('app_login')}}">Se connecter
-					<i class="fa fa-wifi"></i>
+		
+			<div class="col-4">
+				<a href="{{ path('accueil')}}">
+				<i class="fas fa-bookmark"></i>
+				<span>Voir  le détail</span><br>
 				</a>
 			</div>
-			<div class="col-3 wikipedia text-center">
+
+			{% if app.user %}
+			<div class="col-4">
+				<a href="{{ path('app_logout')}}">
+				<i class="fa fa-sign-out-alt " aria-hidden="true"></i>
+				<span class="cacher">Se deconnecter</span>	
+				</a>
+			</div>
+				{% else %}
+			<div class="col-4">
+				<a href="{{ path('app_login')}}">
+				<i class="fa fa-sign-in-alt " aria-hidden="true"></i>
+				<span class="cacher">Se connecter</span>	
+				</a>
+			</div>
+			{% endif %}	
+		</div>
+
+		<div class="row text-center">
+			
+			<div class="col-12 wikipedia text-center">
 				<a href="https://fr.wikipedia.org/wiki/Trick">
 					<i class="fa fa-link"></i>
-					Wikipedia</a>
-				<p>&copy; Copyright
-					{{ 'now'|date('Y')}}&middot; pascaline</p><br>
+					<span class="cacher">Wikipedia</span>
+					<span class="cacher"><p>&copy; Copyright
+					{{ 'now'|date('Y')}}&middot; pascaline</p><br></span>	
+				</a>
 			</div>
-				<div class="col-3 text-end">
-					<a href="{{ path('app_logout')}}">Se déconnecter
-					<i class="fa fa-sign-out-alt"></i>
-					</a>
-				</div>
+				
 			</div>
 		</div>
 	</div>

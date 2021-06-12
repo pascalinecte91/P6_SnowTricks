@@ -26,15 +26,19 @@
 					<input type="password" name="password" id="inputPassword" class="form-control" required>
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 				</div>
+				<div class="row justify-content-end">
 				<div class="col-8 py-2">
 					<label for="remember_me" class="form-check-label">
 						<input type="checkbox" class="form-check-input" name="_remember_me" id="remember_me">
-						Se souvenir de moi</label>
+						Se souvenir de moi</label><br>
+						<a href="{{ path('app_forgot_password_request') }}">   Mot de passe oublié  </a>
 				</div>
+				</div>
+				<div class="row justify-content-end">
 				<div class="col-8 form-group py-md-3" id="auth">
 					<button class="btn btn-lg btn-secondary mb-5" type="submit">S'authentifier</button>
 				</div>
-				<a href="{{ path('app_forgot_password_request') }}">   Mot de passe oublié  </a>
+				</div>
 			</div>
 		</div>
 	</div>

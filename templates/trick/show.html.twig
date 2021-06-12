@@ -5,7 +5,8 @@
 {% block body %}
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-md-10 col-md-offset-1 mb-4">
+			<div class="col-lg-12 col-md-10 col-md-offset-1 mb-4 m-xl-0
+			">
 				<h1 class="text-center my-3">Trick :
 					{{ trick.name }}</h1>
 				<div class="card mt-5 mb-5">
@@ -27,25 +28,22 @@
 						{{ trick.updateAt ? trick.updateAt|date('d/m/Y') : '' }}
 						<i class=" far fa-clock "></i>
 					</div>
-					<div class="description" d-block="text-align-center">
+						<div class="description" d-block="text-align-center-justify">
+							<p>{{ trick.description|raw }}</p>
+						</div>
+							<div class="box text-center">
+								<button class="btn btn-primary my-3" id="voir_details">Images - Vidéos</button>
+							</div>
+						</div>
+							<div id="pictures_details">
+								{% for picture in trick.pictures %}
+									<a data-fslightbox="gallery" href="{{ asset('uploads/' ~ picture)}}">
+									<img class="display-top img-fluid"  width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}" class="fill">
+									</a>
+								{% endfor %}
+							</div>		
 
-						<p>{{ trick.description|raw }}</p>
-					</div>
-
-		
-
-
-					<div id="pictures_details">
-						{% for picture in trick.pictures %}
-							<a data-fslightbox="gallery" href="{{ asset('uploads/' ~ picture)}}">
-								<img class="display-top img-fluid"  width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}" class="fill">
-							</a>
-						{% endfor %}
-					</div>
-
-				
-
-					<div id="videos">
+					<div class="d-block" id="videos">
 						{% for video in trick.videos %}
 							<iframe width="300" height="250" src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						{% endfor %}
@@ -74,7 +72,7 @@
 									<div class="card mb-2">
 										<div class="row">
 											<div class="col-md-2" id="photo_comment">
-												<img src="{{ asset('build/images/avatarmin.jpg')}}" text-center>
+												<img src="{{ asset('uploads/'~ comment.user.avatar)}}">
 											</div>
 
 											<div class="col-md-10" id="comment">
@@ -108,13 +106,13 @@
 					{{ form_start (commentForm) }}
 					{{ form_widget (commentForm)}}
 					<div class="row justify-content-around">
-						<button type="submit" class="btn btn-dark" style="width:150px">
+						<button type="submit" class="btn btn-dark list_btn">
 							<i class=" fa fa-share-square"></i>
 							Envoyer</button>
-						<a href="{{ path('trick_index') }}" class="btn btn-secondary" style="width:150px">
+							<a href="{{ path('trick_index') }}" class="btn btn-secondary list_btn">
 							<i class=" fa fa-list "></i>
 							Liste Tricks <br> <i class="fas fa-pencil-alt"></i> Modifier </a>
-							 <a href="{{ path('accueil') }}" class="btn btn-dark"><i class="fa fa-reply"></i>  Accueil</a>
+							 <a href="{{ path('accueil') }}" class="btn btn-dark accueil_btn"><i class="fa fa-reply"></i>  Accueil</a>
 					</div>
 					{{ form_end (commentForm) }}
 				{% else %}

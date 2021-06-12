@@ -3,9 +3,13 @@
 {% block title %}Mot de passe oublié{% endblock %}
 
 {% block body %}
+<div class=" text-center d-block check_email">
+
+    <h2> Bienvenue sur le Site de discussions des amoureux du SNOWBOARD  </h2><br>
     <p>
         Un email a été envoyé sur votre messagerie avec un lien. Merci de cliquer dessus pour réinitialiser votre Mot de Passe.
         Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
-    <p>Si vous n'avez pas reçu d'emial, verifiez dans vos spam <a href="{{ path('app_forgot_password_request') }}">recommencez</a>.</p>
+    </p><br><br>
+    <p>Si vous n'avez pas reçu d'email, verifiez dans vos spam, sinon <a href="{{ path('app_forgot_password_request') }}">recommencez</a>.</p>
+    </div><br><br>
 {% endblock %}

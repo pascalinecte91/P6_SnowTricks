@@ -10,7 +10,7 @@
 
 
 body {
-  background-color: rgb(241, 242, 248);
+  background-color: rgb(200, 202, 212);
   margin: 0;
   height: 100vh;
   display: grid;
@@ -73,7 +73,6 @@ input {
   width: 600px;
   margin-top: 10px;
   padding-top: 20px;
-
 }
 
 .logout {
@@ -100,6 +99,7 @@ label {
   height: auto;
 }
 
+
 // COMMENT
 .comment_email {
   margin-left: 10px;
@@ -114,7 +114,7 @@ label {
 }
 
 #photo_comment {
-  background-color: rgb(146, 151, 151);
+ 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,6 +224,15 @@ select input #file {
   text-align: justify;
 }
 
+.reinitializ {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.list_btn {
+  width: 150px;;
+}
+
 // FOOTER
 footer {
   background-color: rgb(52, 52, 75);
@@ -260,6 +269,9 @@ footer a {
   border:none;
 }
 
+#voir_details {
+  display: none;
+}
 //RESPONSIVE  MEDIA QUERY
 
 @media screen and (max-width: 992px) {
@@ -271,10 +283,14 @@ footer a {
     display: flex;
     justify-content: center;
   }
+  .check_email {
+    margin-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-#register-buttom {
+  #register-buttom {
   padding-bottom: 5px;
   width: auto;
   }
@@ -285,7 +301,13 @@ footer a {
 
   #pictures_details img {
     margin-bottom: 10px;
-    
+    width: 450px;
+    height: 300px;
+  }
+  #videos iframe {
+    margin-bottom: 10px;
+    width: 450px;
+    height: 300px;
   }
 
   .array-trick {
@@ -301,7 +323,7 @@ footer a {
   #photo_comment {
     display:none;
   }
-
+  
 }
 
 @media screen and (max-width: 578px) {
@@ -321,6 +343,10 @@ footer a {
   .wikipedia {
     display: none;
   }
+
+  #add_comment {
+    padding: block;
+  }
 }
 @media screen and (max-width: 426px) {
 
@@ -328,10 +354,29 @@ footer a {
     justify-content: space-around;    
   }
 
-  footer i.fa {
+  footer  span {
     display: none;
   }
- 
+
+  footer i.fa {
+    font-size: 2em;;
+}
+#pictures_details img {
+  display: none;
+}
+
+#videos iframe {
+  display:none;
 }
  
-
+#voir_details {
+  display: inline;
+}
+.my-3 {
+  display: inline;
+  margin-top: 10px;
+}
+.accueil_btn {
+  margin-top:5px;
+}
+}

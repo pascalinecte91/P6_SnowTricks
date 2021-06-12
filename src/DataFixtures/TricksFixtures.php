@@ -12,7 +12,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use App\Service\UploaderFileServiceInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
+
 
 class TricksFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -20,23 +20,16 @@ class TricksFixtures extends Fixture implements OrderedFixtureInterface
      * @var UploaderFileServiceInterface
      */
     private $uploaderFileService;
-    private $containerBagInterface;
+    
 
-    public function __construct(UploaderFileServiceInterface $uploaderFileService, ContainerBagInterface $containerBagInterface)
+    public function __construct(UploaderFileServiceInterface $uploaderFileService)
     {
         $this->uploaderFileService = $uploaderFileService;
-        $this->containerBagInterface = $containerBagInterface;
+       
     }
 
     public function load(ObjectManager $manager)
     {
-        $path = $this->containerBagInterface->get('directory_upload');
-        $files = glob($path . '/*');
-        foreach ($files as $file) {
-            if (is_file($file)) {
-                unlink($file);
-            }
-        }
 
         $faker = Faker\Factory::create('fr_FR');
 

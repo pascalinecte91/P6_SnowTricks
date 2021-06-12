@@ -14,10 +14,13 @@
 <li> PhpMAdmin 5.0.2</li>
 <li> Apache 2.4.46</li>
 <li> PHP 7.4.9</li>
+
+
 </ul>
 
  require php >= 7.2.5"
  fzaninotto/faker 1.9
+
  
  Name "data base": <strong>projet6</strong>
  
@@ -34,12 +37,17 @@
     
  4. Créer un build d'assets (avec Webpack Encore) avec npm :
     - npm run build
+
+
+Si vous souhaitez  faire fonctionner Mailhog pour les reinitialisations:
+https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_windows_amd64.exe
+Mailhog pour windows
     
  #### Connexion au site ####
 - ONGLET  Connexion  Administrator : 
   - LOGIN : pascaline
   - Email : pascaline@gmail.com
-  - Mot de passe : 111111
+  - Mot de passe : 999999
  
 - ONGLET  Connexion  User : 
   - LOGIN : bravo

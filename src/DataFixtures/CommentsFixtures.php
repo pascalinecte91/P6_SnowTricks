@@ -18,7 +18,7 @@ class CommentsFixtures extends Fixture implements OrderedFixtureInterface
     {
         $this->trickRepository = $trickRepository;
     }
-
+   
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
@@ -40,9 +40,10 @@ class CommentsFixtures extends Fixture implements OrderedFixtureInterface
                 $manager->persist($comment);
             }
         }
+      
         $manager->flush();
     }
-
+    
     public function getOrder()
     {
         return 4;
