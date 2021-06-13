@@ -83,20 +83,20 @@ class TrickController extends AbstractController
     }
 
 
+
     /**
      * @Route("/{id}", name="trick_show", methods={"GET", "POST"})
      */
     public function show(Request $request, Trick $trick, PaginatorInterface $paginator): Response
     {
         
-       
-            $comments = $paginator->paginate(  // je pagine : si pas de page 1  et oui si page + 1 jusqu' 4
-                $trick->getComments(),   
-                $request->query->getInt('page', 1),  //  pour la page 1 si ya page d'autres pages
-                5
-            );
-      
-            $user = $this->getUser();
+        $comments = $paginator->paginate(  // je pagine : si pas de page 1  et oui si page + 1 jusqu' 4
+            $trick->getComments(),   
+            $request->query->getInt('page', 1),  //  pour la page 1 si ya page d'autres pages
+            5
+        );
+    
+        $user = $this->getUser();
 
         //  creation du commentaire vide
         $comment = new Comment();
@@ -127,6 +127,9 @@ class TrickController extends AbstractController
             'comments' => $comments,
         ]);
     }
+
+
+
     /**
      * @Route("/{id}/edit", name="trick_edit", methods={"GET","POST"})
      */
@@ -154,6 +157,7 @@ class TrickController extends AbstractController
                 $this->entityManager->persist($picture);
                 $trick->addPicture($picture);
             }
+
             $this->entityManager->flush();
            
             $this->addFlash(
@@ -171,6 +175,8 @@ class TrickController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("/{id}", name="trick_delete", methods={"POST"})
      */
@@ -184,6 +190,9 @@ class TrickController extends AbstractController
 
         return $this->redirectToRoute('trick_index');
     }
+
+
+
     /**
      * @Route("/delete/picture/{id}", name="trick_delete_picture", methods={"DELETE"})
      */
@@ -209,7 +218,9 @@ class TrickController extends AbstractController
 
             //reponse en json_decode
             return new JsonResponse(['success' => 1]);
+            
         } else {
+
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
     }

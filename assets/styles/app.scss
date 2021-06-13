@@ -38,6 +38,7 @@ body {
   padding-right: 70px;
   color: #aca6ac;
 }
+
 .form-control::placeholder {
   font-size: 0.95rem;
   color: #ec17be;
@@ -52,6 +53,7 @@ body {
   text-align: left;
 }
 
+
 // FORMULAIRES
 input {
   width: 700px;
@@ -59,7 +61,7 @@ input {
 }
 
 #register-buttom input {
-  width: 200px;
+  width: 220px;
 }
 
 #register {
@@ -114,10 +116,8 @@ label {
 }
 
 #photo_comment {
- 
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .card {
@@ -142,11 +142,43 @@ a.btn.btn {
   text-align: center;
 }
 
+.action {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 20px;
+}
+
+.fas-pencil-detail,
+.fa-trash-detail {
+  color: antiquewhite;
+  margin-left: 15px;
+}
 
 #videos {
   display: block;
   text-align: center;
   padding-top: 10px;
+}
+.accueil-trash {
+  display: flex;
+  justify-content: space-around;
+}
+
+.trash {
+  font-size: 25px;
+}
+
+.pencil {
+  font-size: 20px;
+}
+
+.color-p {
+  color: #6f7014;
+}
+
+.border {
+  border:none;
 }
 
 // MODIF TRICK PICTURES ET VIDEOS
@@ -173,7 +205,6 @@ a.btn.btn {
   background-color: rgb(165, 177, 197);
   padding-bottom: 20px;
 }
-
 
 
 // MODIF CATEGORIES
@@ -251,7 +282,6 @@ footer a {
   text-decoration: none;
 }
 
-
 .hidden {
   display: none;
 }
@@ -310,6 +340,7 @@ footer a {
     height: 300px;
   }
 
+ 
   .array-trick {
     padding-left: 10px;
     padding-right: 10px;
@@ -319,12 +350,9 @@ footer a {
     padding-left: 5px;
     padding-right: 15px;
   } 
-
-  #photo_comment {
-    display:none;
-  }
-  
 }
+
+
 
 @media screen and (max-width: 578px) {
   .container {
@@ -347,6 +375,10 @@ footer a {
   #add_comment {
     padding: block;
   }
+  #photo_comment img {
+    display: none;
+  }
+  
 }
 @media screen and (max-width: 426px) {
 

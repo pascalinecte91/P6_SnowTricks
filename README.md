@@ -18,8 +18,8 @@
 
 </ul>
 
- require php >= 7.2.5"
- fzaninotto/faker 1.9
+<p>require php => 7.2.5"
+ fzaninotto/faker 1.9</p>
 
  
  Name "data base": <strong>projet6</strong>
@@ -27,7 +27,7 @@
  ### Installation du projet: ###
  
  1. Clonez ou téléchargez le repository GitHub dans le dossier :
-  git clone https://github.com/pascalinecte91/P6_SnowTricks.git
+  <p>git clone :(https://github.com/pascalinecte91/P6_SnowTricks.git)</p>
   
  2. Téléchargez et installez les dépendances back-end du projet avec Yarn :
     - Yarn install
@@ -39,9 +39,12 @@
     - npm run build
 
 
-Si vous souhaitez  faire fonctionner Mailhog pour les reinitialisations:
-https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_windows_amd64.exe
+<p>Si vous souhaitez  faire fonctionner Mailhog pour les reinitialisations:</p>
+<p>Rendez-vous sur https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog<em>windows</em>amd64.exe</p>
 Mailhog pour windows
+<p>Rendez vous sur localhost:8025 ou 127.0.0.1:8025 dans le navigateur web pour ouvrir l'interface de
+MailHog Web.</p>
+
     
  #### Connexion au site ####
 - ONGLET  Connexion  Administrator : 

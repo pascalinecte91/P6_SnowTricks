@@ -28,15 +28,23 @@
 								{% endif %}
 								<div class="card">
 								{% if is_granted('ROLE_USER') %}
-									<h5>{{ trick.name }}{{ include('trick/_delete_form.html.twig') }}</h5>
-									
-									<a href="{{ path('trick_edit', {'id': trick.id}) }}"><i class="fas fa-pencil-alt"></i> </a>
-									{% endif %}
-									<img class="card-img-top" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
-										<div class="d-flex justify-content-center mx-5 my-2">
-										<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary">Détail </a>
+									<div class="accueil-trash">
+										<div class=" accueil-pencil mt-2">
+											<h5>{{ trick.name }}</h5>
 										</div>
-								</div>
+											<div class="trash">
+												{{ include('trick/_delete_form.html.twig') }}
+											</div>
+												<div class="pencil mt-2">
+													<a href="{{ path('trick_edit', {'id': trick.id}) }}"><i class="fas fa-pencil-alt color-p"></i> </a>
+												</div>
+									</div>	
+								{% endif %}
+										<img class="card-img-top" width="300" height="170"src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
+											<div class="d-flex justify-content-center mx-5 my-2">
+											<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary">Détail </a>
+											</div>
+									</div>
 							</div>
 				{% endfor %}
 			</div>
@@ -48,10 +56,10 @@
 						<div class="box text-center">
 						{% if is_granted('ROLE_USER') %}
 							<a href="{{ path('trick_index') }}" class="btn btn-secondary" width="50px">
-					<i class="fas fa-snowboarding"></i>
-					 Liste Tricks</a>
+								<i class="fas fa-snowboarding"></i>Liste Tricks
+							</a>
 					 	{% endif %}
-						<button class="btn btn-success my-3" id="voirPlus">Voir plus</button>
+							<button class="btn btn-success my-3 mx-5" id="voirPlus">Voir plus</button>
 						</div>
 		
 				

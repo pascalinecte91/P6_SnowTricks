@@ -5,13 +5,18 @@
 {% block body %}
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-lg-12 col-md-10 col-md-offset-1 mb-4 m-xl-0
-			">
+			<div class="col-lg-12 col-md-10 col-md-offset-1 mb-4 m-xl-0">
 				<h1 class="text-center my-3">Trick :
 					{{ trick.name }}</h1>
 				<div class="card mt-5 mb-5">
 					<img class="display-top img-fluid" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="{{trick.name}}">
-					<div class="card-body">
+					{% if app.user %} 
+					<div class="action">
+					<a href="{{ path('trick_edit', {'id': trick.id}) }}"> <i class="fas fa-pencil-alt pencil-detail"></i></a>
+					<a href="{{ path('trick_delete', {'id': trick.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{trick.pictures|first}} ?`)"<i class="far fa-trash-alt modif"></i></a>
+					</div>
+					{% endif %}
+					<div class="card-body text-center">
 						<i class=" fa fa-user-edit"></i>
 						{{ trick.user }}
 						| Ajouté le :
@@ -32,7 +37,8 @@
 							<p>{{ trick.description|raw }}</p>
 						</div>
 							<div class="box text-center">
-								<button class="btn btn-primary my-3" id="voir_details">Images - Vidéos</button>
+								<button class="btn btn-primary my-3"type="button" data-toggle="collapse" data-target="collapseResponsive" aria-expanded="false" aria-controls="collapseResponsive"id="voir_details">Images - Vidéos
+								</button>
 							</div>
 						</div>
 							<div id="pictures_details">
@@ -52,7 +58,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!--COMMENTAIRES-->
 
 	<div class="container">
@@ -72,7 +77,7 @@
 									<div class="card mb-2">
 										<div class="row">
 											<div class="col-md-2" id="photo_comment">
-												<img src="{{ asset('uploads/'~ comment.user.avatar)}}">
+												<img src="{{ asset('uploads/'~ comment.user.avatar)}}" width="120" height="100">
 											</div>
 
 											<div class="col-md-10" id="comment">

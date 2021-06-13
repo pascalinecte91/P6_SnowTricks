@@ -54,6 +54,8 @@ class ResetPasswordController extends AbstractController
         ]);
     }
 
+
+
     /**
      * Confirmation page after a user has requested a password reset.
      *
@@ -70,6 +72,8 @@ class ResetPasswordController extends AbstractController
             'resetToken' => $resetToken,
         ]);
     }
+
+
 
     /**
      * Validates and process the reset URL that the user clicked in their email.
@@ -136,7 +140,6 @@ class ResetPasswordController extends AbstractController
             'email' => $emailFormData,
         ]);
 
-        // Do not reveal whether a user account was found or not.
         if (!$user) {
             return $this->redirectToRoute('app_check_email');
         }
@@ -160,7 +163,7 @@ class ResetPasswordController extends AbstractController
 
         $mailer->send($email);
 
-        // Store the token object in session for retrieval in check-email route.
+        // stock  la session et recup route de verification emails
         $this->setTokenObjectInSession($resetToken);
 
         return $this->redirectToRoute('app_check_email');
