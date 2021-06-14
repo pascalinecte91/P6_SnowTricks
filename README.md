@@ -50,7 +50,7 @@ MailHog Web.</p>
 - ONGLET  Connexion  Administrator : 
   - LOGIN : pascaline
   - Email : pascaline@gmail.com
-  - Mot de passe : 999999
+  - Mot de passe : 777777
  
 - ONGLET  Connexion  User : 
   - LOGIN : bravo

@@ -10,11 +10,14 @@
 					{{ trick.name }}</h1>
 				<div class="card mt-5 mb-5">
 					<img class="display-top img-fluid" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="{{trick.name}}">
-					{% if app.user %} 
-					<div class="action">
-					<a href="{{ path('trick_edit', {'id': trick.id}) }}"> <i class="fas fa-pencil-alt pencil-detail"></i></a>
-					<a href="{{ path('trick_delete', {'id': trick.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{trick.pictures|first}} ?`)"<i class="far fa-trash-alt modif"></i></a>
-					</div>
+					{% if app.user %}
+						<div class="action">
+							<a href="{{ path('trick_edit', {'id': trick.id}) }}">
+								<i class="fas fa-pencil-alt pencil-detail"></i>
+							</a>
+								{{ include('trick/_delete_form.html.twig') }}
+							
+						</div>
 					{% endif %}
 					<div class="card-body text-center">
 						<i class=" fa fa-user-edit"></i>
@@ -33,66 +36,31 @@
 						{{ trick.updateAt ? trick.updateAt|date('d/m/Y') : '' }}
 						<i class=" far fa-clock "></i>
 					</div>
-						<div class="description" d-block="text-align-center-justify">
-							<p>{{ trick.description|raw }}</p>
-						</div>
-							<div class="box text-center">
-								<button class="btn btn-primary my-3"type="button" data-toggle="collapse" data-target="collapseResponsive" aria-expanded="false" aria-controls="collapseResponsive"id="voir_details">Images - Vidéos
-								</button>
-							</div>
-						</div>
+					<div class="description" d-block="text-align-center-justify">
+						<p>{{ trick.description|raw }}</p>
+					</div>
+
+				</div>
+
+
+					<p class="photos_responsive d-block d-sm-none text-center">
+						<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+						Images  - Vidéos
+						</button>
+					</p>
+					<div class="collapse show" id="collapseExample">
+						<div class="card card-body">
 							<div id="pictures_details">
 								{% for picture in trick.pictures %}
 									<a data-fslightbox="gallery" href="{{ asset('uploads/' ~ picture)}}">
-									<img class="display-top img-fluid"  width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}" class="fill">
+									<img class="display-top img-fluid" width="300" height="250" src="{{ asset('uploads/' ~ picture)}}" alt="{{ picture.subtitle }}" class="fill">
 									</a>
 								{% endfor %}
-							</div>		
-
-					<div class="d-block" id="videos">
-						{% for video in trick.videos %}
-							<iframe width="300" height="250" src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						{% endfor %}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--COMMENTAIRES-->
-
-	<div class="container">
-		<div class="accordion" id="button_deroulant">
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="deroulant_comment">
-
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
-						  <i class=" far fa-comment-dots"> Commentaire(s)</i>
-					</button>
-				</h2>
-				<div id="collapseComment" class="accordion-collapse collapse" aria-labelledby="deroulant_comment" data-bs-parent="#accordionComment">
-					<div class="accordion-body">
-						<div class="row">
-							<div class="col-12">
-								{% for comment in  comments %}
-									<div class="card mb-2">
-										<div class="row">
-											<div class="col-md-2" id="photo_comment">
-												<img src="{{ asset('uploads/'~ comment.user.avatar)}}" width="120" height="100">
-											</div>
-
-											<div class="col-md-10" id="comment">
-												<div class="card-body" id="list_comment">
-													<p>{{ comment.content|raw }}</p>
-													<p>écrit le :
-														{{ comment.createdAt ? comment.createdAt|date('d/m/Y') : '' }}
-														par :
-														{{ comment.pseudo|raw }}</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								{% endfor %}
-								{{ knp_pagination_render(comments)}}
+								<div class="d-block" id="videos">
+									{% for video in trick.videos %}
+									<iframe width="300" height="250" src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									{% endfor %}
+								</div>
 							</div>
 						</div>
 					</div>
@@ -101,32 +69,87 @@
 		</div>
 	</div>
 </div>
-<div class="container">
-	<div class="card-body mt-5">
-		<div class="row text-center mt-5">
-			<div class="col-12">
-				<p class="blocktext" id="add_comment">Ajouter un commentaire</p>
 
-				{% if is_granted ('ROLE_USER') %}
-					{{ form_start (commentForm) }}
-					{{ form_widget (commentForm)}}
-					<div class="row justify-content-around">
-						<button type="submit" class="btn btn-dark list_btn">
-							<i class=" fa fa-share-square"></i>
-							Envoyer</button>
-							<a href="{{ path('trick_index') }}" class="btn btn-secondary list_btn">
-							<i class=" fa fa-list "></i>
-							Liste Tricks <br> <i class="fas fa-pencil-alt"></i> Modifier </a>
-							 <a href="{{ path('accueil') }}" class="btn btn-dark accueil_btn"><i class="fa fa-reply"></i>  Accueil</a>
+<!--COMMENTAIRES--><div class="container">
+<div class="accordion" id="button_deroulant">
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="deroulant_comment">
+
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
+				<i class=" far fa-comment-dots">
+					Commentaire(s)</i>
+			</button>
+		</h2>
+		<div id="collapseComment" class="accordion-collapse collapse" aria-labelledby="deroulant_comment" data-bs-parent="#accordionComment">
+			<div class="accordion-body">
+				<div class="row">
+					<div class="col-12">
+						{% for comment in  comments %}
+							<div class="card mb-2">
+								<div class="row">
+									<div class="col-md-2" id="photo_comment">
+										<img src="{{ asset('uploads/'~ comment.user.avatar)}}" width="120" height="100">
+									</div>
+
+									<div class="col-md-10" id="comment">
+										<div class="card-body" id="list_comment">
+											<p>{{ comment.content|raw }}</p>
+											<p>écrit le :
+												{{ comment.createdAt ? comment.createdAt|date('d/m/Y') : '' }}
+												par :
+												{{ comment.pseudo|raw }}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						{{ knp_pagination_render(comments)}}
 					</div>
-					{{ form_end (commentForm) }}
-				{% else %}
-					<small>
-						<i class="fa fa-wifi "></i>
-						Connectez-vous pour écrire un commentaire !<a href="{{ path('app_login')}}"> Cliquez ICI</small>
-					</a>
-				{% endif %}
+				</div>
 			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+</div></div></div><div class="container"><div class="card-body mt-5">
+<div class="row text-center mt-5">
+	<div class="col-12">
+		<p class="blocktext" id="add_comment">Ajouter un commentaire</p>
+
+		{% if is_granted ('ROLE_USER') %}
+			{{ form_start (commentForm) }}
+			{{ form_widget (commentForm)}}
+			<div class="row justify-content-around">
+				<button type="submit" class="btn btn-dark list_btn">
+					<i class=" fa fa-share-square"></i>
+					Envoyer</button>
+				<a href="{{ path('trick_index') }}" class="btn btn-secondary list_btn">
+					<i class=" fa fa-list "></i>
+					Liste Tricks
+					<br>
+					<i class="fas fa-pencil-alt"></i>
+					Modifier
+				</a>
+				<a href="{{ path('accueil') }}" class="btn btn-dark accueil_btn">
+					<i class="fa fa-reply"></i>
+					Accueil</a>
+			</div>
+			{{ form_end (commentForm) }}
+		{% else %}
+			<small>
+				<i class="fa fa-wifi "></i>
+				Connectez-vous pour écrire un commentaire !<a href="{{ path('app_login')}}">
+					Cliquez ICI</small>
+			</a>
+		{% endif %}
+	</div>
+</div></div></div>
+<script>
+window.addEventListener('load', function(event){
+	console.log(screen.width)
+	if (screen.width <= 425){
+		let div= document.getElementById ('collapseExample')
+		div.classList.remove('show')
+	}
+})
+</script>
+
+{% endblock %}

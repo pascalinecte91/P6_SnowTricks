@@ -10,8 +10,9 @@
 		{% if is_granted('ROLE_USER') %}
 			{{ include('trick/_form.html.twig', {'button_label': 'Save'}) }}
 		{% endif %}
-		{% if is_granted('ROLE_ADMIN') %}
+		{% if is_granted('ROLE_ADMINISTRATOR') %}
 			{{ include('trick/_delete_form.html.twig')  }}
 		{% endif %}
-	</div>
+	</div>	
 {% endblock %}
+

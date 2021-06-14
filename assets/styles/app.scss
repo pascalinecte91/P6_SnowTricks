@@ -8,13 +8,11 @@
 @import "~@fortawesome/fontawesome-free/scss/brands";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 
-
 body {
   background-color: rgb(200, 202, 212);
   margin: 0;
   height: 100vh;
   display: grid;
-  
 }
 
 .navbar {
@@ -34,7 +32,7 @@ body {
   height: 30px;
 }
 
-.up{
+.up {
   padding-right: 70px;
   color: #aca6ac;
 }
@@ -52,7 +50,6 @@ body {
 .form-check {
   text-align: left;
 }
-
 
 // FORMULAIRES
 input {
@@ -100,7 +97,6 @@ label {
   width: 100%;
   height: auto;
 }
-
 
 // COMMENT
 .comment_email {
@@ -178,7 +174,7 @@ a.btn.btn {
 }
 
 .border {
-  border:none;
+  border: none;
 }
 
 // MODIF TRICK PICTURES ET VIDEOS
@@ -205,7 +201,6 @@ a.btn.btn {
   background-color: rgb(165, 177, 197);
   padding-bottom: 20px;
 }
-
 
 // MODIF CATEGORIES
 #form-category {
@@ -240,7 +235,6 @@ a.btn.btn {
   color: white;
 }
 
-
 // details tricks
 
 #edit-trick input,
@@ -261,7 +255,7 @@ select input #file {
 }
 
 .list_btn {
-  width: 150px;;
+  width: 150px;
 }
 
 // FOOTER
@@ -286,22 +280,18 @@ footer a {
   display: none;
 }
 
-
-.ellipsis{
+.ellipsis {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .fontawesome {
-  color:rgb(111, 112, 20);
+  color: rgb(111, 112, 20);
   font-size: 0.7em;
-  border:none;
+  border: none;
 }
 
-#voir_details {
-  display: none;
-}
 //RESPONSIVE  MEDIA QUERY
 
 @media screen and (max-width: 992px) {
@@ -321,12 +311,12 @@ footer a {
 
 @media screen and (max-width: 768px) {
   #register-buttom {
-  padding-bottom: 5px;
-  width: auto;
+    padding-bottom: 5px;
+    width: auto;
   }
 
-  .array-trick{
-    overflow-y:hidden;
+  .array-trick {
+    overflow-y: hidden;
   }
 
   #pictures_details img {
@@ -340,7 +330,6 @@ footer a {
     height: 300px;
   }
 
- 
   .array-trick {
     padding-left: 10px;
     padding-right: 10px;
@@ -349,16 +338,14 @@ footer a {
   #edit-trick {
     padding-left: 5px;
     padding-right: 15px;
-  } 
+  }
 }
-
-
 
 @media screen and (max-width: 578px) {
   .container {
     justify-content: center;
     margin-left: 10px;
-    margin-right: 10px;   
+    margin-right: 10px;
   }
   .hide-xs-sm {
     display: none;
@@ -378,37 +365,28 @@ footer a {
   #photo_comment img {
     display: none;
   }
-  
 }
 @media screen and (max-width: 426px) {
-
   footer a {
-    justify-content: space-around;    
+    justify-content: space-around;
   }
 
-  footer  span {
+  footer span {
     display: none;
   }
 
   footer i.fa {
-    font-size: 2em;;
-}
-#pictures_details img {
-  display: none;
-}
+    font-size: 2em;
+  }
 
-#videos iframe {
-  display:none;
-}
- 
-#voir_details {
-  display: inline;
-}
-.my-3 {
-  display: inline;
-  margin-top: 10px;
-}
-.accueil_btn {
-  margin-top:5px;
-}
+  #voir_details {
+    display: inline;
+  }
+  .my-3 {
+    display: inline;
+    margin-top: 10px;
+  }
+  .accueil_btn {
+    margin-top: 5px;
+  }
 }

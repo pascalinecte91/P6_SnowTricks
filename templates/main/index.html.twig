@@ -7,15 +7,17 @@
 	<div class="container-fluid">
 		<header class="masthead">
 			<div class="row">
-				<img class="card-img-top" src="{{ asset('build/images/homepage4.jpg')}}" alt="Card image cap">	
+				<img class="card-img-top" src="{{ asset('build/images/homepage4.jpg')}}" alt="Card image cap">
 				<a id="haut"></a>
-				<p class="text-end my-4" >
-				<a href="#bas"><i class="fa fa-angle-down fa-2x up"></i></a>
+				<p class="text-end my-4">
+					<a href="#bas">
+						<i class="fa fa-angle-down fa-2x up"></i>
+					</a>
 				</p>
 			</div>
-				
+
 		</header>
-				
+
 		<section>
 			<div class="row m-3 mt-4 text-center">
 				{%  set nbreTrickAffiches = 0 %}
@@ -23,56 +25,70 @@
 					{% set nbreTrickAffiches = nbreTrickAffiches +1 %}
 					{% if nbreTrickAffiches <= 6 %}
 						<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 d-block pt-5">
-							{% else %}
+						{% else %}
 							<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2  pt-5 hidden">
-								{% endif %}
-								<div class="card">
-								{% if is_granted('ROLE_USER') %}
-									<div class="accueil-trash">
-										<div class=" accueil-pencil mt-2">
-											<h5>{{ trick.name }}</h5>
-										</div>
-											<div class="trash">
-												{{ include('trick/_delete_form.html.twig') }}
-											</div>
-												<div class="pencil mt-2">
-													<a href="{{ path('trick_edit', {'id': trick.id}) }}"><i class="fas fa-pencil-alt color-p"></i> </a>
-												</div>
-									</div>	
-								{% endif %}
-										<img class="card-img-top" width="300" height="170"src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
-											<div class="d-flex justify-content-center mx-5 my-2">
-											<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary">Détail </a>
-											</div>
-									</div>
-							</div>
-				{% endfor %}
-			</div>
-		</section>
-		
-				<p class="text-end my-4">
-					<a href="#haut"><i class="fa fa-angle-up fa-2x up"></i></a>
-					<a id="bas"></a></p>
-						<div class="box text-center">
-						{% if is_granted('ROLE_USER') %}
-							<a href="{{ path('trick_index') }}" class="btn btn-secondary" width="50px">
-								<i class="fas fa-snowboarding"></i>Liste Tricks
-							</a>
-					 	{% endif %}
-							<button class="btn btn-success my-3 mx-5" id="voirPlus">Voir plus</button>
-						</div>
-		
-				
 
-		
-	<script>
-	let boutonVoirPlus = document.getElementById('voirPlus')
-	boutonVoirPlus.addEventListener('click', () => {
-	let listElementHidden = document.getElementsByClassName('hidden')
-	for (let i = 0; (i <= 6) && (i < listElementHidden.length); i++) {
-	listElementHidden[i].classList.remove('hidden')
-	}
-	})
+							{% endif %}
+							<div class="card">
+
+								<div class="accueil-trash">
+									<div class=" accueil-pencil mt-2">
+										<h5>{{ trick.name }}</h5>
+									</div>
+
+									{% if app.user is not null and ( app.user.id == trick.user.id or is_granted('ROLE_ADMINISTRATOR')) %}
+										<div class="trash">
+
+											{{ include('trick/_delete_form.html.twig') }}
+										</div>
+										{% if app.user.id == trick.user.id or is_granted('ROLE_ADMINISTRATOR') %}
+											<div class="pencil mt-2">
+												<a href="{{ path('trick_edit', {'id': trick.id}) }}">
+													<i class="fas fa-pencil-alt color-p"></i>
+												</a>
+
+											</div>
+										{% endif %}
+									{% endif %}
+								</div>
+
+								<img class="card-img-top" width="300" height="170" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
+								<div class="d-flex justify-content-center mx-5 my-2">
+									<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary">Détail
+									</a>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</section>
+
+			<p class="text-end my-4">
+				<a href="#haut">
+					<i class="fa fa-angle-up fa-2x up"></i>
+				</a>
+				<a id="bas"></a>
+			</p>
+			<div class="box text-center">
+				{% if is_granted('ROLE_USER') %}
+					<a href="{{ path('trick_index') }}" class="btn btn-secondary" width="50px">
+						<i class="fas fa-snowboarding"></i>
+						Liste Tricks
+					</a>
+				{% endif %}
+				<button class="btn btn-success my-3 mx-5" id="voirPlus">Voir plus</button>
+			</div>
+
+
+			<script>
+				let boutonVoirPlus = document.getElementById('voirPlus')
+				boutonVoirPlus.addEventListener('click', () => {
+				let listElementHidden = document.getElementsByClassName('hidden')
+				for (let i = 0; (i <= 6) && (i < listElementHidden.length); i++) {
+				listElementHidden[i].classList.remove('hidden')
+				}
+				})
 			</script>
 
-{% endblock %}
+
+		{% endblock %}

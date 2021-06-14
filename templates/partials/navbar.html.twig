@@ -12,30 +12,22 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('accueil')}}">
-							<i class="fa fa-home" aria-hidden="true"></i>
-							Accueil - Tricks</a>
+						<a class="nav-link" href="{{ path('accueil')}}"><i class="fa fa-home" aria-hidden="true"></i>
+						Accueil - Tricks</a>
 					</li>
 
 					{% if is_granted ('ROLE_USER') %}
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('category_index')}}">
-							<i class="fa fa-snowboarding" aria-hidden="true"></i>
-							Catégories</a>
+						<a class="nav-link" href="{{ path('category_index')}}"><i class="fa fa-snowboarding" aria-hidden="true"></i>
+						Catégories</a>
 					</li> 
 					{% endif %}
 
-				{#	{% if is_granted ('ROLE_USER') %}
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_logout')}}">
-							<i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-							Déconnexion</a>#}
 					{% if app.user %}
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_logout')}}">
-						<i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+						<a class="nav-link" href="{{ path('app_logout')}}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>
 						deconnexion </a>
-						
+					</li>	
 					{% else %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_login')}}">
@@ -44,11 +36,9 @@
 					</li> 
 					{% endif %}
 				
-
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_register')}}">
-							<i class="fa fa-user-plus" aria-hidden="true"></i>
-							Inscription</a>
+						<a class="nav-link" href="{{ path('app_register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i>
+						Inscription</a>
 					</li>
 				</ul>
 			</div>

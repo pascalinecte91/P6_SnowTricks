@@ -9,6 +9,7 @@ use App\Entity\Picture;
 use App\Form\CommentType;
 use App\Repository\TrickRepository;
 use App\Service\UploaderFileServiceInterface;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -85,7 +86,7 @@ class TrickController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name="trick_show", methods={"GET", "POST"})
+     * @Route("/{id}", name="trick_show", methods={"GET","POST"})
      */
     public function show(Request $request, Trick $trick, PaginatorInterface $paginator): Response
     {
@@ -178,20 +179,25 @@ class TrickController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name="trick_delete", methods={"POST"})
+     * @Route("/{id}/delete", name="trick_delete", methods={"POST"})
      */
     public function delete(Request $request, Trick $trick): Response
     {
+
         if ($this->isCsrfTokenValid('delete' . $trick->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($trick);
             $entityManager->flush();
-        }
 
+            $this->addFlash(
+                'success',
+                 'Le trick <strong>' . $trick->getName()  . '</strong> a bien eté modifié supprimé.'
+            );
+        
         return $this->redirectToRoute('trick_index');
     }
-
-
+}
+   
 
     /**
      * @Route("/delete/picture/{id}", name="trick_delete_picture", methods={"DELETE"})

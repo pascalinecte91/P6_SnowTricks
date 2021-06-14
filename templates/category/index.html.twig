@@ -19,7 +19,7 @@
 						<th class="text-center">Title</th>
 						<th class="text-center">Crée le</th>
 						<th class="text-center hide-xs-sm">Modifiée le</th>
-						{% if is_granted('ROLE_ADMIN') %}
+						{% if is_granted('ROLE_ADMINISTRATOR') %}
 						<th class="text-center">Action</th>
 						{% endif %}	
 					</tr>
@@ -33,7 +33,7 @@
 							<td class="text-center">{{ category.createdAt ? category.createdAt|date('d/m/Y à h\\hi') : '' }}</td>
 							<td class="text-center hide-xs-sm">{{ category.updateAt ? category.updateAt|date('d/m/Y') : '' }}</td>
 							<td>
-								{% if is_granted('ROLE_ADMIN') %}
+								{% if is_granted('ROLE_ADMINISTRATOR') %}
 								<a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-dark">
 								<i class=" fa fa-edit"></i>Modifier
 								</a>
@@ -50,7 +50,7 @@
 		</div>
 
 		<div class="col-12 text-center my-5 py-3">
-			{% if is_granted('ROLE_ADMIN') %}
+			{% if is_granted('ROLE_ADMINISTRATOR') %}
 			<a href="{{ path('category_new') }}" class="btn btn-secondary">
 				Créer Catégorie</a>
 			{% endif %}	

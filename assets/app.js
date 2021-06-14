@@ -14,6 +14,9 @@ require('fslightbox')
 require('jquery');
 
 
+
+
+
 import a2lix_lib from '@a2lix/symfony-collection/src/a2lix_sf_collection';
 
 
@@ -47,7 +50,7 @@ btn.addEventListener('click', () => {
 
 import $ from "jquery";
 
-
+//$('.collapse').collapse()
 
 
 
