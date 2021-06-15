@@ -55,7 +55,6 @@ class ResetPasswordController extends AbstractController
     }
 
 
-
     /**
      * Confirmation page after a user has requested a password reset.
      *
@@ -72,7 +71,6 @@ class ResetPasswordController extends AbstractController
             'resetToken' => $resetToken,
         ]);
     }
-
 
 
     /**
@@ -134,6 +132,7 @@ class ResetPasswordController extends AbstractController
         ]);
     }
 
+    
     private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer): RedirectResponse
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
@@ -158,8 +157,7 @@ class ResetPasswordController extends AbstractController
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
-            ])
-        ;
+            ]);
 
         $mailer->send($email);
 

@@ -24,7 +24,7 @@ class CategoryController extends AbstractController
             'categories' => $categoryRepository->findAll(),
         ]);
     }
-    
+
     /**
      * @Route("/new", name="category_new", methods={"GET","POST"})
      */
@@ -41,7 +41,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash(
                 'success',
-                 'Nouvelle catégorie <strong>' . $category->getTitle()  . '</strong> crée  Bravo !'
+                'Nouvelle catégorie <strong>' . $category->getTitle()  . '</strong> crée  Bravo !'
             );
 
             return $this->redirectToRoute('category_index');
@@ -76,7 +76,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash(
                 'success',
-                 'La catégorie <strong>' . $category->getTitle()  . '</strong> a été modifiée !'
+                'La catégorie <strong>' . $category->getTitle()  . '</strong> a été modifiée !'
             );
 
             return $this->redirectToRoute('category_index');

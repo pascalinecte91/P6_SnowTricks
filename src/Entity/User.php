@@ -65,6 +65,7 @@ class User implements UserInterface
     private $avatar;
 
 
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -248,5 +249,4 @@ class User implements UserInterface
 
         return $this;
     }
-
 }

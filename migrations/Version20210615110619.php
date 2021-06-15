@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210611145307 extends AbstractMigration
+final class Version20210615110619 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -23,7 +23,7 @@ final class Version20210611145307 extends AbstractMigration
         $this->addSql('ALTER TABLE category CHANGE created_at created_at DATETIME NOT NULL');
         $this->addSql('ALTER TABLE comment CHANGE created_at created_at DATETIME NOT NULL');
         $this->addSql('ALTER TABLE trick CHANGE description description VARCHAR(65535) DEFAULT NULL, CHANGE created_at created_at DATETIME NOT NULL');
-        $this->addSql('ALTER TABLE user ADD avatar VARCHAR(255) DEFAULT NULL, CHANGE created_at created_at DATETIME NOT NULL');
+        $this->addSql('ALTER TABLE user CHANGE created_at created_at DATETIME NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -32,6 +32,6 @@ final class Version20210611145307 extends AbstractMigration
         $this->addSql('ALTER TABLE category CHANGE created_at created_at DATETIME NOT NULL');
         $this->addSql('ALTER TABLE comment CHANGE created_at created_at DATETIME NOT NULL');
         $this->addSql('ALTER TABLE trick CHANGE description description MEDIUMTEXT CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE created_at created_at DATETIME NOT NULL');
-        $this->addSql('ALTER TABLE user DROP avatar, CHANGE created_at created_at DATETIME NOT NULL');
+        $this->addSql('ALTER TABLE user CHANGE created_at created_at DATETIME NOT NULL');
     }
 }

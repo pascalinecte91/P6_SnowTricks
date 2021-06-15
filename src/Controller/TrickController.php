@@ -68,10 +68,10 @@ class TrickController extends AbstractController
             }
             $this->entityManager->persist($trick);
             $this->entityManager->flush();
-             
+
             $this->addFlash(
                 'success',
-                 'Le nouveau trick <strong>' . $trick->getName()  . '</strong> a été crée .'
+                'Le nouveau trick <strong>' . $trick->getName()  . '</strong> a été crée .'
             );
 
             return $this->redirectToRoute('trick_index');
@@ -90,13 +90,13 @@ class TrickController extends AbstractController
      */
     public function show(Request $request, Trick $trick, PaginatorInterface $paginator): Response
     {
-        
+
         $comments = $paginator->paginate(  // je pagine : si pas de page 1  et oui si page + 1 jusqu' 4
-            $trick->getComments(),   
+            $trick->getComments(),
             $request->query->getInt('page', 1),  //  pour la page 1 si ya page d'autres pages
             5
         );
-    
+
         $user = $this->getUser();
 
         //  creation du commentaire vide
@@ -118,7 +118,11 @@ class TrickController extends AbstractController
             //  je fais mon flush  pour inscrire dans ma db
             $em->flush();
 
-            $this->addFlash('message', ' Votre message est publié');
+            $this->addFlash(
+                    'success',
+                    ' Votre commentaire est publié !'
+                );
+
             return $this->redirectToRoute('trick_index', ['id' => $trick->getId()]);
         }
 
@@ -128,7 +132,6 @@ class TrickController extends AbstractController
             'comments' => $comments,
         ]);
     }
-
 
 
     /**
@@ -141,15 +144,14 @@ class TrickController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $trick->setUpdateAt(new \DateTime());
-            
- 
-            $pictures = $trick->getPictures() ;
+
+            $pictures = $trick->getPictures();
             // faire une boucle pour plusieurs images
             foreach ($pictures as $picture) {
-                if ($picture->getId()!=null){
+                if ($picture->getId() != null) {
                     continue;
                 }
-              
+
                 $filename = $this->uploaderFileService->upload($picture->getFile());
                 $subtitle = $picture->getSubtitle();
                 $picture->setName($filename);
@@ -160,14 +162,13 @@ class TrickController extends AbstractController
             }
 
             $this->entityManager->flush();
-           
+
             $this->addFlash(
                 'success',
-                 'Le trick <strong>' . $trick->getName()  . '</strong> a bien eté modifié avec succès.'
+                'Le trick <strong>' . $trick->getName()  . '</strong> a bien eté modifié avec succès.'
             );
-            
+
             return $this->redirectToRoute('trick_index');
-            
         }
 
         return $this->render('trick/edit.html.twig', [
@@ -191,13 +192,13 @@ class TrickController extends AbstractController
 
             $this->addFlash(
                 'success',
-                 'Le trick <strong>' . $trick->getName()  . '</strong> a bien eté modifié supprimé.'
+                'Le trick <strong>' . $trick->getName()  . '</strong> a bien eté  supprimé.'
             );
-        
-        return $this->redirectToRoute('trick_index');
+
+            return $this->redirectToRoute('trick_index');
+        }
     }
-}
-   
+
 
     /**
      * @Route("/delete/picture/{id}", name="trick_delete_picture", methods={"DELETE"})
@@ -224,7 +225,6 @@ class TrickController extends AbstractController
 
             //reponse en json_decode
             return new JsonResponse(['success' => 1]);
-            
         } else {
 
             return new JsonResponse(['error' => 'Token Invalide'], 400);

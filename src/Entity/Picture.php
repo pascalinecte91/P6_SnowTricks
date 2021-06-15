@@ -69,13 +69,13 @@ class Picture
         return $this->getName();
     }
 
-    
+
 
     /**
      * @param UploadedFile|null $file
      * @return $this
      */
-    
+
     public function setFile(?UploadedFile $file): self
     {
         $this->file = $file;
