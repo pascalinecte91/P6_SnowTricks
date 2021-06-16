@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Trick
+{% block title %}Nouveau Trick
 {% endblock %}
 
 {% block body %}
-	<h1>Create new Trick</h1>
+	<h1>Nouveau Trick</h1>
 		{% if is_granted('ROLE_USER') %}
 	{{ include('trick/_form.html.twig') }}
 		{% endif %}

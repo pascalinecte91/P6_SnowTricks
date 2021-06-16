@@ -54,7 +54,7 @@
 
 								<img class="card-img-top" width="300" height="170" src="{{ asset('uploads/' ~ trick.pictures|first)}}" alt="Card image cap">
 								<div class="d-flex justify-content-center mx-5 my-2">
-									<a href="{{ path('trick_show', {'id': trick.id}) }}" class="btn btn-primary">Détail
+									<a href="{{ path('trick_show', {'slug': trick.slug}) }}" class="btn btn-primary">Détail
 									</a>
 								</div>
 							</div>

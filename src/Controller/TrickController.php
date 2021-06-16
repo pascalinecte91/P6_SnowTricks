@@ -2,21 +2,22 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
 use App\Entity\Trick;
-use App\Form\TrickType;
+use App\Entity\Comment;
 use App\Entity\Picture;
+use App\Form\TrickType;
 use App\Form\CommentType;
-use App\Repository\TrickRepository;
-use App\Service\UploaderFileServiceInterface;
 use Doctrine\ORM\EntityManager;
+use App\Repository\TrickRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Knp\Component\Pager\PaginatorInterface;
+use App\Service\UploaderFileServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/trick")
@@ -52,6 +53,12 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $slugger = new AsciiSlugger();
+            $trick->getName();
+            $slug = $slugger->slug($trick->getName());
+            $trick->setSlug($slug);
+
 
             // recuperation des images transmises
             $pictures = $trick->getPictures();
@@ -65,15 +72,16 @@ class TrickController extends AbstractController
 
                 $this->entityManager->persist($picture);
                 $trick->addPicture($picture);
+               
             }
             $this->entityManager->persist($trick);
             $this->entityManager->flush();
-
+            
             $this->addFlash(
                 'success',
                 'Le nouveau trick <strong>' . $trick->getName()  . '</strong> a été crée .'
             );
-
+            
             return $this->redirectToRoute('trick_index');
         }
 
@@ -86,7 +94,7 @@ class TrickController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name="trick_show", methods={"GET","POST"})
+     * @Route("/{slug}", name="trick_show", methods={"GET","POST"})
      */
     public function show(Request $request, Trick $trick, PaginatorInterface $paginator): Response
     {
@@ -143,6 +151,13 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $slugger = new AsciiSlugger();
+            $trick->getName();
+            $slug = $slugger->slug($trick->getName());
+            $trick->setSlug($slug);
+
+
             $trick->setUpdateAt(new \DateTime());
 
             $pictures = $trick->getPictures();

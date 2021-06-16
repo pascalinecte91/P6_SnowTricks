@@ -32,7 +32,7 @@ class RegistrationFormType extends AbstractType
 
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'merci d\'accepter nos conditions.',
                     ]),
                 ],
             ])
@@ -40,7 +40,7 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'les mots de passe ne correspondent pas.',
-                'options' => ['attr' => ['class' => 'password-field']],
+                'options' => ['attr' => ['class' => 'champs mot de passe ']],
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de Passe'],
                 'second_options' => ['label' => 'Confirmez le mot de passe'],
